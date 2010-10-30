@@ -1,7 +1,7 @@
 require 'packo/behaviors/gnu'
 
 Packo::Package.new('system/libraries/ncurses') {
-  behavior Packo::Behaviors::GNU
+  type 'library'; behavior Packo::Behaviors::GNU
 
   description 'console display library'
   homepage    'http://www.gnu.org/software/ncurses/', 'http://dickey.his.com/ncurses/'
@@ -11,8 +11,6 @@ Packo::Package.new('system/libraries/ncurses') {
 
   features {
     cxx { enabled!
-      description = 'Enable C++ support'
-
       on :configure do |conf|
         conf.with ['cxx', 'cxx-binding'], enabled?
       end
@@ -51,10 +49,8 @@ Packo::Package.new('system/libraries/ncurses') {
     }
 
     gpm {
-      description = 'Add mouse support.'
-
       on :dependencies do |package|
-        package.dependencies << 'system/libraries/gpm!' if enabled?
+        package.dependencies << 'system/libraries/gpm' if enabled?
       end
 
       on :configure do |conf|
@@ -63,8 +59,6 @@ Packo::Package.new('system/libraries/ncurses') {
     }
 
     ada {
-      description = 'Add ADA support.'
-
       on :configure do |conf|
         conf.with 'ada', enabled?
       end
