@@ -1,9 +1,9 @@
 require 'packo/behaviors/gnu'
-require 'packo/modules/sourceforge'
+require 'packo/modules/fetching/sourceforge'
 
 Packo::Package.new('x11/window-managers/fluxbox') {
   behavior Packo::Behaviors::GNU
-  use Packo::Modules::SourceForge
+  use Packo::Modules::Fetching::SourceForge
 
   description 'Fluxbox is an X11 window manager featuring tabs and an iconbar'
   homepage    'http://www.fluxbox.org'
@@ -81,6 +81,10 @@ Packo::Package.new('x11/window-managers/fluxbox') {
 
     }
   }
+
+  on :unpacked, 10 do
+    Dir.chdir "#{package.workdir}/fluxbox-#{package.version}"
+  end
 
   on :configure do |conf|
     conf.set 'sysconfdir', "#{package.distdir}/etc/X11/fluxbox"

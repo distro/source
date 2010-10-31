@@ -65,11 +65,6 @@ Packo::Package.new('system/libraries/ncurses') {
     }
   }
 
-  on :initialize do
-    package.workdir = "#{package.directory}/work"
-    package.distdir = "#{package.directory}/dist"
-  end
-
   on :unpacked, 10 do
     Dir.chdir "#{package.workdir}/ncurses-#{package.version}"
   end
