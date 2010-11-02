@@ -65,10 +65,6 @@ Packo::Package.new('system/libraries/ncurses') {
     }
   }
 
-  on :unpacked, 10 do
-    Dir.chdir "#{package.workdir}/ncurses-#{package.version}"
-  end
-
   on :configure do |conf|
     conf.with ['shared', 'rcs-ids']
     conf.with 'manpage-format', 'normal'
