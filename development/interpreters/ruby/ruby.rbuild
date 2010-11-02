@@ -68,11 +68,11 @@ Packo::Package.new('development/interpreters/ruby') {
       end
     }
 
-#    readline {
-#      on :dependencies do |package|
-#        package.dependencies << 'system/libraries/readline' if enabled? && !package.features.libedit.enabled?
-#      end
-#    }
+    self.set 'readline' {
+      on :dependencies do |package|
+        package.dependencies << 'system/libraries/readline' if enabled? && !package.features.libedit.enabled?
+      end
+    }
   }
 
   on :configure, -10 do |conf|
