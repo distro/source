@@ -1,3 +1,5 @@
+# Maintainer: meh. <meh@paranoici.org>
+
 require 'packo/behaviors/gnu'
 
 Packo::Package.new('system/libraries/ncurses') {
@@ -78,4 +80,8 @@ Packo::Package.new('system/libraries/ncurses') {
     conf.disable ['ext-colors', 'ext-mouse']
     conf.without ['pthread', 'reentrant']
   end
+
+	on :compile do
+		package.make 'source'
+	end
 }
