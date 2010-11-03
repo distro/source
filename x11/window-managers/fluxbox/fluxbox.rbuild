@@ -3,7 +3,7 @@ require 'packo/modules/fetching/sourceforge'
 
 Packo::Package.new('x11/window-managers/fluxbox') {
   behavior Packo::Behaviors::GNU
-  use Packo::Modules::Fetching::SourceForge
+  use      Packo::Modules::Fetching::SourceForge
 
   description 'Fluxbox is an X11 window manager featuring tabs and an iconbar'
   homepage    'http://www.fluxbox.org'
@@ -16,20 +16,12 @@ Packo::Package.new('x11/window-managers/fluxbox') {
 
   features {
     nls {
-      on :dependencies do |package|
-        package.dependencies << 'system/development/gettext!' if enabled?
-      end
-
       on :configure do |conf|
         conf.enable 'nls', enabled?
       end
     }
 
     xinerama {
-      on :dependencies do |package|
-        package.dependencies << 'x11/libraries/libXinerama' << 'x11/protocols/xineramaproto!' if enabled?
-      end
-
       on :configure do |conf|
         conf.enable 'xinerama', enabled?
       end
