@@ -1,0 +1,7 @@
+Packo::Features::Default.define(:cups) {
+  description 'Add support for CUPS (Common Unix Printing System)'
+
+  on :dependencies do |package|
+    package.dependencies << 'network/printing/cups' if enabled?
+  end
+}

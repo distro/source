@@ -1,0 +1,7 @@
+Packo::Features::Default.define(:gpm) {
+  description 'Adds support for system/libraries/gpm (Console-based mouse driver)'
+
+  on :dependencies do |package|
+    package.dependencies << 'system/libraries/gpm' if enabled?
+  end
+}

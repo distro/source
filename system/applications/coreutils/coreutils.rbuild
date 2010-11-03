@@ -1,3 +1,4 @@
+# encoding: utf-8
 # Maintainer: Ermenegildo Fiorito (fyskij) <fiorito.g@gmail.com)
 
 require 'packo/behaviors/gnu'
@@ -16,59 +17,48 @@ Packo::Package.new('system/applications/coreutils') {
   dependencies << '>=system/libraries/ncurses-5.3'
   dependencies << 'applications/archiving/xz!'
 
+  blockers << '<system/applications/util-linux-2.13' << 'system/applications/stat' << 'network/mail/base64' \
+           << 'system/applications/mktemp'
+
   features {
     nls {
-      on :dependencies do |package|
-        package.dependencies << 'system/development/gettext' if enabled?
-      end
-
       on :configure do |conf|
         conf.enable 'nls', enabled?
       end
     }
 
-    cups {
-      on :dependencies do |package|
-        package.dependencies << 'network/printing/cups' if enabled?
-      end
-
+    caps {
       on :configure do |conf|
-        conf.enable 'cups', enabled?
+				if enabled?
+					conf.enable 'caps'
+				else
+					conf.disable 'libcap'
+				end
       end
     }
 
     acl {
-      on :dependencies do |package|
-        package.dependencies << 'system/applications/acl' if enabled?
-      end
-
       on :configure do |conf|
         conf.enable 'acl', enabled?
       end
     }
 
-    attr {
-      on :dependencies do |package|
-        package.dependencies << 'system/applications/attr' if enabled?
-      end
-      
+    xattr {
       on :configure do |conf|
-        conf.enable 'attr', enabled?
+        conf.enable 'xattr', enabled?
       end
     }
 
-    gmp { enabled!
-      on :dependencies do |package|
-        package.dependencies << 'development/libraries/gmp' if enabled?
-      end
-
+    gmp {
       on :configure do |conf|
-        conf.enable 'gmp', enabled?
+        conf.with 'gmp', enabled?
       end
     }
   }
 
   on :configure do |conf|
+    conf.with 'packager', 'Distrø'
+
     conf.enable 'install-program', 'arch'
     conf.enable 'no-install-program', 'groups,hostname,kill,su,uptime'
     conf.enable 'largefile'

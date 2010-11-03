@@ -1,0 +1,1 @@
+<manifest version='1.0'><package categories='system/libraries' name='ncurses' version='5.7'><features><feature>cxx</feature><feature>unicode</feature><feature>gpm</feature><feature>ada</feature></features><files><file name='ncurses-5.7.tar.gz'>8233ee56ed84ae05421e4e6d6db6c1fe72ee6797</file></files></package></manifest>

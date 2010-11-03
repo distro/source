@@ -1,0 +1,7 @@
+Packo::Features::Default.define(:acl) {
+  description 'Adds support for Access Control Lists'
+
+  on :dependencies do |package|
+    package.dependencies << 'system/applications/acl' if enabled?
+  end
+}

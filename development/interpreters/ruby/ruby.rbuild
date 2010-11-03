@@ -113,7 +113,7 @@ Packo::Package.new('development/interpreters/ruby') {
   }
 
   on :configure, -10 do |conf|
-    package.autoreconf
+    autotools.autoreconf
 
     if package.features.readline.enabled? || package.features.libedit.enabled?
       conf.with 'readline'

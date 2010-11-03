@@ -1,0 +1,7 @@
+Packo::Features::Default.define(:gmp) {
+  description 'Adds support for development/libraries/gmp (GNU MP library)'
+
+  on :dependencies do |package|
+    package.dependencies << 'development/libraries/gmp' if enabled?
+  end
+}

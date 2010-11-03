@@ -1,0 +1,7 @@
+Packo::Features::Default.define(:nls) {
+  description 'Adds Native Language Support (using gettext - GNU locale utilities)'
+
+  on :dependencies do |package|
+    package.dependencies << 'system/development/gettext' if enabled?
+  end
+}

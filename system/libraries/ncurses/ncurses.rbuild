@@ -37,8 +37,8 @@ Packo::Package.new('system/libraries/ncurses') {
 
         Dir.chdir "#{package.workdir}/ncursesw"
 
-        conf.module.do_configure(conf, false)
-        conf.module.do_compile(conf, false)
+        package.autotools.configure(conf)
+        package.autotools.make(conf)
 
         Dir.chdir "#{package.workdir}/ncurses-#{package.version}"
       end
@@ -46,7 +46,7 @@ Packo::Package.new('system/libraries/ncurses') {
       on :installed do |conf|
         Dir.chdir "#{package.workdir}/ncursesw"
 
-        conf.module.do_install(nil, false)
+        package.autotools.install(package.distdir)
       end
     }
 
