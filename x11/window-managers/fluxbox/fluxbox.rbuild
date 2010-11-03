@@ -36,10 +36,6 @@ Packo::Package.new('x11/window-managers/fluxbox') {
     }
 
     truetype {
-      on :dependencies do |package|
-        package.dependencies << 'media/libraries/freetype'
-      end
-
       on :configure do |conf|
         conf.enable 'xft', enabled?
       end
@@ -73,12 +69,12 @@ Packo::Package.new('x11/window-managers/fluxbox') {
       end
     }
 
-    vim {
-      
-    }
-
     newmousefocus {
 
+    }
+
+    vim {
+      
     }
   }
 

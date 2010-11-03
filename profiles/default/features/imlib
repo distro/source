@@ -1,0 +1,7 @@
+Packo::Features::Default.define(:imlib) {
+  description 'Adds support for imlib, an image loading and rendering library'
+
+  on :dependencies do |package|
+    package.dependencies << 'media/libraries/imlib2' if enabled?
+  end
+}

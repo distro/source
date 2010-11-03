@@ -29,11 +29,11 @@ Packo::Package.new('system/applications/coreutils') {
 
     caps {
       on :configure do |conf|
-				if enabled?
-					conf.enable 'caps'
-				else
-					conf.disable 'libcap'
-				end
+        if enabled?
+          conf.enable 'caps'
+        else
+          conf.disable 'libcap'
+        end
       end
     }
 

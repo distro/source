@@ -1,0 +1,7 @@
+Packo::Features::Default.define(:truetype) {
+  description 'Adds support for FreeType and/or FreeType2 fonts'
+
+  on :dependencies do |package|
+    package.dependencies << 'media/libraries/freetype'
+  end
+}

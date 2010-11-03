@@ -5,8 +5,8 @@ require 'packo/behaviors/gnu'
 Packo::Package.new('development/interpreters/ruby') {
   behavior Packo::Behaviors::GNU
 
-  description 'Fluxbox is an X11 window manager featuring tabs and an iconbar'
-  homepage    'http://www.fluxbox.org'
+  description 'An object-oriented scripting language'
+  homepage    'http://www.ruby-lang.org/'
   license     'MIT'
 
   source 'ftp://ftp.ruby-lang.org/pub/ruby/#{package.version.major}.#{package.version.minor}/ruby-#{package.version}.tar.gz'

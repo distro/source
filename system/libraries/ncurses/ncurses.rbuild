@@ -81,7 +81,7 @@ Packo::Package.new('system/libraries/ncurses') {
     conf.without ['pthread', 'reentrant']
   end
 
-	on :compile do
-		package.make 'source'
-	end
+  on :compile do
+    package.make 'source'
+  end
 }
