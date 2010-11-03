@@ -1,0 +1,7 @@
+Packo::Features::Default.define(:perl) {
+  description 'Adds support/bindings for the Perl language'
+
+  on :dependencies do |package|
+    package.dependencies << 'development/interpreters/perl' if enabled?
+  end
+}
