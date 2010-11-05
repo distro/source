@@ -82,6 +82,6 @@ Packo::Package.new('system/libraries/ncurses') {
   end
 
   on :compile do
-    package.make 'source'
+    autotools.make '-j1', 'source'
   end
 }

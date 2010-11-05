@@ -1,4 +1,3 @@
-# encoding: utf-8
 # Maintainer: meh. <meh@paranoici.org>
 
 require 'packo/behaviors/gnu'

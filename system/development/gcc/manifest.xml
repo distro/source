@@ -1,0 +1,1 @@
+<manifest version='1.0'><package categories='system/development' name='gcc' slot='4.4' version='4.4.3'><features/><files><file name='gcc-4.4.3.tar.bz2'>619766282734728539ce58a5c383cb371f1999c7</file></files></package></manifest>

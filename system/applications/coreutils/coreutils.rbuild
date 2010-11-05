@@ -1,4 +1,3 @@
-# encoding: utf-8
 # Maintainer: Ermenegildo Fiorito (fyskij) <fiorito.g@gmail.com)
 
 require 'packo/behaviors/gnu'

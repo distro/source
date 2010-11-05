@@ -1,6 +1,6 @@
 # Maintainer: meh. <meh@paranoici.org>
 
-Packo::Package.new('development/interpreters/ruby', '1.9.2-p0', '1.9') {
+Packo::Package.new('system/development/gcc', '4.4.3', '4.4') {
   arch     '~x86', '~amd64'
   kernel   'linux'
   compiler 'gcc'
