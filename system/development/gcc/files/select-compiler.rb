@@ -29,13 +29,13 @@ class Application < Optitron::CLI
       exit 1
     end
 
+    if Packo.numeric?(compiler)
+      compiler = compilers[compiler.to_i - 1]
+    end
+
     if !compilers.member? compiler
       fatal "#{compiler} compiler not available"
       exit 2
-    end
-
-    if Packo.numeric?(compiler)
-      compiler = compilers[compiler - 1]
     end
 
     name, version = compiler.split('/')
@@ -47,6 +47,8 @@ class Application < Optitron::CLI
 
       when 'clang'
     end
+
+    @db.execute('INSERT OR REPLACE INTO data VALUES(?, ?)', ['compiler', Marshal.dump(compiler)])
   end
 
   desc 'Get path of a file for the given compiler (or current)'
@@ -55,7 +57,7 @@ class Application < Optitron::CLI
   end
 
   def current
-    Marshal.load(@db.execute('SELECT data FROM data WHERE name = ?', 'compiler')['data']) rescue nil
+    Marshal.load(@db.execute('SELECT data FROM data WHERE name = ?', 'compiler').first['data']) rescue nil
   end
 
   def compilers
