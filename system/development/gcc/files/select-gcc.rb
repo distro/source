@@ -7,7 +7,7 @@ require 'packo_binary/helpers'
 class Application < Optitron::CLI
   include PackoBinary::Helpers
 
-  class_opt 'database', 'The path to the cache file', :default => Packo::Environment['SELECT']
+  class_opt 'database', 'The path to the cache file', :default => Packo::Environment['SELECTOR_CACHE']
 
   desc 'List available gcc versions'
   def list
