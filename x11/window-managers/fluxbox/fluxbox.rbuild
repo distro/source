@@ -71,6 +71,6 @@ Packo::Package.new('x11/window-managers/fluxbox') {
   }
 
   on :configure do |conf|
-    conf.set 'sysconfdir', "#{package.distdir}/etc/X11/fluxbox"
+    conf.set 'sysconfdir', '/etc/X11/fluxbox'
   end
 }

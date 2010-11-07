@@ -2,8 +2,8 @@
 
 require 'packo/behaviors/gnu'
 
-Packo::Package.new('system/libraries/ncurses') {
-  type 'library'; behavior Packo::Behaviors::GNU
+Packo::Package.new('system/libraries/ncurses') { type 'library'
+  behavior Packo::Behaviors::GNU
 
   description 'console display library'
   homepage    'http://www.gnu.org/software/ncurses/', 'http://dickey.his.com/ncurses/'

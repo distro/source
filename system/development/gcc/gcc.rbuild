@@ -15,31 +15,31 @@ Packo::Package.new('system/development/gcc') {
 
   features {
     ada {
-      on :initialize do |package|
+      on :build do |package|
         package.languages << 'ada' if enabled?
       end
     }
 
     java {
-      on :initialize do |package|
+      on :build do |package|
         package.languages << 'java' if enabled?
       end
     }
     
     fortran {
-      on :initialize do |package|
+      on :build do |package|
         package.languages << 'fortran' if enabled?
       end
     }
 
     objc {
-      on :initialize do |package|
+      on :build do |package|
         package.languages << 'objc' if enabled?
       end
     }
 
     objcxx {
-      on :initialize do |package|
+      on :build do |package|
         package.languages << 'objcp' if enabled?
       end
     }
@@ -66,14 +66,21 @@ Packo::Package.new('system/development/gcc') {
     }
   }
 
+  select [{
+    :name        => 'compiler',
+    :description => 'Set the compiler to use',
+
+    :path => '#{package.path}/files/select-compiler.rb'
+  }]
+
   on :initialize, -10 do |package|
     package.languages = ['c', 'c++']
   end
 
   on :configure do |conf|
-    conf.set 'prefix', "#{package.distdir}/usr/compilers/gcc/#{package.version}"
-    conf.with 'gxx-include-dir', "#{package.distdir}/usr/compilers/gcc/#{package.version}/include/g++-v4"
-    conf.with 'python-dir', "#{package.distdir}/usr/compilers/gcc/#{package.version}/python"
+    conf.set  'prefix', "/usr/compilers/gcc/#{package.version}"
+    conf.with 'gxx-include-dir', "/usr/compilers/gcc/#{package.version}/include/g++-v4"
+    conf.with 'python-dir', "/usr/compilers/gcc/#{package.version}/python"
 
     conf.with    ['system-zlib']
     conf.without ['ppl', 'cloog', 'included-gettext']
