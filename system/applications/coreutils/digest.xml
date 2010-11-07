@@ -1,0 +1,1 @@
+<digest version='1.0'><package categories='system/applications' name='coreutils' version='8.6'><features><feature>nls</feature><feature>caps</feature><feature>acl</feature><feature>xattr</feature><feature>gmp</feature></features><files><file name='coreutils-8.6.tar.xz'>838c623a8763370cc3aa309b171e44e08f4f1bb9</file></files></package></digest>
