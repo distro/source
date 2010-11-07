@@ -66,7 +66,7 @@ Packo::Package.new('system/development/gcc') {
     }
   }
 
-  select [{
+  selector [{
     :name        => 'gcc',
     :description => 'Set the gcc version to use',
 
