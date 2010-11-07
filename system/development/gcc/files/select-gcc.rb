@@ -9,20 +9,20 @@ class Application < Optitron::CLI
 
   class_opt 'database', 'The path to the cache file', :default => Packo::Environment['SELECT']
 
-  desc 'List available compilers'
+  desc 'List available gcc versions'
   def list
-    info 'List of available compilers'
+    info 'List of availaibale gcc versions'
 
     current = self.current
 
-    self.compilers.each_with_index {|compiler, i|
-      info "  [#{i + 1}]\t#{compiler}  #{colorize('*', :BLUE) if compiler == current}"
+    self.versions.each_with_index {|version, i|
+      puts " [#{version == current ? colorize(i + 1, :GREEN) : i + 1}] \t#{version}"
     }
   end
 
-  desc 'Choose what compiler to use'
+  desc 'Choose what version of gcc to use'
   def set (compiler)
-    compilers = self.compilers
+    versions = self.versions
 
     if Packo.numeric?(compiler) && (compiler.to_i > compilers.length || compiler.to_i < 1)
       fatal "#{compiler} out of index"
@@ -38,33 +38,19 @@ class Application < Optitron::CLI
       exit 2
     end
 
-    name, version = compiler.split('/')
+    FileUtils.ln_sf "/usr/compilers/gcc/#{version}/bin/gcc", '/usr/bin/gcc'
+    FileUtils.ln_sf "/usr/compilers/gcc/#{version}/bin/g++", '/usr/bin/g++'
 
-    case name
-      when 'gcc'
-        FileUtils.ln_s "/usr/compilers/gcc/#{version}/bin/gcc", '/usr/bin/gcc', :force => true
-        FileUtils.ln_s "/usr/compilers/gcc/#{version}/bin/g++", '/usr/bin/g++', :force => true
-
-      when 'clang'
-    end
-
-    @db.execute('INSERT OR REPLACE INTO data VALUES(?, ?)', ['compiler', Marshal.dump(compiler)])
-  end
-
-  desc 'Get path of a file for the given compiler (or current)'
-  def path (file, compiler=nil)
-    compiler ||= self.current
+    @db.execute('INSERT OR REPLACE INTO data VALUES(?, ?)', ['gcc', Marshal.dump(compiler)])
   end
 
   def current
-    Marshal.load(@db.execute('SELECT data FROM data WHERE name = ?', 'compiler').first['data']) rescue nil
+    Marshal.load(@db.execute('SELECT data FROM data WHERE name = ?', 'gcc').first['data']) rescue nil
   end
 
-  def compilers
-    Dir.glob('/usr/compilers/*').map {|compiler|
-      Dir.glob("#{compiler}/*")
-    }.flatten.map {|compiler|
-      compiler.sub('/usr/compilers/', '')
+  def versions
+    Dir.glob('/usr/compilers/gcc/*').map {|version|
+      version.sub('/usr/compilers/gcc/', '')
     }
   end
 

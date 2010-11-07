@@ -67,10 +67,10 @@ Packo::Package.new('system/development/gcc') {
   }
 
   select [{
-    :name        => 'compiler',
-    :description => 'Set the compiler to use',
+    :name        => 'gcc',
+    :description => 'Set the gcc version to use',
 
-    :path => '#{package.path}/files/select-compiler.rb'
+    :path => '#{package.path}/files/select-gcc.rb'
   }]
 
   on :initialize, -10 do |package|
