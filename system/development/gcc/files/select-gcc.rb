@@ -7,7 +7,7 @@ require 'packo_binary/helpers'
 class Application < Optitron::CLI
   include PackoBinary::Helpers
 
-  class_opt 'database', 'The path to the cache file', :default => Packo::Environment['SELECTOR_CACHE']
+  class_opt 'database', 'The path to the cache file', :default => Packo::Environment[:SELECTOR_CACHE]
 
   desc 'List available gcc versions'
   def list
@@ -21,27 +21,29 @@ class Application < Optitron::CLI
   end
 
   desc 'Choose what version of gcc to use'
-  def set (compiler)
+  def set (version)
     versions = self.versions
 
-    if Packo.numeric?(compiler) && (compiler.to_i > compilers.length || compiler.to_i < 1)
-      fatal "#{compiler} out of index"
+    if Packo.numeric?(version) && (version.to_i > versions.length || version.to_i < 1)
+      fatal "#{version} out of index"
       exit 1
     end
 
-    if Packo.numeric?(compiler)
-      compiler = compilers[compiler.to_i - 1]
+    if Packo.numeric?(version)
+      version = versions[version.to_i - 1]
     end
 
-    if !compilers.member? compiler
-      fatal "#{compiler} compiler not available"
+    if !versions.member? version
+      fatal "#{version} version not available"
       exit 2
     end
 
     FileUtils.ln_sf "/usr/compilers/gcc/#{version}/bin/gcc", '/usr/bin/gcc'
     FileUtils.ln_sf "/usr/compilers/gcc/#{version}/bin/g++", '/usr/bin/g++'
 
-    @db.execute('INSERT OR REPLACE INTO data VALUES(?, ?)', ['gcc', Marshal.dump(compiler)])
+    info "Set gcc to #{version}"
+
+    @db.execute('INSERT OR REPLACE INTO data VALUES(?, ?)', ['gcc', Marshal.dump(version)])
   end
 
   def current

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE repository [
+    <!ELEMENT repository (mirrors, packages?)>
+    <!ATTLIST repository
+        version CDATA   #REQUIRED
+        name    CDATA   #REQUIRED
+        type    CDATA   #REQUIRED
+    >
+
+    <!ELEMENT mirrors (mirror*)>
+        <!ELEMENT mirror (#PCDATA)>
+
+    <!ELEMENT packages (package*)>
+        <!ELEMENT package>
+]>
+
+<repository version="1.0" name="universe" type="source">
+    <mirrors>
+        <mirror>git://github.com/organo/source.git</mirror>
+    </mirrors>
+</repository>
