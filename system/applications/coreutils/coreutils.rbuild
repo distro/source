@@ -1,4 +1,4 @@
-# Maintainer: Ermenegildo Fiorito (fyskij) <fiorito.g@gmail.com)
+# Maintainer: meh. <meh@paranoici.org>
 
 require 'packo/behaviors/gnu'
 require 'packo/modules/fetching/gnu'
@@ -16,8 +16,8 @@ Packo::Package.new('system/applications/coreutils') {
   dependencies << '>=system/libraries/ncurses-5.3'
   dependencies << 'applications/archiving/xz!'
 
-  blockers << '<system/applications/util-linux-2.13' << 'system/applications/stat' << 'network/mail/base64' \
-           << 'system/applications/mktemp'
+  blockers << '<system/applications/util-linux-2.13' << 'system/applications/stat' << 'network/mail/base64' <<
+              'system/applications/mktemp'
 
   features {
     nls {

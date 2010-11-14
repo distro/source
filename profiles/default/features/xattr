@@ -1,7 +1,0 @@
-Packo::Features::Default.define(:xattr) {
-  description 'Adds support for extended attributes (filesystem-stored metadata)'
-
-  on :dependencies do |package|
-    package.dependencies << 'system/applications/attr' if enabled?
-  end
-}
