@@ -1,15 +1,17 @@
 # Maintainer: meh. <meh@paranoici.org>
 
 require 'packo/behaviors/gnu'
+require 'packo/modules/fetching/gnu'
 
 Packo::Package.new('system/libraries/ncurses') { type 'library'
   behavior Packo::Behaviors::GNU
+  use      Packo::Modules::Fetching::GNU
 
   description 'console display library'
   homepage    'http://www.gnu.org/software/ncurses/', 'http://dickey.his.com/ncurses/'
   license     'MIT'
 
-  source 'http://ftp.gnu.org/pub/gnu/ncurses/ncurses-#{package.version}.tar.gz'
+  source 'ncurses/#{package.version}'
 
   features {
     cxx { enabled!
