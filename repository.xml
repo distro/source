@@ -8,15 +8,12 @@
         type    CDATA   #REQUIRED
     >
 
-    <!ELEMENT mirrors (mirror*)>
-        <!ELEMENT mirror (#PCDATA)>
+    <!ELEMENT address (#PCDATA)>
 
     <!ELEMENT packages (package*)>
         <!ELEMENT package>
 ]>
 
 <repository version="1.0" name="universe" type="source">
-    <mirrors>
-        <mirror>git://github.com/organo/source.git</mirror>
-    </mirrors>
+    <address>git://github.com/organo/source.git</address>
 </repository>
