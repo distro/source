@@ -1,19 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!DOCTYPE repository [
-    <!ELEMENT repository (mirrors, packages?)>
-    <!ATTLIST repository
-        version CDATA   #REQUIRED
-        name    CDATA   #REQUIRED
-        type    CDATA   #REQUIRED
-    >
-
-    <!ELEMENT address (#PCDATA)>
-
-    <!ELEMENT packages (package*)>
-        <!ELEMENT package>
-]>
-
 <repository version="1.0" name="universe" type="source">
     <address>git://github.com/organo/source.git</address>
 </repository>
