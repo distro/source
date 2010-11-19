@@ -1,1 +1,9 @@
-<digest version='1.0'><build slot='4.4' version='4.4.3'><features>ada java fortran objc objcxx optimizations multilib nls openmp</features><files><file name='gcc-4.4.3.tar.bz2'>619766282734728539ce58a5c383cb371f1999c7</file></files></build></digest>
+<?xml version="1.0"?>
+<digest version="1.0">
+    <build version="4.4.3" slot="4.4">
+        <features>optimizations</features>
+        <files>
+            <file name="gcc-4.4.3.tar.bz2">619766282734728539ce58a5c383cb371f1999c7</file>
+        </files>
+    </build>
+</digest>
