@@ -1,0 +1,124 @@
+# Maintainer: meh. <meh@paranoici.org>
+
+Package.define(['application', 'development', 'interpreter'], 'ruby') {
+  behavior Behaviors::GNU
+
+  description 'An object-oriented scripting language'
+  homepage    'http://www.ruby-lang.org/'
+  license     'MIT'
+
+  source 'ftp://ftp.ruby-lang.org/pub/ruby/#{package.version.major}.#{package.version.minor}/ruby-#{package.version}.tar.gz'
+
+  dependencies << 'system/library/zlib' << 'development/library/libffi'
+
+  flavors {
+    debug {
+      on :configure do |conf|
+        conf.enable 'debug', enabled?
+      end
+    }
+
+    documentation {
+      on :configure do |conf|
+        conf.enable 'install-doc', enabled?
+      end
+    }
+  }
+
+  features {
+    ipv6 {
+      on :configure do |conf|
+        conf.enable 'ipv6', enabled?
+        conf.with 'look-up-order-hack', 'INET' if enabled?
+      end
+    }
+
+    berkdb {
+      on :configure do |conf|
+        conf.with 'dbm', enabled?
+      end
+    }
+
+    gdbm {
+      on :configure do |conf|
+        conf.with 'gdbm', enabled?
+      end
+    }
+
+    ssl {
+      on :dependencies do |package|
+        package.dependencies << 'development/library/openssl' if enabled?
+      end
+
+      on :configure do |conf|
+        conf.with 'openssl', enabled?
+      end
+    }
+
+    socks5 {
+      on :dependencies do |package|
+        package.dependencies << '>=network/proxy/dante-1.1.13' if enabled?
+      end
+
+      on :configure do |conf|
+        conf.enable 'socks', enabled?
+      end
+    }
+
+    tk {
+      on :dependencies do |package|
+        package.dependencies << 'development/interpreter/tk[threads]' if enabled?
+      end
+
+      on :configure do |conf|
+        conf.with 'tk', enabled?
+      end
+    }
+
+    ncurses {
+      on :dependencies do |package|
+        package.dependencies << 'system/library/text/ncurses' if enabled?
+      end
+
+      on :configure do |conf|
+        conf.with 'curses', enabled?
+      end
+    }
+
+    libedit {
+      on :dependencies do |package|
+        package.dependencies << 'development/library/text/edit' if enabled?
+      end
+
+      on :configure do |conf|
+        conf.enable 'libedit' if enabled?
+      end
+    }
+
+    self.set('readline') { enabled!
+      on :dependencies do |package|
+        package.dependencies << 'system/library/text/readline' if enabled? && !package.features.libedit.enabled?
+      end
+    }
+  }
+
+  on :configure, -10 do |conf|
+    autotools.autoreconf
+
+    if package.features.readline.enabled? || package.features.libedit.enabled?
+      conf.with 'readline'
+    else
+      conf.without 'readline'
+    end
+
+    conf.set 'program-suffix', package.slot
+    conf.with 'soname', package.slot
+
+    conf.enable ['shared', 'pthread']
+    conf.enable 'option-checking', 'no'
+  end
+
+  on :compile do
+    ENV['EXTLDFLAGS'] = ENV['LDFLAGS']
+  end
+}
