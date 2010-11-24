@@ -1,6 +1,6 @@
 # Maintainer: meh. <meh@paranoici.org>
 
-Package.define(['system' 'development', 'application'], 'gcc') {
+Package.define(['system', 'development', 'application'], 'gcc') {
   behavior Behaviors::GNU
   use      Modules::Fetching::GNU
 
