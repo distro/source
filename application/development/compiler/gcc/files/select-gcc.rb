@@ -1,11 +1,10 @@
 #! /usr/bin/env ruby
 require 'optitron'
-require 'sqlite3'
 require 'packo'
-require 'packo_binary/helpers'
+require 'packo/binary/helpers'
 
 class Application < Optitron::CLI
-  include PackoBinary::Helpers
+  include Packo::Binary::Helpers
 
   class_opt 'database', 'The path to the cache file', :default => Packo::Environment[:SELECTOR_CACHE]
 
@@ -54,25 +53,6 @@ class Application < Optitron::CLI
     Dir.glob('/usr/compilers/gcc/*').map {|version|
       version.sub('/usr/compilers/gcc/', '')
     }
-  end
-
-  def params= (params)
-    @params = params
-
-    if File.directory? params['database']
-      fatal "#{params['database']} is a directory"
-      exit 42
-    end
-
-    begin
-      FileUtils.mkpath(File.dirname(params['database']))
-    rescue Exception => e
-      fatal "Could not create #{File.dirname(params['database'])}"
-      exit 42
-    end
-
-    @db = SQLite3::Database.new(params['database'])
-    @db.results_as_hash = true
   end
 end
 
