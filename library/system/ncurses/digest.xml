@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <digest version="1.0">
     <build version="5.7" slot="">
-        <features>cxx unicode</features>
+        <features>cxx unicode gpm ada</features>
         <files>
             <file name="ncurses-5.7.tar.gz">8233ee56ed84ae05421e4e6d6db6c1fe72ee6797</file>
         </files>

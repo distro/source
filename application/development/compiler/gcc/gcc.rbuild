@@ -12,37 +12,37 @@ Package.define(['system', 'development', 'application'], 'gcc') {
 
   features {
     ada {
-      on :build do |package|
-        package.languages << 'ada' if enabled?
+      before :build do |pkg|
+        pkg.languages << 'ada' if enabled?
       end
     }
 
     java {
-      on :build do |package|
-        package.languages << 'java' if enabled?
+      before :build do |pkg|
+        pkg.languages << 'java' if enabled?
       end
     }
     
     fortran {
-      on :build do |package|
-        package.languages << 'fortran' if enabled?
+      before :build do |pkg|
+        pkg.languages << 'fortran' if enabled?
       end
     }
 
     objc {
-      on :build do |package|
-        package.languages << 'objc' if enabled?
+      before :build do |pkg|
+        pkg.languages << 'objc' if enabled?
       end
     }
 
     objcxx {
-      on :build do |package|
-        package.languages << 'objcp' if enabled?
+      before :build do |pkg|
+        pkg.languages << 'objcp' if enabled?
       end
     }
 
     optimizations { enabled!
-      on :configure do |conf|
+      before :configure do |conf|
         conf.enable('altivec', enabled? && ['ppc', '~ppc'].member?(package.environment[:ARCH]))
         conf.enable('fixed-point', enabled? && ['mips', '~mips'].member?(package.environment[:ARCH]))
       end
@@ -53,7 +53,7 @@ Package.define(['system', 'development', 'application'], 'gcc') {
     }
 
     nls {
-      on :configure do |conf|
+      before :configure do |conf|
         conf.enable 'nls', enabled?
       end
     }
@@ -70,11 +70,11 @@ Package.define(['system', 'development', 'application'], 'gcc') {
     :path => '#{package.path}/files/select-gcc.rb'
   }]
 
-  on :initialize, -10 do |package|
-    package.languages = ['c', 'c++']
+  before :initialize, -10 do |pkg|
+    pkg.languages = ['c', 'c++']
   end
 
-  on :configure do |conf|
+  before :configure do |conf|
     conf.set  'prefix', "/usr/compilers/gcc/#{package.version}"
     conf.with 'gxx-include-dir', "/usr/compilers/gcc/#{package.version}/include/g++-v4"
     conf.with 'python-dir', "/usr/compilers/gcc/#{package.version}/python"

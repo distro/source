@@ -15,13 +15,13 @@ Package.define(['application', 'system'], 'coreutils') {
 
   features {
     nls {
-      on :configure do |conf|
+      before :configure do |conf|
         conf.enable 'nls', enabled?
       end
     }
 
     caps {
-      on :configure do |conf|
+      before :configure do |conf|
         if enabled?
           conf.enable 'caps'
         else
@@ -31,25 +31,25 @@ Package.define(['application', 'system'], 'coreutils') {
     }
 
     acl {
-      on :configure do |conf|
+      before :configure do |conf|
         conf.enable 'acl', enabled?
       end
     }
 
     xattr {
-      on :configure do |conf|
+      before :configure do |conf|
         conf.enable 'xattr', enabled?
       end
     }
 
     gmp {
-      on :configure do |conf|
+      before :configure do |conf|
         conf.with 'gmp', enabled?
       end
     }
   }
 
-  on :configure do |conf|
+  before :configure do |conf|
     conf.with 'packager', 'Distrø'
 
     conf.enable 'install-program', 'arch'

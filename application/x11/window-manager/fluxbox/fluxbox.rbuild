@@ -15,47 +15,47 @@ Package.define(['application', 'x11', 'window-manager'], 'fluxbox') {
 
   features {
     nls {
-      on :configure do |conf|
+      before :configure do |conf|
         conf.enable 'nls', enabled?
       end
     }
 
     xinerama {
-      on :configure do |conf|
+      before :configure do |conf|
         conf.enable 'xinerama', enabled?
       end
     }
 
     truetype {
-      on :configure do |conf|
+      before :configure do |conf|
         conf.enable 'xft', enabled?
       end
     }
 
     gnome {
-      on :configure do |conf|
+      before :configure do |conf|
         conf.enable 'gnome', enabled?
       end
     }
 
     imlib { enabled!
-      on :dependencies do |package|
-        package.dependencies << '>=media/library/imlib2-1.2.0[X]' if enabled?
+      before :dependencies do |deps|
+        deps << '>=media/library/imlib2-1.2.0[X]' if enabled?
       end
 
-      on :configure do |conf|
+      before :configure do |conf|
         conf.enable 'imlib2', enabled?
       end
     }
 
     slit { enabled!
-      on :configure do |conf|
+      before :configure do |conf|
         conf.enable 'slit', enabled?
       end
     }
 
     toolbar { enabled!
-      on :configure do |conf|
+      before :configure do |conf|
         conf.enable 'toolbar', enabled?
       end
     }
@@ -69,7 +69,7 @@ Package.define(['application', 'x11', 'window-manager'], 'fluxbox') {
     }
   }
 
-  on :configure do |conf|
+  before :configure do |conf|
     conf.set 'sysconfdir', '/etc/X11/fluxbox'
   end
 }

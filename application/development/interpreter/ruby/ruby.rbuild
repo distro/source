@@ -13,13 +13,13 @@ Package.define(['application', 'development', 'interpreter'], 'ruby') {
 
   flavors {
     debug {
-      on :configure do |conf|
+      before :configure do |conf|
         conf.enable 'debug', enabled?
       end
     }
 
     documentation {
-      on :configure do |conf|
+      before :configure do |conf|
         conf.enable 'install-doc', enabled?
       end
     }
@@ -27,82 +27,82 @@ Package.define(['application', 'development', 'interpreter'], 'ruby') {
 
   features {
     ipv6 {
-      on :configure do |conf|
+      before :configure do |conf|
         conf.enable 'ipv6', enabled?
         conf.with 'look-up-order-hack', 'INET' if enabled?
       end
     }
 
     berkdb {
-      on :configure do |conf|
+      before :configure do |conf|
         conf.with 'dbm', enabled?
       end
     }
 
     gdbm {
-      on :configure do |conf|
+      before :configure do |conf|
         conf.with 'gdbm', enabled?
       end
     }
 
     ssl {
-      on :dependencies do |package|
-        package.dependencies << 'development/library/openssl' if enabled?
+      before :dependencies do |deps|
+        deps << 'development/library/openssl' if enabled?
       end
 
-      on :configure do |conf|
+      before :configure do |conf|
         conf.with 'openssl', enabled?
       end
     }
 
     socks5 {
-      on :dependencies do |package|
-        package.dependencies << '>=network/proxy/dante-1.1.13' if enabled?
+      before :dependencies do |deps|
+        deps << '>=network/proxy/dante-1.1.13' if enabled?
       end
 
-      on :configure do |conf|
+      before :configure do |conf|
         conf.enable 'socks', enabled?
       end
     }
 
     tk {
-      on :dependencies do |package|
-        package.dependencies << 'development/interpreter/tk[threads]' if enabled?
+      before :dependencies do |deps|
+        deps << 'development/interpreter/tk[threads]' if enabled?
       end
 
-      on :configure do |conf|
+      before :configure do |conf|
         conf.with 'tk', enabled?
       end
     }
 
     ncurses {
-      on :dependencies do |package|
-        package.dependencies << 'system/library/text/ncurses' if enabled?
+      before :dependencies do |deps|
+        deps << 'system/library/text/ncurses' if enabled?
       end
 
-      on :configure do |conf|
+      before :configure do |conf|
         conf.with 'curses', enabled?
       end
     }
 
     libedit {
-      on :dependencies do |package|
-        package.dependencies << 'development/library/text/edit' if enabled?
+      before :dependencies do |deps|
+        deps << 'development/library/text/edit' if enabled?
       end
 
-      on :configure do |conf|
+      before :configure do |conf|
         conf.enable 'libedit' if enabled?
       end
     }
 
     self.set('readline') { enabled!
-      on :dependencies do |package|
-        package.dependencies << 'system/library/text/readline' if enabled? && !package.features.libedit.enabled?
+      before :dependencies do |deps|
+        deps << 'system/library/text/readline' if enabled? && !package.features.libedit.enabled?
       end
     }
   }
 
-  on :configure, -10 do |conf|
+  before :configure, -10 do |conf|
     autotools.autoreconf
 
     if package.features.readline.enabled? || package.features.libedit.enabled?
@@ -118,7 +118,7 @@ Package.define(['application', 'development', 'interpreter'], 'ruby') {
     conf.enable 'option-checking', 'no'
   end
 
-  on :compile do
+  before :compile do
     ENV['EXTLDFLAGS'] = ENV['LDFLAGS']
   end
 }

@@ -12,13 +12,13 @@ Package.define(['system', 'library', 'text'], 'ncurses') { type 'library'
 
   features {
     cxx { enabled!
-      on :configure do |conf|
+      before :configure do |conf|
         conf.with ['cxx', 'cxx-binding'], enabled?
       end
     }
 
     unicode { enabled!
-      on :unpacked do |file|
+      after :unpack do |file|
         next if !enabled?
 
         if !File.exists? "#{package.workdir}/ncursesw"
@@ -26,7 +26,7 @@ Package.define(['system', 'library', 'text'], 'ncurses') { type 'library'
         end
       end
 
-      on :compiled do |conf|
+      after :compile do |conf|
         next if !enabled?
 
         conf = conf.clone
@@ -42,7 +42,7 @@ Package.define(['system', 'library', 'text'], 'ncurses') { type 'library'
         Dir.chdir "#{package.workdir}/ncurses-#{package.version}"
       end
 
-      on :installed do |conf|
+      after :install do |conf|
         Dir.chdir "#{package.workdir}/ncursesw"
 
         package.autotools.install(package.distdir)
@@ -50,23 +50,23 @@ Package.define(['system', 'library', 'text'], 'ncurses') { type 'library'
     }
 
     gpm {
-      on :dependencies do |package|
-        package.dependencies << 'system/library/gpm' if enabled?
+      before :dependencies do |deps|
+        deps << 'system/library/gpm' if enabled?
       end
 
-      on :configure do |conf|
+      before :configure do |conf|
         conf.with 'gpm', enabled?
       end
     }
 
     ada {
-      on :configure do |conf|
+      before :configure do |conf|
         conf.with 'ada', enabled?
       end
     }
   }
 
-  on :configure do |conf|
+  before :configure do |conf|
     conf.with ['shared', 'rcs-ids']
     conf.with 'manpage-format', 'normal'
     conf.without 'hashed-db'
@@ -80,7 +80,7 @@ Package.define(['system', 'library', 'text'], 'ncurses') { type 'library'
     conf.without ['pthread', 'reentrant']
   end
 
-  on :compile do
+  before :compile do
     autotools.make '-j1', 'source'
   end
 }

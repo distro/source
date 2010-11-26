@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <digest version="1.0">
     <build version="7.3" slot="">
-        <features></features>
+        <features>ruby perl mzscheme lua tcl python python3 X gtk gnome netbeans cscope gpm</features>
         <files>
             <file name="vim-7.3.tar.bz2">46faa96c5fab639899b1c655c23d8755b62f036f</file>
         </files>

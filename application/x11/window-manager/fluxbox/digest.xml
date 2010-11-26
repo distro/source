@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <digest version="1.0">
     <build version="1.1.1" slot="">
-        <features>imlib slit toolbar</features>
+        <features>nls xinerama truetype gnome imlib slit toolbar newmousefocus vim</features>
         <files>
             <file name="fluxbox-1.1.1.tar.bz2">6d49deb6c4c7d73f7567e1cf7d2575c7edc4825f</file>
         </files>

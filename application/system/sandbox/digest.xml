@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <digest version="1.0">
     <build version="2.3" slot="">
-        <features></features>
+        <features>multilib</features>
         <files>
             <file name="sandbox-2.3.tar.xz">c1eff87f4f608aa613a6905d2111790ac57fe091</file>
         </files>
