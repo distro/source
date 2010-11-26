@@ -1,6 +1,6 @@
 # Maintainer: meh. <meh@paranoici.org>
 
-Package.define(['system', 'library', 'text'], 'ncurses') { type 'library'
+Package.define(['library', 'system', 'text'], 'ncurses') { type 'library'
   behavior Behaviors::GNU
   use      Modules::Fetching::GNU
 

@@ -1,6 +1,6 @@
 # Maintainer: meh. <meh@paranoici.org>
 
-Package.define(['system', 'applications'], 'sandbox') {
+Package.define(['application', 'system'], 'sandbox') {
   behavior Behaviors::GNU
   
   description "Gentoo's sandbox utility for more secure package building"

@@ -1,6 +1,6 @@
 # Maintainer: meh. <meh@paranoici.org>
 
-Package.define(['application', 'development', 'interpreter'], 'ruby') {
+Package.define(['application', 'interpreter', 'development'], 'ruby') {
   behavior Behaviors::GNU
 
   description 'An object-oriented scripting language'

@@ -1,6 +1,6 @@
 # Maintainer: meh. <meh@paranoici.org>
 
-Package.define(['system', 'development', 'application'], 'gcc', '4.5.1', '4.5') {
+Package.define(['application', 'compiler', 'system', 'development'], 'gcc', '4.5.1', '4.5') {
   arch     'x86', 'amd64'
   kernel   'linux'
   compiler 'gcc'
