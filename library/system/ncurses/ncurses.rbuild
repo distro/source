@@ -34,7 +34,7 @@ Package.define('ncurses') { type 'library'
         conf = conf.clone
 
         conf.enable 'widec'
-        conf.set 'includedir', "#{package.distdir}/usr/include/ncursesw"
+        conf.set 'includedir', '/usr/include/ncursesw'
 
         Dir.chdir "#{package.workdir}/ncursesw"
 

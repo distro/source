@@ -1,12 +1,13 @@
 #! /usr/bin/env ruby
 require 'optitron'
+
 require 'packo'
 require 'packo/binary/helpers'
 
 class Application < Optitron::CLI
-  include Packo::Binary::Helpers
-
-  class_opt 'database', 'The path to the cache file', :default => Packo::Environment[:SELECTOR_CACHE]
+  include Packo
+  include Binary::Helpers
+  include Models
 
   desc 'List available gcc versions'
   def list
@@ -42,11 +43,11 @@ class Application < Optitron::CLI
 
     info "Set gcc to #{version}"
 
-    @db.execute('INSERT OR REPLACE INTO data VALUES(?, ?)', ['gcc', Marshal.dump(version)])
+    Selector.first(:name => 'gcc').update(:data => version)
   end
 
   def current
-    Marshal.load(@db.execute('SELECT data FROM data WHERE name = ?', 'gcc').first['data']) rescue nil
+    Selector.first(:name => 'gcc').data rescue nil
   end
 
   def versions
