@@ -18,7 +18,7 @@ Package.define(['library', 'system', 'text'], 'ncurses') { type 'library'
     }
 
     unicode { enabled!
-      after :unpack do |file|
+      after :unpack do |result, file|
         next if !enabled?
 
         if !File.exists? "#{package.workdir}/ncursesw"
@@ -26,7 +26,7 @@ Package.define(['library', 'system', 'text'], 'ncurses') { type 'library'
         end
       end
 
-      after :compile do |conf|
+      after :compile do |result, conf|
         next if !enabled?
 
         conf = conf.clone
@@ -37,12 +37,12 @@ Package.define(['library', 'system', 'text'], 'ncurses') { type 'library'
         Dir.chdir "#{package.workdir}/ncursesw"
 
         package.autotools.configure(conf)
-        package.autotools.make(conf)
+        package.autotools.make
 
         Dir.chdir "#{package.workdir}/ncurses-#{package.version}"
       end
 
-      after :install do |conf|
+      after :install do |result, conf|
         Dir.chdir "#{package.workdir}/ncursesw"
 
         package.autotools.install(package.distdir)
@@ -81,6 +81,6 @@ Package.define(['library', 'system', 'text'], 'ncurses') { type 'library'
   end
 
   before :compile do
-    autotools.make '-j1', 'source'
+    autotools.make '-j1', 'sources'
   end
 }

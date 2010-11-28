@@ -105,11 +105,11 @@ Package.define(['application', 'editor'], 'vim') {
     }
   }
 
-  after :unpack do
+  after :unpack do |result|
     Dir.chdir "#{package.workdir}/vim#{package.version.major}#{package.version.minor}"
   end
 
-  after :dependencies do |deps|
+  after :dependencies do |result, deps|
     deps.delete_if {|d|
       d.name == 'python' && !d.slot
     }
@@ -125,7 +125,7 @@ Package.define(['application', 'editor'], 'vim') {
     autotools.make '-j1', '-C', 'src', 'autoconf'
   end
 
-  after :configure do |conf|
+  after :configure do |result, conf|
     autotools.configure conf
   end
 
