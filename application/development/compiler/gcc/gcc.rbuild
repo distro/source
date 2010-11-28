@@ -1,8 +1,10 @@
-# Maintainer: meh. <meh@paranoici.org>
-
-Package.define(['application', 'compiler', 'system', 'development'], 'gcc') {
+Package.define('gcc') {
   behavior Behaviors::GNU
   use      Modules::Fetching::GNU
+
+  maintainer 'meh. <meh@paranoici.org>'
+
+  tags 'application', 'compiler', 'system', 'development'
 
   description 'The GNU Compiler Collection'
   homepage    'http://gcc.gnu.org/'

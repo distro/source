@@ -1,7 +1,9 @@
-# Maintainer: meh. <meh@paranoici.org>
-
-Package.define(['application', 'system'], 'sandbox') {
+Package.define('sandbox') {
   behavior Behaviors::GNU
+
+  maintainer 'meh. <meh@paranoici.org>'
+
+  tags 'application', 'system'
   
   description "Gentoo's sandbox utility for more secure package building"
   homepage    'http://www.gentoo.org/'

@@ -1,8 +1,10 @@
-# Maintainer: meh. <meh@paranoici.org>
-
-Package.define(['application', 'system'], 'coreutils') {
+Package.define('coreutils') {
   behavior Behaviors::GNU
   use      Modules::Fetching::GNU
+
+  maintainer 'meh. <meh@paranoici.org>'
+
+  tags 'application', 'system', 'utility'
   
   description 'Standard GNU file utilities (chmod, cp, dd, dir, ls...), text utilities (sort, tr, head, wc..), and shell utilities (whoami, who,...)'
   homepage    'http://www.gnu.org/software/coreutils/'

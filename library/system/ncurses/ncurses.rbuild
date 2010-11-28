@@ -1,8 +1,10 @@
-# Maintainer: meh. <meh@paranoici.org>
-
-Package.define(['library', 'system', 'text'], 'ncurses') { type 'library'
+Package.define('ncurses') { type 'library'
   behavior Behaviors::GNU
   use      Modules::Fetching::GNU
+
+  maintainer 'meh. <meh@paranoici.org>'
+
+  tags 'library', 'system', 'text'
 
   description 'console display library'
   homepage    'http://www.gnu.org/software/ncurses/', 'http://dickey.his.com/ncurses/'

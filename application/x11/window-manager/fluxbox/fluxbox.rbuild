@@ -1,8 +1,10 @@
-# Maintainer: meh. <meh@paranoici.org>
-
-Package.define(['application', 'x11', 'window-manager'], 'fluxbox') {
+Package.define('fluxbox') {
   behavior Behaviors::GNU
   use      Modules::Fetching::SourceForge
+
+  maintainer 'meh. <meh@paranoici.org>'
+
+  tags 'application', 'x11', 'window-manager'
 
   description 'Fluxbox is an X11 window manager featuring tabs and an iconbar'
   homepage    'http://www.fluxbox.org'

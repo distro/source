@@ -1,7 +1,9 @@
-# Maintainer: meh. <meh@paranoici.org>
-
-Package.define(['application', 'editor'], 'vim') {
+Package.define('vim') {
   behavior Behaviors::GNU
+
+  maintainer 'meh. <meh@paranoici.org>'
+
+  tags 'application', 'editor'
 
   description 'Vim, an improved vi-style text editor'
   homepage    'http://www.vim.org/'

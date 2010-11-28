@@ -1,5 +1,11 @@
 <?xml version="1.0"?>
 <digest version="1.0">
+    <build version="8.5" slot="">
+        <features>nls caps acl xattr gmp</features>
+        <files>
+            <file name="coreutils-8.5.tar.xz">75b35e48d197ae1afadb9017ebbb7d9ee47dabb2</file>
+        </files>
+    </build>
     <build version="8.7" slot="">
         <features>nls caps acl xattr gmp</features>
         <files>
@@ -10,12 +16,6 @@
         <features>nls caps acl xattr gmp</features>
         <files>
             <file name="coreutils-8.6.tar.xz">838c623a8763370cc3aa309b171e44e08f4f1bb9</file>
-        </files>
-    </build>
-    <build version="8.5" slot="">
-        <features>nls caps acl xattr gmp</features>
-        <files>
-            <file name="coreutils-8.5.tar.xz">75b35e48d197ae1afadb9017ebbb7d9ee47dabb2</file>
         </files>
     </build>
 </digest>

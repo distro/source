@@ -1,7 +1,9 @@
-# Maintainer: meh. <meh@paranoici.org>
-
-Package.define(['application', 'interpreter', 'development'], 'ruby') {
+Package.define('ruby') {
   behavior Behaviors::GNU
+
+  maintainer 'meh. <meh@paranoici.org>'
+
+  tags 'application', 'interpreter', 'development', 'ruby'
 
   description 'An object-oriented scripting language'
   homepage    'http://www.ruby-lang.org/'
