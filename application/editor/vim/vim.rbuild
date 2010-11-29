@@ -107,7 +107,7 @@ Package.define('vim') {
     }
   }
 
-  after :unpack do |result|
+  after :unpack do
     Dir.chdir "#{package.workdir}/vim#{package.version.major}#{package.version.minor}"
   end
 
