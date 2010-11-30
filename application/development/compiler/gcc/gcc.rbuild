@@ -77,10 +77,6 @@ Package.define('gcc') {
   end
 
   before :configure do |conf|
-    conf.set  'prefix', "/usr/compilers/gcc/#{package.version}"
-    conf.with 'gxx-include-dir', "/usr/compilers/gcc/#{package.version}/include/g++-v4"
-    conf.with 'python-dir', "/usr/compilers/gcc/#{package.version}/python"
-
     conf.with    ['system-zlib']
     conf.without ['ppl', 'cloog', 'included-gettext']
     conf.enable  ['libmudflap', 'secureplt', 'libgomp', 'shared', '__cxa_atexit']
@@ -93,5 +89,9 @@ Package.define('gcc') {
     conf.enable 'languages', package.languages.join(',')
 
     conf.with 'pkgversion', "Distrø #{package.version}"
+  end
+
+  before :pack do
+    package.slot = "#{package.slot}-#{environment[:ARCH]}-#{environment[:KERNEL]}"
   end
 }
