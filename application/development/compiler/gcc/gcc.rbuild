@@ -79,7 +79,9 @@ Package.define('gcc') {
   before :configure do |conf|
     conf.with    ['system-zlib']
     conf.without ['ppl', 'cloog', 'included-gettext']
-    conf.enable  ['libmudflap', 'secureplt', 'libgomp', 'shared', '__cxa_atexit']
+    conf.enable  ['shared', 'static', 'shared-libgcc',
+      'libmudflap', 'secureplt', 'libgomp', '__cxa_atexit', 'version-specific-runtime-libs'
+    ]
 
     conf.enable 'clocale', 'gnu'
     conf.enable 'checking', 'release'
@@ -87,8 +89,8 @@ Package.define('gcc') {
 
     # c, c++, fortran, ada, java, objc, objcp
     conf.enable 'languages', package.languages.join(',')
-
-    conf.with 'pkgversion', "Distrø #{package.version}"
+    conf.with   'pkgversion', "Distrø #{package.version}"
+    conf.with   'arch', Modules::Building::Autotools::Host.new(package.environment).arch
   end
 
   before :pack do

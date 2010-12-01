@@ -34,7 +34,8 @@ Package.define('binutils') {
     end
 
     conf.enable 'threads', 'posix'
-    conf.with 'arch', Modules::Building::Autotools::Host.new(package.environment).arch
+    conf.with   'pkgversion', "Distrø #{package.version}"
+    conf.with   'arch', Modules::Building::Autotools::Host.new(package.environment).arch
   end
 
   before :pack do
