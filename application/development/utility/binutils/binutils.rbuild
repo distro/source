@@ -29,13 +29,13 @@ Package.define('binutils') {
     conf.disable ['werror', 'bootstrap', '__cxa_atexit', 'sjlj-exceptions', 'symvers']
     conf.with    ['gnu-ld', 'gnu-as', 'dwarf2']
 
-    case package.environment[:LIBC]
-      when 'newlib'; conf.with 'newlib'
-    end
-
     conf.enable 'threads', 'posix'
     conf.with   'pkgversion', "Distrø #{package.version}"
     conf.with   'arch', Modules::Building::Autotools::Host.new(package.environment).arch
+
+    case package.environment[:LIBC]
+      when 'newlib'; conf.with 'newlib'
+    end
   end
 
   before :pack do

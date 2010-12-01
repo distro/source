@@ -1,4 +1,4 @@
-Package.define('gcc') {
+Package.define('gcc') { type 'compiler'
   behavior Behaviors::GNU
   use      Modules::Fetching::GNU
 
@@ -77,11 +77,15 @@ Package.define('gcc') {
   end
 
   before :configure do |conf|
+    Do.dir './build'
+    Do.cd  './build'
+
+    conf.path = '../configure'
+
     conf.with    ['system-zlib']
     conf.without ['ppl', 'cloog', 'included-gettext']
-    conf.enable  ['shared', 'static', 'shared-libgcc',
-      'libmudflap', 'secureplt', 'libgomp', '__cxa_atexit', 'version-specific-runtime-libs'
-    ]
+    conf.enable  ['shared', 'static', 'shared-libgcc', 'libmudflap', 'secureplt', 'libgomp', '__cxa_atexit', 'version-specific-runtime-libs']
+    conf.disable ['bootstrap', 'symvers']
 
     conf.enable 'clocale', 'gnu'
     conf.enable 'checking', 'release'
@@ -91,6 +95,10 @@ Package.define('gcc') {
     conf.enable 'languages', package.languages.join(',')
     conf.with   'pkgversion', "Distrø #{package.version}"
     conf.with   'arch', Modules::Building::Autotools::Host.new(package.environment).arch
+
+    case package.environment[:LIBC]
+      when 'newlib'; conf.with 'newlib'
+    end
   end
 
   before :pack do
