@@ -6,7 +6,7 @@ Package.define('gcc', '4.5.1', '4.5') {
 
   autotools.version :autoconf, '2.64'
 
-  after :unpack_ do
+  after :unpack do
     next unless package.environment[:KERNEL] == 'windows'
 
     Modules::Fetching::Wget.fetch('http://mirrors.kernel.org/sourceware/cygwin/release/gcc4/gcc4-4.5.0-1-src.tar.bz2', "#{package.environment[:TMP]}/gcc-cygwin-patches.tar.bz2")
@@ -36,13 +36,12 @@ Package.define('gcc', '4.5.1', '4.5') {
   after :unpack do
     next unless package.environment[:KERNEL] == 'windows'
 
-#    Modules::Fetching::Wget.fetch('ftp://sourceware.org/pub/cygwin/release/cygwin/cygwin-1.7.7-1-src.tar.bz2', "#{package.environment[:TMP]}/cygwin-1.7.7-1.tar.bz2")
-    Modules::Fetching::Wget.fetch('http://mirrors.kernel.org/sourceware/cygwin/release/cygwin/cygwin-1.7.7-1-src.tar.bz2', "#{package.environment[:TMP]}/cygwin-1.7.7-1.tar.bz2")
+    Modules::Fetching::Wget.fetch('ftp://sourceware.org/pub/cygwin/release/cygwin/cygwin-1.7.7-1-src.tar.bz2', "#{package.environment[:TMP]}/cygwin-1.7.7-1.tar.bz2")
     Modules::Misc::Unpack.do("#{package.environment[:TMP]}/cygwin-1.7.7-1.tar.bz2", "#{package.tempdir}")
 
     Do.cd("#{package.tempdir}/cygwin-1.7.7-1") {
-      FileUtils.cp_r 'winsup/mingw/include', 'winsup/', :preserve => true
-      FileUtils.mv 'winsup/', "#{package.workdir}/gcc-#{package.version}/build", :force => true
+      FileUtils.cp_r   'winsup/mingw/include', 'winsup/', :preserve => true
+      FileUtils.cp_r   'winsup', "#{package.workdir}/gcc-#{package.version}/build/", :preserve => true
     }
   end
 }
