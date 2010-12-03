@@ -6,4 +6,10 @@
             <file name="sandbox-2.3.tar.xz">c1eff87f4f608aa613a6905d2111790ac57fe091</file>
         </files>
     </build>
+    <build version="2.4" slot="">
+        <features>multilib</features>
+        <files>
+            <file name="sandbox-2.4.tar.xz">8d8b7ccc61baa881a90071c4cdc533f6918d21f4</file>
+        </files>
+    </build>
 </digest>

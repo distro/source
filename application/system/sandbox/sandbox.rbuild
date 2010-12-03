@@ -19,3 +19,15 @@ Package.define('sandbox') {
     }
   }
 }
+
+__END__
+@@@
+
+@@@ files/sandbox @@@
+
+CONFIG_PROTECT_MASK="/etc/sandbox.d"
+
+@@@ files/packo @@@
+
+SANDBOX_READ="/var/lib/packo"
+SANDBOX_WRITE="/var/lib/packo"
