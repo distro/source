@@ -13,12 +13,6 @@ Package.define('sandbox') {
 
   dependencies << 'application/archive/xz!' << 'application/utility/pax!'
 
-  features {
-    multilib {
-
-    }
-  }
-
   after :install do
     File.write("#{package.distdir}/etc/sandbox.d/09sandbox", package.fs.files.sandbox.content)
     File.write("#{package.distdir}/etc/sandbox.d/10packo", package.fs.files.packo.content)
