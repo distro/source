@@ -25,20 +25,31 @@ Package.define('binutils') {
   }
 
   before :configure do |conf|
-    conf.enable  ['plugins', 'shared-libgcc', '64-bit-bfd', 'version-specific-runtime-libs']
-    conf.disable ['werror', 'bootstrap', '__cxa_atexit', 'sjlj-exceptions', 'symvers']
-    conf.with    ['gnu-ld', 'gnu-as', 'dwarf2']
+    conf.set 'bindir',     "/usr/#{package.target}/binutils-bin/#{package.version}"
+    conf.set 'libdir',     "/usr/lib/binutils/#{package.target}/#{package.version}"
+    conf.set 'libexecdir', "/usr/lib/binutils/#{package.target}/#{package.version}"
+    conf.set 'includedir', "/usr/lib/binutils/#{package.target}/#{package.version}/include"
+    conf.set 'datadir',    "/usr/share/binutils-data/#{package.target}/#{package.version}"
+    conf.set 'infodir',    "/usr/share/binutils-data/#{package.target}/#{package.version}/info"
+    conf.set 'mandir',     "/usr/share/binutils-data/#{package.target}/#{package.version}/man"
 
-    conf.enable 'threads', 'posix'
-    conf.with   'pkgversion', "Distrø #{package.version}"
-    conf.with   'arch', Modules::Building::Autotools::Host.new(package.environment).arch
-
-    case package.environment[:LIBC]
-      when 'newlib'; conf.with 'newlib'
+    if Environment[:CROSS]
+      conf.set 'bindir', "/usr/#{package.host}/#{package.target}/binutils-bin/#{package.version}"    
     end
+
+    conf.enable  ['secureplt', '64-bit-bfd', 'shared']
+    conf.disable ['werror', 'static']
+
+    conf.with 'pkgversion', "Distrø #{package.version}#{" #{package.target}" if package.host != package.target}"
+
+    conf.with 'arch', package.target.arch
   end
 
   before :pack do
-    package.slot = "#{environment[:ARCH]}-#{environment[:KERNEL]}"
+    package.slot = package.target.to_s if package.host != package.target
+  end
+
+  after :unpack do
+
   end
 }

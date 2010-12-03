@@ -82,23 +82,33 @@ Package.define('gcc') { type 'compiler'
 
     conf.path = '../configure'
 
+    conf.set 'bindir',     "/usr/#{package.target}/gcc-bin/#{package.version}"
+    conf.set 'libdir',     "/usr/lib/gcc/#{package.target}/#{package.version}"
+    conf.set 'libexecdir', "/usr/lib/gcc/#{package.target}/#{package.version}"
+    conf.set 'includedir', "/usr/lib/gcc/#{package.target}/#{package.version}/include"
+    conf.set 'datadir',    "/usr/share/gcc-data/#{package.target}/#{package.version}"
+    conf.set 'infodir',    "/usr/share/gcc-data/#{package.target}/#{package.version}/info"
+    conf.set 'mandir',     "/usr/share/gcc-data/#{package.target}/#{package.version}/man"
+
+    conf.with 'gxx-include-dir', "/usr/lib/gcc/#{package.target}/#{package.version}/include/g++v4"
+    conf.with 'python-dir',      "/usr/share/gcc-data/#{package.target}/#{package.version}/python"
+
+    if Environment[:CROSS]
+      conf.set 'bindir', "/usr/#{package.host}/#{package.target}/gcc-bin/#{package.version}"    
+    end
+
+    conf.enable  ['secureplt']
+    conf.disable ['werror', 'libmudflap', 'libssp', 'libgomp', 'shared', 'bootstrap']
     conf.with    ['system-zlib']
     conf.without ['ppl', 'cloog', 'included-gettext']
-    conf.enable  ['shared', 'static', 'shared-libgcc', 'libmudflap', 'secureplt', 'libgomp', '__cxa_atexit', 'version-specific-runtime-libs']
-    conf.disable ['bootstrap', 'symvers']
-
-    conf.enable 'clocale', 'gnu'
-    conf.enable 'checking', 'release'
-    conf.enable 'threads', 'posix'
 
     # c, c++, fortran, ada, java, objc, objcp
     conf.enable 'languages', package.languages.join(',')
-    conf.with   'pkgversion', "Distrø #{package.version}"
-    conf.with   'arch', Modules::Building::Autotools::Host.new(package.environment).arch
 
-    case package.environment[:LIBC]
-      when 'newlib'; conf.with 'newlib'
-    end
+    conf.enable 'checking', 'release'
+    conf.with   'pkgversion', "Distrø #{package.version}"
+
+    conf.with 'arch', package.target.arch
   end
 
   before :pack do
