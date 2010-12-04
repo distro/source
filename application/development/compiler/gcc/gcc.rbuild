@@ -134,9 +134,9 @@ Package.define('gcc') { type 'compiler'
 }
 
 __END__
-@@@
+$$$
 
-@@@ patches/libstdc++-v3/crossconfig.patch @@@
+$$$ patches/libstdc++-v3/crossconfig.patch $$$
 
 --- crossconfig.m4.orig 2009-06-02 15:15:03.000000000 -0400
 +++ crossconfig.m4      2010-08-22 22:35:55.345320303 -0400
@@ -150,7 +150,7 @@ __END__
      GLIBCXX_CHECK_LINKER_FEATURES
      GLIBCXX_CHECK_MATH_SUPPORT
 
-@@@ patches/libstdc++-v3/libtool.patch
+$$$ patches/libtool.patch $$$
 
 --- libtool.m4  (revision 128569)
 +++ libtool.m4  (working copy)
@@ -164,7 +164,7 @@ __END__
 +  fi
    _LT_CMD_STRIPLIB
 
-@@@ selectors/select-gcc.rb @@@
+$$$ selectors/select-gcc.rb $$$
 
 # gcc: Set the gcc version to use
 
