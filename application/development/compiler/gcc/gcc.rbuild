@@ -110,10 +110,6 @@ Package.define('gcc') { type 'compiler'
     conf.with 'gxx-include-dir', "/usr/lib/gcc/#{package.target}/#{package.version}/include/g++v4"
     conf.with 'python-dir',      "/usr/share/gcc-data/#{package.target}/#{package.version}/python"
 
-    if Environment[:CROSS]
-      conf.set 'bindir', "/usr/#{package.host}/#{package.target}/gcc-bin/#{package.version}"    
-    end
-
     conf.enable  ['secureplt']
     conf.disable ['werror', 'libmudflap', 'libssp', 'libgomp', 'shared', 'bootstrap']
     conf.with    ['system-zlib']
@@ -185,45 +181,55 @@ class Application < Optitron::CLI
 
     current = self.current
 
-    self.versions.each_with_index {|version, i|
-      puts " [#{version == current ? colorize(i + 1, :GREEN) : i + 1}] \t#{version}"
+    self.versions.each {|target, versions|
+      puts ''
+      puts colorize(target, :BLUE, :DEFAULT, :BOLD)
+
+      versions.each_with_index {|version, i|
+        puts (current[target] == version) ?
+          "  {#{colorize(i + 1, :GREEN)}}    #{version}" :
+          "  [#{i + 1}]    #{version}"
+      }
     }
   end
 
   desc 'Choose what version of gcc to use'
-  def set (version)
-    versions = self.versions
+  def set (version, target=Packo::Host.to_s)
+    versions = self.versions[target]
 
-    if Packo.numeric?(version) && (version.to_i > versions.length || version.to_i < 1)
+    if version.numeric? && (version.to_i > versions.length || version.to_i < 1)
       fatal "#{version} out of index"
       exit 1
     end
 
-    if Packo.numeric?(version)
+    if version.numeric?
       version = versions[version.to_i - 1]
     end
 
     if !versions.member? version
-      fatal "#{version} version not available"
+      fatal "#{version} version not available for #{target}"
       exit 2
     end
 
-    FileUtils.ln_sf "/usr/compilers/gcc/#{version}/bin/gcc", '/usr/bin/gcc'
-    FileUtils.ln_sf "/usr/compilers/gcc/#{version}/bin/g++", '/usr/bin/g++'
+    FileUtils.ln_sf Dir.glob("/usr/#{target}/gcc-bin/#{version}/*"), '/usr/bin/'
 
-    info "Set gcc to #{version}"
+    info "Set gcc to #{version} for #{target}"
 
-    Selector.first(:name => 'gcc').update(:data => version)
+    Selector.first(:name => 'gcc').update(:data => self.current.merge(target => version))
   end
 
   def current
-    Selector.first(:name => 'gcc').data rescue nil
+    (Selector.first(:name => 'gcc').data rescue nil) || {}
   end
 
   def versions
-    Dir.glob('/usr/compilers/gcc/*').map {|version|
-      version.sub('/usr/compilers/gcc/', '')
-    }
+    Hash[Dir.glob('/usr/*').select {|target|
+      Host.parse(target.sub('/usr/', ''))
+    }.map {|target|
+      [target.sub('/usr/', ''), Dir.glob("#{target}/gcc-bin/*").map {|version|
+        Versionomy.parse(version.sub("#{target}/gcc-bin/", ''))
+      }]
+    }]
   end
 end
 

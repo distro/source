@@ -33,11 +33,7 @@ Package.define('binutils') {
     conf.set 'infodir',    "/usr/share/binutils-data/#{package.target}/#{package.version}/info"
     conf.set 'mandir',     "/usr/share/binutils-data/#{package.target}/#{package.version}/man"
 
-    if Environment[:CROSS]
-      conf.set 'bindir', "/usr/#{package.host}/#{package.target}/binutils-bin/#{package.version}"    
-    end
-
-    conf.enable  ['secureplt', '64-bit-bfd', 'shared']
+    conf.enable  ['secureplt', '65-bit-bfd', 'shared']
     conf.disable ['werror', 'static']
 
     conf.with 'pkgversion', "Distrø #{package.version}#{" #{package.target}" if package.host != package.target}"
@@ -53,3 +49,81 @@ Package.define('binutils') {
 
   end
 }
+
+__END__
+$$$
+
+$$$ selectors/select-binutils.rb $$$
+
+# binutils: Set the binutils version to use
+
+#! /usr/bin/env ruby
+require 'optitron'
+
+require 'packo'
+require 'packo/binary/helpers'
+
+class Application < Optitron::CLI
+  include Packo
+  include Binary::Helpers
+  include Models
+
+  desc 'List available binutils versions'
+  def list
+    info 'List of availaibale binutils versions'
+
+    current = self.current
+
+    self.versions.each {|target, versions|
+      puts ''
+      puts colorize(target, :BLUE, :DEFAULT, :BOLD)
+
+      versions.each_with_index {|version, i|
+        puts (current[target] == version) ?
+          "  {#{colorize(i + 1, :GREEN)}}    #{version}" :
+          "  [#{i + 1}]    #{version}"
+      }
+    }
+  end
+
+  desc 'Choose what version of binutils to use'
+  def set (version, target=Packo::Host.to_s)
+    versions = self.versions[target]
+
+    if version.numeric? && (version.to_i > versions.length || version.to_i < 1)
+      fatal "#{version} out of index"
+      exit 1
+    end
+
+    if version.numeric?
+      version = versions[version.to_i - 1]
+    end
+
+    if !versions.member? version
+      fatal "#{version} version not available for #{target}"
+      exit 2
+    end
+
+    FileUtils.ln_sf Dir.glob("/usr/#{target}/binutils-bin/#{version}/*"), '/usr/bin/'
+
+    info "Set gcc to #{version} for #{target}"
+
+    Selector.first(:name => 'binutils').update(:data => self.current.merge(target => version))
+  end
+
+  def current
+    (Selector.first(:name => 'binutils').data rescue nil) || {}
+  end
+
+  def versions
+    Hash[Dir.glob('/usr/*').select {|target|
+      Host.parse(target.sub('/usr/', ''))
+    }.map {|target|
+      [target.sub('/usr/', ''), Dir.glob("#{target}/binutils-bin/*").map {|version|
+        Versionomy.parse(version.sub("#{target}/binutils-bin/", ''))
+      }]
+    }]
+  end
+end
+
+Application.dispatch
