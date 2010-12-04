@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<digest version="1.0">
+    <build version="2.64" slot="">
+        <features></features>
+        <files>
+            <file name="autoconf-2.64.tar.xz">16c2fb5c6bb0582850c9500067bdb222b12961d2</file>
+        </files>
+    </build>
+</digest>
