@@ -69,12 +69,6 @@ Package.define('gcc') { type 'compiler'
     deps << 'library/system/development/cygwin!' if package.target.kernel == 'cygwin'
   end
 
-  after :unpack do
-    package.fs.patches.each {|name, file|
-      package.patch file
-    }
-  end
-
   before :configure do
     ['.', 'libiberty', 'libstdc++-v3', 'libjava'].each {|dir|
       Do.cd(dir) {
@@ -142,10 +136,10 @@ Package.define('gcc') { type 'compiler'
 __END__
 @@@
 
-@@@ patches/crossconfig.patch @@@
+@@@ patches/libstdc++-v3/crossconfig.patch @@@
 
---- libstdc++-v3/crossconfig.m4.orig 2009-06-02 15:15:03.000000000 -0400
-+++ libstdc++-v3/crossconfig.m4      2010-08-22 22:35:55.345320303 -0400
+--- crossconfig.m4.orig 2009-06-02 15:15:03.000000000 -0400
++++ crossconfig.m4      2010-08-22 22:35:55.345320303 -0400
 @@ -141,7 +141,7 @@
         ;;
      esac
@@ -155,6 +149,20 @@ __END__
      GLIBCXX_CHECK_COMPILER_FEATURES
      GLIBCXX_CHECK_LINKER_FEATURES
      GLIBCXX_CHECK_MATH_SUPPORT
+
+@@@ patches/libstdc++-v3/libtool.patch
+
+--- libtool.m4  (revision 128569)
++++ libtool.m4  (working copy)
+@@ -5117,7 +5117,9 @@
+   _LT_LINKER_SHLIBS($1)
+   _LT_SYS_DYNAMIC_LINKER($1)
+   _LT_LINKER_HARDCODE_LIBPATH($1)
+-  LT_SYS_DLOPEN_SELF
++  if test "$cross_compiling" = no; then
++    LT_SYS_DLOPEN_SELF
++  fi
+   _LT_CMD_STRIPLIB
 
 @@@ selectors/select-gcc.rb @@@
 
