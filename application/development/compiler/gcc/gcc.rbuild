@@ -75,6 +75,30 @@ Package.define('gcc') { type 'compiler'
     }
   end
 
+  before :configure do
+    ['.', 'libiberty', 'libstdc++v3', 'libjava'].each {|dir|
+      Do.cd(dir) {
+        package.autotools.autoconf
+      }
+    }
+
+    Do.cd('gcc') {
+      package.autotools.autoconf
+      package.autotools.autoheader
+    }
+
+    Do.cd('libffi') {
+      package.autotools.aclocal '-I', '.', '-I', '..', '-I', '../config'
+      package.autotools.autoconf
+    }
+
+    ['boehm-gc', 'libffi', 'libgfortran', 'libgomp', 'libjava', 'libmudflap', 'libssp', 'libstdc++v3', 'zlib'].each {|dir|
+      Do.cd(dir) {
+        package.autotools.automake
+      }
+    }
+  end
+
   before :configure do |conf|
     Do.dir './build'
     Do.cd  './build'
