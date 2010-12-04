@@ -24,15 +24,19 @@ Package.define('cygwin') { type 'library'
     Do.cd 'winsup/cygwin'
   end
 
+  before :compile do
+    throw :halt
+  end
+
   before :install do |conf|
     next unless package.host != package.target
 
-    Do.into "/usr/#{package.target}/usr/include"
+    Do.into "#{package.distdir}/usr/#{package.target}/usr/include"
     Do.ins '../../winsup/w32api/include/.', :recursive => true
     Do.ins '../../newlib/libc/include/.', :recursive => true
-    Do.sym "/usr/#{package.target}/sys-include", 'usr/include'
+    Do.sym 'usr/include', '../../sys-include'
 
-    package.autotools.make 'install-headers', "tooldir=#{package.destdir}/usr/#{package.target}/usr"
+    package.autotools.make 'install-headers', "tooldir='/usr/#{package.target}/usr'", "DESTDIR='#{package.distdir}'"
 
     throw :halt
   end
