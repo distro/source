@@ -76,7 +76,7 @@ Package.define('gcc') { type 'compiler'
   end
 
   before :configure do
-    ['.', 'libiberty', 'libstdc++v3', 'libjava'].each {|dir|
+    ['.', 'libiberty', 'libstdc++-v3', 'libjava'].each {|dir|
       Do.cd(dir) {
         package.autotools.autoconf
       }
@@ -92,7 +92,7 @@ Package.define('gcc') { type 'compiler'
       package.autotools.autoconf
     }
 
-    ['boehm-gc', 'libffi', 'libgfortran', 'libgomp', 'libjava', 'libmudflap', 'libssp', 'libstdc++v3', 'zlib'].each {|dir|
+    ['boehm-gc', 'libffi', 'libgfortran', 'libgomp', 'libjava', 'libmudflap', 'libssp', 'libstdc++-v3', 'zlib'].each {|dir|
       Do.cd(dir) {
         package.autotools.automake
       }
