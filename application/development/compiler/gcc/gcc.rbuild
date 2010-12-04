@@ -94,14 +94,14 @@ Package.define('gcc') { type 'compiler'
     # c, c++, fortran, ada, java, objc, objcp
     conf.enable 'languages', package.languages.join(',')
 
-    conf.enable 'checking', 'release'
+    conf.enable 'checking',   'release'
     conf.with   'pkgversion', "Distrø #{package.version}"
 
     conf.with 'arch', package.target.arch
   end
 
   before :pack do
-    package.slot = "#{package.slot}-#{environment[:ARCH]}-#{environment[:KERNEL]}"
+    package.slot = "#{package.slot}#{"-#{package.target.to_s}" if package.host != package.target}"
   end
 }
 
