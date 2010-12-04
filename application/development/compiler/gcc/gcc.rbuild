@@ -65,6 +65,16 @@ Package.define('gcc') { type 'compiler'
     pkg.languages = ['c', 'c++']
   end
 
+  before :dependencies do |deps|
+    deps << 'library/system/development/cygwin!' if package.target.kernel == 'cygwin'
+  end
+
+  after :unpack do
+    package.fs.patches.each {|name, file|
+      package.patch file
+    }
+  end
+
   before :configure do |conf|
     Do.dir './build'
     Do.cd  './build'
@@ -107,6 +117,20 @@ Package.define('gcc') { type 'compiler'
 
 __END__
 @@@
+
+@@@ patches/crossconfig.patch @@@
+
+--- libstdc++-v3/crossconfig.m4.orig 2009-06-02 15:15:03.000000000 -0400
++++ libstdc++-v3/crossconfig.m4      2010-08-22 22:35:55.345320303 -0400
+@@ -141,7 +141,7 @@
+        ;;
+     esac
+     ;;
+-  *-linux* | *-uclinux* | *-gnu* | *-kfreebsd*-gnu | *-knetbsd*-gnu)
++  *-linux* | *-uclinux* | *-gnu* | *-kfreebsd*-gnu | *-knetbsd*-gnu | *-cygwin* )
+     GLIBCXX_CHECK_COMPILER_FEATURES
+     GLIBCXX_CHECK_LINKER_FEATURES
+     GLIBCXX_CHECK_MATH_SUPPORT
 
 @@@ selectors/select-gcc.rb @@@
 
