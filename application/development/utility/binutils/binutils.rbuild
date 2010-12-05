@@ -25,13 +25,15 @@ Package.define('binutils') {
   }
 
   before :configure do |conf|
-    conf.set 'bindir',     "/usr/#{package.target}/binutils-bin/#{package.version}"
-    conf.set 'libdir',     "/usr/lib/binutils/#{package.target}/#{package.version}"
-    conf.set 'libexecdir', "/usr/lib/binutils/#{package.target}/#{package.version}"
-    conf.set 'includedir', "/usr/lib/binutils/#{package.target}/#{package.version}/include"
-    conf.set 'datadir',    "/usr/share/binutils-data/#{package.target}/#{package.version}"
-    conf.set 'infodir',    "/usr/share/binutils-data/#{package.target}/#{package.version}/info"
-    conf.set 'mandir',     "/usr/share/binutils-data/#{package.target}/#{package.version}/man"
+    middle = (package.host != package.target) ? "#{package.host}/#{package.target}" : "#{package.target}"
+
+    conf.set 'bindir',     "/usr/#{middle}/binutils-bin/#{package.version}"
+    conf.set 'libdir',     "/usr/lib/binutils/#{middle}/#{package.version}"
+    conf.set 'libexecdir', "/usr/lib/binutils/#{middle}/#{package.version}"
+    conf.set 'includedir', "/usr/lib/binutils/#{middle}/#{package.version}/include"
+    conf.set 'datadir',    "/usr/share/binutils-data/#{middle}/#{package.version}"
+    conf.set 'infodir',    "/usr/share/binutils-data/#{middle}/#{package.version}/info"
+    conf.set 'mandir',     "/usr/share/binutils-data/#{middle}/#{package.version}/man"
 
     conf.enable  ['secureplt', '65-bit-bfd', 'shared']
     conf.disable ['werror', 'static']
@@ -106,7 +108,7 @@ class Application < Optitron::CLI
 
     FileUtils.ln_sf Dir.glob("/usr/#{target}/binutils-bin/#{version}/*"), '/usr/bin/'
 
-    info "Set gcc to #{version} for #{target}"
+    info "Set binutils to #{version} for #{target}"
 
     Selector.first(:name => 'binutils').update(:data => self.current.merge(target => version))
   end
@@ -116,13 +118,19 @@ class Application < Optitron::CLI
   end
 
   def versions
-    Hash[Dir.glob('/usr/*').select {|target|
-      Host.parse(target.sub('/usr/', ''))
+    versions = Dir.glob("/usr/#{Packo::Host}/*").select {|target|
+      Host.parse(target.sub("/usr/#{Packo::Host}/", '')) && !target.end_with?('-bin')
     }.map {|target|
-      [target.sub('/usr/', ''), Dir.glob("#{target}/binutils-bin/*").map {|version|
+      [target.sub("/usr/#{Packo::Host}/", ''), Dir.glob("#{target}/binutils-bin/*").map {|version|
         Versionomy.parse(version.sub("#{target}/binutils-bin/", ''))
       }]
+    }
+
+    versions << [Packo::Host.to_s, Dir.glob("/usr/#{Packo::Host}/binutils-bin/*").map {|version|
+      Versionomy.parse(version.sub("/usr/#{Packo::Host}/binutils-bin/", ''))
     }]
+
+    Hash[versions]
   end
 end
 

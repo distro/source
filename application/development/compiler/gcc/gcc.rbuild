@@ -99,16 +99,18 @@ Package.define('gcc') { type 'compiler'
 
     conf.path = '../configure'
 
-    conf.set 'bindir',     "/usr/#{package.target}/gcc-bin/#{package.version}"
-    conf.set 'libdir',     "/usr/lib/gcc/#{package.target}/#{package.version}"
-    conf.set 'libexecdir', "/usr/lib/gcc/#{package.target}/#{package.version}"
-    conf.set 'includedir', "/usr/lib/gcc/#{package.target}/#{package.version}/include"
-    conf.set 'datadir',    "/usr/share/gcc-data/#{package.target}/#{package.version}"
-    conf.set 'infodir',    "/usr/share/gcc-data/#{package.target}/#{package.version}/info"
-    conf.set 'mandir',     "/usr/share/gcc-data/#{package.target}/#{package.version}/man"
+    middle = (package.host != package.target) ? "#{package.host}/#{package.target}" : "#{package.target}"
 
-    conf.with 'gxx-include-dir', "/usr/lib/gcc/#{package.target}/#{package.version}/include/g++v4"
-    conf.with 'python-dir',      "/usr/share/gcc-data/#{package.target}/#{package.version}/python"
+    conf.set 'bindir',     "/usr/#{middle}/gcc-bin/#{package.version}"
+    conf.set 'libdir',     "/usr/lib/gcc/#{middle}/#{package.version}"
+    conf.set 'libexecdir', "/usr/lib/gcc/#{middle}/#{package.version}"
+    conf.set 'includedir', "/usr/lib/gcc/#{middle}/#{package.version}/include"
+    conf.set 'datadir',    "/usr/share/gcc-data/#{middle}/#{package.version}"
+    conf.set 'infodir',    "/usr/share/gcc-data/#{middle}/#{package.version}/info"
+    conf.set 'mandir',     "/usr/share/gcc-data/#{middle}/#{package.version}/man"
+
+    conf.with 'gxx-include-dir', "/usr/lib/gcc/#{middle}/#{package.version}/include/g++v4"
+    conf.with 'python-dir',      "/usr/share/gcc-data/#{middle}/#{package.version}/python"
 
     conf.enable  ['secureplt']
     conf.disable ['werror', 'libmudflap', 'libssp', 'libgomp', 'shared', 'bootstrap']
@@ -223,13 +225,19 @@ class Application < Optitron::CLI
   end
 
   def versions
-    Hash[Dir.glob('/usr/*').select {|target|
-      Host.parse(target.sub('/usr/', ''))
+    versions = Dir.glob("/usr/#{Packo::Host}/*").select {|target|
+      Host.parse(target.sub("/usr/#{Packo::Host}/", '')) && !target.end_with?('-bin')
     }.map {|target|
-      [target.sub('/usr/', ''), Dir.glob("#{target}/gcc-bin/*").map {|version|
+      [target.sub("/usr/#{Packo::Host}/", ''), Dir.glob("#{target}/gcc-bin/*").map {|version|
         Versionomy.parse(version.sub("#{target}/gcc-bin/", ''))
       }]
+    }
+
+    versions << [Packo::Host.to_s, Dir.glob("/usr/#{Packo::Host}/gcc-bin/*").map {|version|
+      Versionomy.parse(version.sub("/usr/#{Packo::Host}/gcc-bin/", ''))
     }]
+
+    Hash[versions]
   end
 end
 
