@@ -104,7 +104,7 @@ class Application < Optitron::CLI
       exit 2
     end
 
-    FileUtils.ln_sf Dir.glob("/usr/#{target}/binutils-bin/#{version}/*"), '/usr/bin/'
+    FileUtils.ln_sf Dir.glob("/usr/#{Packo::Host}/#{target}/binutils-bin/#{version}/*"), '/usr/bin/'
 
     info "Set binutils to #{version} for #{target}"
 

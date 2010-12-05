@@ -211,7 +211,7 @@ class Application < Optitron::CLI
       exit 2
     end
 
-    FileUtils.ln_sf Dir.glob("/usr/#{target}/gcc-bin/#{version}/*"), '/usr/bin/'
+    FileUtils.ln_sf Dir.glob("/usr/#{Packo::Host}/#{target}/gcc-bin/#{version}/*"), '/usr/bin/'
 
     info "Set gcc to #{version} for #{target}"
 
