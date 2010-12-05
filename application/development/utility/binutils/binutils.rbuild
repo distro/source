@@ -42,14 +42,6 @@ Package.define('binutils') {
 
     conf.with 'arch', package.target.arch
   end
-
-  before :pack do
-    package.slot = package.target.to_s if package.host != package.target
-  end
-
-  after :unpack do
-
-  end
 }
 
 __END__

@@ -101,8 +101,6 @@ Package.define('gcc') { type 'compiler'
 
     middle = (package.host != package.target) ? "#{package.host}/#{package.target}" : "#{package.target}"
 
-    FileUtils.mkpath "/usr/#{middle}/usr/include"
-
     conf.set 'bindir',     "/usr/#{middle}/gcc-bin/#{package.version}"
     conf.set 'libdir',     "/usr/lib/gcc/#{middle}/#{package.version}"
     conf.set 'libexecdir', "/usr/lib/gcc/#{middle}/#{package.version}"
@@ -127,10 +125,6 @@ Package.define('gcc') { type 'compiler'
 
     conf.with 'arch', package.target.arch
   end
-
-  before :pack do
-    package.slot = "#{package.slot}#{"-#{package.target.to_s}" if package.host != package.target}"
-  end
 }
 
 __END__
@@ -138,31 +132,17 @@ $$$
 
 $$$ patches/libstdc++-v3/crossconfig.patch $$$
 
---- crossconfig.m4.orig 2009-06-02 15:15:03.000000000 -0400
-+++ crossconfig.m4      2010-08-22 22:35:55.345320303 -0400
+--- crossconfig.m4.orig 2010-12-05 18:25:02.523371816 +0000
++++ crossconfig.m4  2010-12-05 18:25:11.576783185 +0000
 @@ -141,7 +141,7 @@
-        ;;
+  ;;
      esac
      ;;
 -  *-linux* | *-uclinux* | *-gnu* | *-kfreebsd*-gnu | *-knetbsd*-gnu)
-+  *-linux* | *-uclinux* | *-gnu* | *-kfreebsd*-gnu | *-knetbsd*-gnu | *-cygwin* )
++  *-linux* | *-uclinux* | *-gnu* | *-kfreebsd*-gnu | *-knetbsd*-gnu | *-cygwin*)
      GLIBCXX_CHECK_COMPILER_FEATURES
      GLIBCXX_CHECK_LINKER_FEATURES
      GLIBCXX_CHECK_MATH_SUPPORT
-
-$$$ patches/libtool.patch $$$
-
---- libtool.m4  (revision 128569)
-+++ libtool.m4  (working copy)
-@@ -5117,7 +5117,9 @@
-   _LT_LINKER_SHLIBS($1)
-   _LT_SYS_DYNAMIC_LINKER($1)
-   _LT_LINKER_HARDCODE_LIBPATH($1)
--  LT_SYS_DLOPEN_SELF
-+  if test "$cross_compiling" = no; then
-+    LT_SYS_DLOPEN_SELF
-+  fi
-   _LT_CMD_STRIPLIB
 
 $$$ selectors/select-gcc.rb $$$
 
