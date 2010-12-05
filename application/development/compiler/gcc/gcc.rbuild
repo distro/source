@@ -101,6 +101,8 @@ Package.define('gcc') { type 'compiler'
 
     middle = (package.host != package.target) ? "#{package.host}/#{package.target}" : "#{package.target}"
 
+    FileUtils.mkpath "/usr/#{middle}/usr/include"
+
     conf.set 'bindir',     "/usr/#{middle}/gcc-bin/#{package.version}"
     conf.set 'libdir',     "/usr/lib/gcc/#{middle}/#{package.version}"
     conf.set 'libexecdir', "/usr/lib/gcc/#{middle}/#{package.version}"
