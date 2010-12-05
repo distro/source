@@ -164,8 +164,6 @@ $$$ patches/libtool.patch $$$
 
 $$$ selectors/select-gcc.rb $$$
 
-# gcc: Set the gcc version to use
-
 #! /usr/bin/env ruby
 require 'optitron'
 
@@ -242,3 +240,5 @@ class Application < Optitron::CLI
 end
 
 Application.dispatch
+
+# gcc: Set the gcc version to use

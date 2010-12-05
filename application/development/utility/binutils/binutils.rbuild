@@ -57,8 +57,6 @@ $$$
 
 $$$ selectors/select-binutils.rb $$$
 
-# binutils: Set the binutils version to use
-
 #! /usr/bin/env ruby
 require 'optitron'
 
@@ -135,3 +133,5 @@ class Application < Optitron::CLI
 end
 
 Application.dispatch
+
+# binutils: Set the binutils version to use
