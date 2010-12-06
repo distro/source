@@ -67,6 +67,8 @@ class Application < Optitron::CLI
     current = self.current
 
     self.versions.each {|target, versions|
+      next if versions.empty?
+
       puts ''
       puts colorize(target, :BLUE, :DEFAULT, :BOLD)
 
@@ -96,7 +98,11 @@ class Application < Optitron::CLI
       exit 2
     end
 
-    FileUtils.ln_sf Dir.glob("/usr/#{Packo::Host}/#{target}/binutils-bin/#{version}/*"), '/usr/bin/'
+    if target == Packo::Host.to_s
+      FileUtils.ln_sf Dir.glob("/usr/#{Packo::Host}/binutils-bin/#{version}/*"), '/usr/bin'
+    else
+      FileUtils.ln_sf Dir.glob("/usr/#{Packo::Host}/#{target}/binutils-bin/#{version}/#{target}-*"), '/usr/bin/'
+    end
 
     info "Set binutils to #{version} for #{target}"
 

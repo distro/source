@@ -13,9 +13,27 @@ Package.define('gcc') { type 'compiler'
   source 'gcc/#{package.version}'
 
   features {
+    multilib {
+      before :configure do |conf|
+        conf.disable 'multilib' unless enabled?
+      end
+    }
+
     ada {
       before :build do |pkg|
         pkg.languages << 'ada' if enabled?
+      end
+    }
+
+    cxx { enabled!
+      before :build do |pkg|
+        pkg.languages << 'c++' if enabled?
+      end
+    }
+
+    fortran {
+      before :build do |pkg|
+        pkg.languages << 'fortran' if enabled?
       end
     }
 
@@ -25,12 +43,6 @@ Package.define('gcc') { type 'compiler'
       end
     }
     
-    fortran {
-      before :build do |pkg|
-        pkg.languages << 'fortran' if enabled?
-      end
-    }
-
     objc {
       before :build do |pkg|
         pkg.languages << 'objc' if enabled?
@@ -52,7 +64,12 @@ Package.define('gcc') { type 'compiler'
 
     nls {
       before :configure do |conf|
-        conf.enable 'nls', enabled?
+        if enabled?
+          conf.enable 'nls'
+          conf.disable 'included-gettext'
+        else
+          conf.disable 'nls'
+        end
       end
     }
 
@@ -62,11 +79,16 @@ Package.define('gcc') { type 'compiler'
   }
 
   before :initialize, -10 do |pkg|
-    pkg.languages = ['c', 'c++']
+    pkg.languages = ['c']
+
+    package.environment[:CXXFLAGS] = package.environment[:CFLAGS] = '-pipe'
+    package.environment[:LDFLAGS]  = ''
   end
 
   before :dependencies do |deps|
-    deps << 'library/system/development/cygwin!' if package.target.kernel == 'cygwin'
+    if package.target.kernel == 'cygwin'
+      deps << 'library/system/development/cygwin!'
+    end
   end
 
   before :configure do
@@ -94,10 +116,10 @@ Package.define('gcc') { type 'compiler'
   end
 
   before :configure do |conf|
-    Do.dir './build'
-    Do.cd  './build'
+    Do.dir "#{package.workdir}/build"
+    Do.cd  "#{package.workdir}/build"
 
-    conf.path = '../configure'
+    conf.path = "#{package.workdir}/gcc-#{package.version}/configure"
 
     middle = (package.host != package.target) ? "#{package.host}/#{package.target}" : "#{package.target}"
 
@@ -115,7 +137,7 @@ Package.define('gcc') { type 'compiler'
     conf.enable  ['secureplt']
     conf.disable ['werror', 'libmudflap', 'libssp', 'libgomp', 'shared', 'bootstrap']
     conf.with    ['system-zlib']
-    conf.without ['ppl', 'cloog', 'included-gettext']
+    conf.without ['ppl', 'cloog']
 
     # c, c++, fortran, ada, java, objc, objcp
     conf.enable 'languages', package.languages.join(',')
@@ -123,7 +145,39 @@ Package.define('gcc') { type 'compiler'
     conf.enable 'checking',   'release'
     conf.with   'pkgversion', "Distrø #{package.version}"
 
-    conf.with 'arch', package.target.arch
+    # Various conditional configurations
+
+    if package.host.kernel == 'cygwin'
+      conf.enable 'threads', 'win32'
+    else
+      conf.enable 'threads', 'posix'
+    end
+
+    if package.target.kernel == 'darwin'
+      conf.enable 'version-specific-runtime-libs'
+    end
+
+    if package.target.kernel == 'cygwin'
+      conf.without 'libiberty'
+    end
+
+    if package.target.kernel == 'freebsd' || package.target.misc == 'gnu' || package.target.kernel == 'solaris'
+      conf.enable '__cxa_atexit'
+    end
+
+    if package.target.misc == 'gnu'
+      conf.enable 'clocale', 'gnu'
+    end
+
+    if package.environment[:LIBC] == 'newlib'
+      conf.with 'newlib'
+    end
+  end
+
+  before :compile do
+    package.autotools.make '-j1'
+
+    throw :halt
   end
 }
 
@@ -135,7 +189,7 @@ $$$ patches/libstdc++-v3/crossconfig.patch $$$
 --- crossconfig.m4.orig 2010-12-05 18:25:02.523371816 +0000
 +++ crossconfig.m4  2010-12-05 18:25:11.576783185 +0000
 @@ -141,7 +141,7 @@
-  ;;
+ 	;;
      esac
      ;;
 -  *-linux* | *-uclinux* | *-gnu* | *-kfreebsd*-gnu | *-knetbsd*-gnu)
@@ -164,6 +218,8 @@ class Application < Optitron::CLI
     current = self.current
 
     self.versions.each {|target, versions|
+      next if versions.empty?
+
       puts ''
       puts colorize(target, :BLUE, :DEFAULT, :BOLD)
 
@@ -193,7 +249,11 @@ class Application < Optitron::CLI
       exit 2
     end
 
-    FileUtils.ln_sf Dir.glob("/usr/#{Packo::Host}/#{target}/gcc-bin/#{version}/*"), '/usr/bin/'
+    if target == Packo::Host.to_s
+      FileUtils.ln_sf Dir.glob("/usr/#{Packo::Host}/gcc-bin/#{version}/*"), '/usr/bin'
+    else
+      FileUtils.ln_sf Dir.glob("/usr/#{Packo::Host}/#{target}/gcc-bin/#{version}/#{target}-*"), '/usr/bin/'
+    end
 
     info "Set gcc to #{version} for #{target}"
 
