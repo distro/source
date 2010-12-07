@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<digest version="1.0">
+    <build version="1.14.5" slot="">
+        <features></features>
+        <files>
+            <file name="fakeroot_1.14.5.orig.tar.bz2">d7610cb71044aa49e6a3e55fdc1af468f7e0858d</file>
+        </files>
+    </build>
+</digest>

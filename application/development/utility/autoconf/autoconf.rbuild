@@ -28,3 +28,74 @@ Package.define('autoconf') {
     package.slot = package.version
   end
 }
+
+__END__
+$$$
+
+$$$ selectors/select-autoconf.rb $$$
+
+#! /usr/bin/env ruby
+require 'optitron'
+
+require 'packo'
+require 'packo/binary/helpers'
+
+class Application < Optitron::CLI
+  include Packo
+  include Binary::Helpers
+  include Models
+
+  desc 'List available autoconf versions'
+  def list
+    info 'List of availaibale autoconf versions'
+
+    current = self.current
+
+    self.versions.each_with_index {|version, i|
+      puts (current == version) ?
+        "  {#{colorize(i + 1, :GREEN)}}    #{version}" :
+        "  [#{i + 1}]    #{version}"
+    }
+  end
+
+  desc 'Choose what version of autoconf to use'
+  def set (version)
+    versions = self.versions
+
+    if version.numeric? && (version.to_i > versions.length || version.to_i < 1)
+      fatal "#{version} out of index"
+      exit 1
+    end
+
+    if version.numeric?
+      version = versions[version.to_i - 1]
+    end
+
+    if !versions.member? version
+      fatal "#{version} version not available for #{target}"
+      exit 2
+    end
+
+    ['autoconf', 'autoheader', 'autom4te', 'autoreconf', 'autoscan', 'autoupdate'].each {|bin|
+      FileUtils.ln_sf "#{bin}-#{version}", "/usr/bin/#{bin}"
+    }
+
+    info "Set autoconf to #{version}"
+
+    Selector.first(:name => 'autoconf').update(:data => version)
+  end
+
+  def current
+    (Selector.first(:name => 'autoconf').data rescue nil) || {}
+  end
+
+  def versions
+    Dir.glob('/usr/bin/autoconf-*').map {|version|
+      version.sub('/usr/bin/autoconf-', '')
+    }
+  end
+end
+
+Application.dispatch
+
+# autoconf: Set the default autoconf version

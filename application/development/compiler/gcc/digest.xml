@@ -1,9 +1,15 @@
 <?xml version="1.0"?>
 <digest version="1.0">
-    <build version="4.4.3" slot="4.4">
-        <features>ada java fortran objc objcxx optimizations nls openmp</features>
+    <build version="4.3.4" slot="4.3">
+        <features>multilib ada cxx fortran java objc objcxx optimizations nls openmp</features>
         <files>
-            <file name="gcc-4.4.3.tar.bz2">619766282734728539ce58a5c383cb371f1999c7</file>
+            <file name="gcc-4.3.4.tar.bz2">cf5248733f26aafa361b3583e74783181eeb88b9</file>
+        </files>
+    </build>
+    <build version="4.4.0" slot="4.4">
+        <features>multilib ada cxx fortran java objc objcxx optimizations nls openmp</features>
+        <files>
+            <file name="gcc-4.4.0.tar.bz2">9215af6beb900ca1eef1d6a40c3dabe990203b25</file>
         </files>
     </build>
     <build version="4.5.1" slot="4.5">

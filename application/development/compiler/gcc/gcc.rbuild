@@ -78,10 +78,10 @@ Package.define('gcc') { type 'compiler'
     }
   }
 
-  before :initialize, -10 do |pkg|
-    pkg.languages = ['c']
+  before :initialize, -10 do
+    package.languages = ['c']
 
-    package.environment[:CXXFLAGS] = package.environment[:CFLAGS] = '-pipe'
+    package.environment[:CXXFLAGS] = package.environment[:CFLAGS] = '-O2 -pipe'
     package.environment[:LDFLAGS]  = ''
   end
 
@@ -89,30 +89,6 @@ Package.define('gcc') { type 'compiler'
     if package.target.kernel == 'cygwin'
       deps << 'library/system/development/cygwin!'
     end
-  end
-
-  before :configure do
-    ['.', 'libiberty', 'libstdc++-v3', 'libjava'].each {|dir|
-      Do.cd(dir) {
-        package.autotools.autoconf
-      }
-    }
-
-    Do.cd('gcc') {
-      package.autotools.autoconf
-      package.autotools.autoheader
-    }
-
-    Do.cd('libffi') {
-      package.autotools.aclocal '-I', '.', '-I', '..', '-I', '../config'
-      package.autotools.autoconf
-    }
-
-    ['boehm-gc', 'libffi', 'libgfortran', 'libgomp', 'libjava', 'libmudflap', 'libssp', 'libstdc++-v3', 'zlib'].each {|dir|
-      Do.cd(dir) {
-        package.autotools.automake
-      }
-    }
   end
 
   before :configure do |conf|
@@ -157,12 +133,10 @@ Package.define('gcc') { type 'compiler'
       conf.enable 'version-specific-runtime-libs'
     end
 
-    if package.target.kernel == 'cygwin'
-      conf.without 'libiberty'
-    end
-
     if package.target.kernel == 'freebsd' || package.target.misc == 'gnu' || package.target.kernel == 'solaris'
       conf.enable '__cxa_atexit'
+    else
+      conf.disable '__cxa_atexit'
     end
 
     if package.target.misc == 'gnu'
@@ -183,20 +157,6 @@ Package.define('gcc') { type 'compiler'
 
 __END__
 $$$
-
-$$$ patches/libstdc++-v3/crossconfig.patch $$$
-
---- crossconfig.m4.orig 2010-12-05 18:25:02.523371816 +0000
-+++ crossconfig.m4  2010-12-05 18:25:11.576783185 +0000
-@@ -141,7 +141,7 @@
- 	;;
-     esac
-     ;;
--  *-linux* | *-uclinux* | *-gnu* | *-kfreebsd*-gnu | *-knetbsd*-gnu)
-+  *-linux* | *-uclinux* | *-gnu* | *-kfreebsd*-gnu | *-knetbsd*-gnu | *-cygwin*)
-     GLIBCXX_CHECK_COMPILER_FEATURES
-     GLIBCXX_CHECK_LINKER_FEATURES
-     GLIBCXX_CHECK_MATH_SUPPORT
 
 $$$ selectors/select-gcc.rb $$$
 
@@ -284,3 +244,17 @@ end
 Application.dispatch
 
 # gcc: Set the gcc version to use
+
+$$$ patches/libstdc++-v3/crossconfig.path $$$
+
+--- crossconfig.m4.orig	2010-12-07 02:47:04.951291393 +0000
++++ crossconfig.m4	2010-12-07 02:48:51.926279025 +0000
+@@ -193,7 +193,7 @@
+ 	;;
+     esac
+     ;;
+-  *-linux* | *-uclinux* | *-gnu* | *-kfreebsd*-gnu | *-knetbsd*-gnu)
++  *-linux* | *-uclinux* | *-gnu* | *-kfreebsd*-gnu | *-knetbsd*-gnu | *-cygwin*)
+     AC_CHECK_HEADERS([nan.h ieeefp.h endian.h sys/isa_defs.h \
+       machine/endian.h machine/param.h sys/machine.h sys/types.h \
+       fp.h float.h endian.h inttypes.h locale.h float.h stdint.h \

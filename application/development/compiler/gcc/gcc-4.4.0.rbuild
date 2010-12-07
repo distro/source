@@ -1,4 +1,4 @@
-Package.define('gcc', '4.4.3', '4.4') {
+Package.define('gcc', '4.4.0', '4.4') {
   arch     'x86', 'x86_64'
   kernel   'linux'
   compiler 'gcc'

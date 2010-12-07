@@ -11,4 +11,41 @@ Package.define('glibc') { type 'libc'
   license     'LGPL-2'
 
   source 'glibc/#{package.version}'
+
+  flavor {
+    hardened {
+      before :configure do |conf|
+        conf.enable 'stackguard-randomization', enabled?
+      end
+    }
+  }
+
+  features {
+    nls {
+      before :configura do |conf|
+        conf.disale 'nls' if disabled?
+      end
+    }
+  }
+
+  before :initialize do
+    package.environment[:CXXFLAGS] = package.environment[:CFLAGS] = '-O2 -fno-strict-aliasing -pipe'
+    package.environment[:LDFLAGS]  = ''
+  end
+
+  before :configure do |conf|
+    Do.dir "#{package.workdir}/build"
+    Do.cd  "#{package.workdir}/build"
+
+    conf.path = "#{package.workdir}/glibc-#{package.version}/configure"
+
+    conf.without ['cvs', 'gd']
+    conf.enable  ['bind-now']
+  end
+
+  before :compile do
+    package.autotools.make '-j1'
+
+    throw :halt
+  end
 }
