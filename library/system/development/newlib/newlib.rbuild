@@ -33,8 +33,20 @@ Package.define('newlib') { type 'libc'
   }
 
   before :configure do |conf|
-    environment[:LDFLAGS] = ''
+    environment[:CXXFLAGS] = environment[:CFLAGS] = '-O2 -pipe'
+    environment[:LDFLAGS]  = ''
+
+    Do.dir "#{workdir}/build"
+    Do.cd  "#{workdir}/build"
+
+    conf.path = "#{workdir}/newlib-#{version}/configure"
     
     conf.enable ['newlib-hw-fp', 'shared', 'static']
+  end
+
+  before :compile do
+    package.autotools.make '-j1'
+
+    throw :halt
   end
 }

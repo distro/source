@@ -78,37 +78,47 @@ Package.define('gcc') { type 'compiler'
     }
   }
 
-  before :initialize, -10 do
+  after :initialize do
     package.languages = ['c']
-
-    package.environment[:CXXFLAGS] = package.environment[:CFLAGS] = '-O2 -pipe'
-    package.environment[:LDFLAGS]  = ''
   end
 
   before :dependencies do |deps|
-    if package.target.kernel == 'cygwin'
-      deps << 'library/system/development/cygwin!'
+    if target.kernel == 'cygwin'
+      if host != target
+        deps << "library/system/development/cygwin%#{target}!"
+      else
+        deps << 'library/system/development/cygwin!'
+      end
     end
   end
 
   before :configure do |conf|
-    Do.dir "#{package.workdir}/build"
-    Do.cd  "#{package.workdir}/build"
+    conf.with 'sysroot', "/usr/#{host}/#{target}"
 
-    conf.path = "#{package.workdir}/gcc-#{package.version}/configure"
+    environment[:CPP] = "cpp --sysroot /usr/#{host}/#{target}"
+    environment[:CXXFLAGS] = environment[:CFLAGS] = '-O2 -pipe'
+    environment[:LDFLAGS]  = ''
 
-    middle = (package.host != package.target) ? "#{package.host}/#{package.target}" : "#{package.target}"
+    Do.dir "#{workdir}/build"
+    Do.cd  "#{workdir}/build"
 
-    conf.set 'bindir',     "/usr/#{middle}/gcc-bin/#{package.version}"
-    conf.set 'libdir',     "/usr/lib/gcc/#{middle}/#{package.version}"
-    conf.set 'libexecdir', "/usr/lib/gcc/#{middle}/#{package.version}"
-    conf.set 'includedir', "/usr/lib/gcc/#{middle}/#{package.version}/include"
-    conf.set 'datadir',    "/usr/share/gcc-data/#{middle}/#{package.version}"
+    conf.path = "#{workdir}/gcc-#{version}/configure"
+
+    middle = (host != target) ? "#{host}/#{target}" : "#{target}"
+
+    conf.set 'bindir',     "/usr/#{middle}/gcc-bin/#{version}"
+    conf.set 'libdir',     "/usr/lib/gcc/#{middle}/#{version}"
+    conf.set 'libexecdir', "/usr/lib/gcc/#{middle}/#{version}"
+    conf.set 'includedir', "/usr/lib/gcc/#{middle}/#{version}/include"
+    conf.set 'datadir',    "/usr/share/gcc-data/#{middle}/#{version}"
     conf.set 'infodir',    "/usr/share/gcc-data/#{middle}/#{package.version}/info"
     conf.set 'mandir',     "/usr/share/gcc-data/#{middle}/#{package.version}/man"
 
-    conf.with 'gxx-include-dir', "/usr/lib/gcc/#{middle}/#{package.version}/include/g++v4"
-    conf.with 'python-dir',      "/usr/share/gcc-data/#{middle}/#{package.version}/python"
+    conf.with 'gxx-include-dir', "/usr/lib/gcc/#{middle}/#{version}/include/g++v4"
+    conf.with 'python-dir',      "/usr/share/gcc-data/#{middle}/#{version}/python"
+
+    conf.with 'as', "/usr/bin/#{target}-as"
+    conf.with 'ld', "/usr/bin/#{target}-ld"
 
     conf.enable  ['secureplt']
     conf.disable ['werror', 'libmudflap', 'libssp', 'libgomp', 'shared', 'bootstrap']
@@ -119,37 +129,37 @@ Package.define('gcc') { type 'compiler'
     conf.enable 'languages', package.languages.join(',')
 
     conf.enable 'checking',   'release'
-    conf.with   'pkgversion', "Distrø #{package.version}"
+    conf.with   'pkgversion', "Distrø #{version}"
 
     # Various conditional configurations
 
-    if package.host.kernel == 'cygwin'
+    if host.kernel == 'cygwin'
       conf.enable 'threads', 'win32'
     else
       conf.enable 'threads', 'posix'
     end
 
-    if package.target.kernel == 'darwin'
+    if target.kernel == 'darwin'
       conf.enable 'version-specific-runtime-libs'
     end
 
-    if package.target.kernel == 'freebsd' || package.target.misc == 'gnu' || package.target.kernel == 'solaris'
+    if target.kernel == 'freebsd' || target.misc == 'gnu' || target.kernel == 'solaris'
       conf.enable '__cxa_atexit'
     else
       conf.disable '__cxa_atexit'
     end
 
-    if package.target.misc == 'gnu'
+    if target.misc == 'gnu'
       conf.enable 'clocale', 'gnu'
     end
 
-    if package.environment[:LIBC] == 'newlib'
+    if environment[:LIBC] == 'newlib'
       conf.with 'newlib'
     end
   end
 
   before :compile do
-    package.autotools.make '-j1'
+    autotools.make '-j1'
 
     throw :halt
   end
