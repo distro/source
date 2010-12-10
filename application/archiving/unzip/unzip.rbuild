@@ -7,7 +7,7 @@ Package.define('unzip') {
 
   description 'unzipper for pkzip-compressed files'
   homepage    'http://www.info-zip.org/'
-  source      'sourceforge://infozip/#{package.version}.tar.gz'
+  license     'Info-ZIP'
 
   flavor {
     documentation {
