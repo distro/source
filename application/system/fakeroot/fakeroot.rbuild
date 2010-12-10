@@ -1,5 +1,5 @@
 Package.define('fakeroot') {
-  behavior Behaviors::GNU
+  behavior Behaviors::Standard
 
   maintainer 'meh. <meh@paranoici.org>'
 

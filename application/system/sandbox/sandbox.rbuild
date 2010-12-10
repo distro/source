@@ -1,5 +1,5 @@
 Package.define('sandbox') {
-  behavior Behaviors::GNU
+  behavior Behaviors::Standard
 
   maintainer 'meh. <meh@paranoici.org>'
 

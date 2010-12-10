@@ -1,5 +1,5 @@
 Package.define('newlib') { type 'libc'
-  behavior Behaviors::GNU
+  behavior Behaviors::Standard
 
   maintainer 'meh. <meh@paranoici.org>'
 

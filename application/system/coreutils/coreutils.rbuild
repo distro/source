@@ -1,16 +1,15 @@
 Package.define('coreutils') {
-  behavior Behaviors::GNU
-  use      Modules::Fetching::GNU
+  behavior Behaviors::Standard
 
   maintainer 'meh. <meh@paranoici.org>'
 
-  tags 'application', 'system', 'utility'
+  tags 'application', 'system', 'utility', 'gnu'
   
   description 'Standard GNU file utilities (chmod, cp, dd, dir, ls...), text utilities (sort, tr, head, wc..), and shell utilities (whoami, who,...)'
   homepage    'http://www.gnu.org/software/coreutils/'
   license     'GPL-3'
 
-  source 'coreutils/#{package.version}'
+  source 'gnu://coreutils/#{package.version}'
 
   dependencies << '>=system/library/ncurses-5.3'
   dependencies << 'application/archive/xz!'

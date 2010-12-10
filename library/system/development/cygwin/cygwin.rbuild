@@ -1,5 +1,5 @@
 Package.define('cygwin') { type 'library'
-  behavior Behaviors::GNU
+  behavior Behaviors::Standard
   
   maintainer 'meh. <meh@paranoici.org>'
 
@@ -33,10 +33,11 @@ Package.define('cygwin') { type 'library'
 
     middle = (package.host != package.target) ? "#{package.host}/#{package.target}" : "#{package.target}"
     
-    Do.into "#{package.distdir}/usr/#{middle}/usr/include"
-    Do.ins '../../winsup/w32api/include/.', :recursive => true
-    Do.ins '../../newlib/libc/include/.', :recursive => true
-    Do.sym 'usr/include', '../../sys-include'
+    package.do.into("#{package.distdir}/usr/#{middle}/usr/include") {
+      package.do.ins '../../winsup/w32api/include/*'
+      package.do.ins '../../newlib/libc/include/*'
+      package.do.sym 'usr/include', '../../sys-include'
+    }
 
     package.autotools.make 'install-headers', "tooldir='/usr/#{middle}/usr'", "DESTDIR='#{package.distdir}'"
 

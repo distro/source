@@ -1,6 +1,5 @@
 Package.define('fluxbox') {
-  behavior Behaviors::GNU
-  use      Modules::Fetching::SourceForge
+  behavior Behaviors::Standard
 
   maintainer 'meh. <meh@paranoici.org>'
 
@@ -10,7 +9,7 @@ Package.define('fluxbox') {
   homepage    'http://www.fluxbox.org'
   license     'MIT'
 
-  source 'fluxbox/#{package.version}'
+  source 'sourceforge://fluxbox/#{package.version}'
 
   dependencies << 'x11/library/Xft' << 'x11/library/Xpm' << 'x11/application/xmessage'
   dependencies << 'x11/protocol/xext!'

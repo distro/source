@@ -1,16 +1,15 @@
 Package.define('gcc') { type 'compiler'
-  behavior Behaviors::GNU
-  use      Modules::Fetching::GNU
+  behavior Behaviors::Standard
 
   maintainer 'meh. <meh@paranoici.org>'
 
-  tags 'application', 'compiler', 'system', 'development'
+  tags 'application', 'compiler', 'system', 'development', 'gnu'
 
   description 'The GNU Compiler Collection'
   homepage    'http://gcc.gnu.org/'
   license     'GPL-3', 'LGPL-3'
 
-  source 'gcc/#{package.version}'
+  source 'gnu://gcc/#{package.version}'
 
   features {
     multilib {
@@ -93,9 +92,17 @@ Package.define('gcc') { type 'compiler'
   end
 
   before :configure do |conf|
-    conf.with 'sysroot', "/usr/#{host}/#{target}"
+    if host != target
+      environment[:CPP] = "cpp --sysroot /usr/#{host}/#{target}"
 
-    environment[:CPP] = "cpp --sysroot /usr/#{host}/#{target}"
+      conf.with 'as', "/usr/bin/#{target}-as"
+      conf.with 'ld', "/usr/bin/#{target}-ld"
+
+      middle = "#{host}/#{target}"
+    else
+      middle = target.to_s
+    end
+
     environment[:CXXFLAGS] = environment[:CFLAGS] = '-O2 -pipe'
     environment[:LDFLAGS]  = ''
 
@@ -103,8 +110,6 @@ Package.define('gcc') { type 'compiler'
     Do.cd  "#{workdir}/build"
 
     conf.path = "#{workdir}/gcc-#{version}/configure"
-
-    middle = (host != target) ? "#{host}/#{target}" : "#{target}"
 
     conf.set 'bindir',     "/usr/#{middle}/gcc-bin/#{version}"
     conf.set 'libdir',     "/usr/lib/gcc/#{middle}/#{version}"
@@ -116,9 +121,6 @@ Package.define('gcc') { type 'compiler'
 
     conf.with 'gxx-include-dir', "/usr/lib/gcc/#{middle}/#{version}/include/g++v4"
     conf.with 'python-dir',      "/usr/share/gcc-data/#{middle}/#{version}/python"
-
-    conf.with 'as', "/usr/bin/#{target}-as"
-    conf.with 'ld', "/usr/bin/#{target}-ld"
 
     conf.enable  ['secureplt']
     conf.disable ['werror', 'libmudflap', 'libssp', 'libgomp', 'shared', 'bootstrap']
@@ -202,7 +204,7 @@ class Application < Optitron::CLI
   end
 
   desc 'Choose what version of gcc to use'
-  def set (version, target=Packo::Host.to_s)
+  def set (version, target=System.host.to_s)
     versions = self.versions[target]
 
     if version.numeric? && (version.to_i > versions.length || version.to_i < 1)
@@ -219,10 +221,10 @@ class Application < Optitron::CLI
       exit 2
     end
 
-    if target == Packo::Host.to_s
-      FileUtils.ln_sf Dir.glob("/usr/#{Packo::Host}/gcc-bin/#{version}/*"), '/usr/bin'
+    if target == System.host.to_s
+      FileUtils.ln_sf Dir.glob("/usr/#{System.host}/gcc-bin/#{version}/*"), '/usr/bin'
     else
-      FileUtils.ln_sf Dir.glob("/usr/#{Packo::Host}/#{target}/gcc-bin/#{version}/#{target}-*"), '/usr/bin/'
+      FileUtils.ln_sf Dir.glob("/usr/#{System.host}/#{target}/gcc-bin/#{version}/#{target}-*"), '/usr/bin/'
     end
 
     info "Set gcc to #{version} for #{target}"
@@ -235,16 +237,16 @@ class Application < Optitron::CLI
   end
 
   def versions
-    versions = Dir.glob("/usr/#{Packo::Host}/*").select {|target|
-      Host.parse(target.sub("/usr/#{Packo::Host}/", '')) && !target.end_with?('-bin')
+    versions = Dir.glob("/usr/#{System.host}/*").select {|target|
+      Host.parse(target.sub("/usr/#{System.host}/", '')) && !target.end_with?('-bin')
     }.map {|target|
-      [target.sub("/usr/#{Packo::Host}/", ''), Dir.glob("#{target}/gcc-bin/*").map {|version|
+      [target.sub("/usr/#{System.host}/", ''), Dir.glob("#{target}/gcc-bin/*").map {|version|
         Versionomy.parse(version.sub("#{target}/gcc-bin/", ''))
       }]
     }
 
-    versions << [Packo::Host.to_s, Dir.glob("/usr/#{Packo::Host}/gcc-bin/*").map {|version|
-      Versionomy.parse(version.sub("/usr/#{Packo::Host}/gcc-bin/", ''))
+    versions << [System.host.to_s, Dir.glob("/usr/#{System.host}/gcc-bin/*").map {|version|
+      Versionomy.parse(version.sub("/usr/#{System.host}/gcc-bin/", ''))
     }]
 
     Hash[versions]

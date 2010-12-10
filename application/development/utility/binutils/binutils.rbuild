@@ -1,16 +1,29 @@
 Package.define('binutils') {
-  behavior Behaviors::GNU
-  use      Modules::Fetching::GNU
+  behavior Behaviors::Standard
 
   maintainer 'meh. <meh@paranoici.org>'
 
-  tags 'application', 'system', 'development', 'utility'
+  tags 'application', 'system', 'development', 'utility', 'gnu'
 
   description 'Tools necessary to build programs'
   homepage    'http://sources.redhat.com/binutils/'
   license     'GPL-3', 'LGPL-3'
 
-  source 'binutils/#{package.version}'
+  source 'gnu://binutils/#{package.version}'
+
+	flavor {
+		headers {
+			avoid :before, :pack, :headers
+		}
+
+		documentation {
+			before :pack do
+				if disabled?
+					FileUtils.rm_rf "#{distdir}/usr/share", :secure => true
+				end
+			end
+		}
+	}
 
   features {
     nls {
@@ -81,7 +94,7 @@ class Application < Optitron::CLI
   end
 
   desc 'Choose what version of binutils to use'
-  def set (version, target=Packo::Host.to_s)
+  def set (version, target=System.host.to_s)
     versions = self.versions[target]
 
     if version.numeric? && (version.to_i > versions.length || version.to_i < 1)
@@ -98,10 +111,10 @@ class Application < Optitron::CLI
       exit 2
     end
 
-    if target == Packo::Host.to_s
-      FileUtils.ln_sf Dir.glob("/usr/#{Packo::Host}/binutils-bin/#{version}/*"), '/usr/bin'
+    if target == System.host.to_s
+      FileUtils.ln_sf Dir.glob("/usr/#{System.host}/binutils-bin/#{version}/*"), '/usr/bin'
     else
-      FileUtils.ln_sf Dir.glob("/usr/#{Packo::Host}/#{target}/binutils-bin/#{version}/#{target}-*"), '/usr/bin/'
+      FileUtils.ln_sf Dir.glob("/usr/#{System.host}/#{target}/binutils-bin/#{version}/#{target}-*"), '/usr/bin/'
     end
 
     info "Set binutils to #{version} for #{target}"
@@ -114,16 +127,16 @@ class Application < Optitron::CLI
   end
 
   def versions
-    versions = Dir.glob("/usr/#{Packo::Host}/*").select {|target|
-      Host.parse(target.sub("/usr/#{Packo::Host}/", '')) && !target.end_with?('-bin')
+    versions = Dir.glob("/usr/#{System.host}/*").select {|target|
+      Host.parse(target.sub("/usr/#{System.host}/", '')) && !target.end_with?('-bin')
     }.map {|target|
-      [target.sub("/usr/#{Packo::Host}/", ''), Dir.glob("#{target}/binutils-bin/*").map {|version|
+      [target.sub("/usr/#{System.host}/", ''), Dir.glob("#{target}/binutils-bin/*").map {|version|
         Versionomy.parse(version.sub("#{target}/binutils-bin/", ''))
       }]
     }
 
-    versions << [Packo::Host.to_s, Dir.glob("/usr/#{Packo::Host}/binutils-bin/*").map {|version|
-      Versionomy.parse(version.sub("/usr/#{Packo::Host}/binutils-bin/", ''))
+    versions << [System.host.to_s, Dir.glob("/usr/#{System.host}/binutils-bin/*").map {|version|
+      Versionomy.parse(version.sub("/usr/#{System.host}/binutils-bin/", ''))
     }]
 
     Hash[versions]

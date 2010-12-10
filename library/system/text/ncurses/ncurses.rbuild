@@ -1,6 +1,5 @@
 Package.define('ncurses') { type 'library'
-  behavior Behaviors::GNU
-  use      Modules::Fetching::GNU
+  behavior Behaviors::Standard
 
   maintainer 'meh. <meh@paranoici.org>'
 
@@ -10,7 +9,7 @@ Package.define('ncurses') { type 'library'
   homepage    'http://www.gnu.org/software/ncurses/', 'http://dickey.his.com/ncurses/'
   license     'MIT'
 
-  source 'ncurses/#{package.version}'
+  source 'gnu://ncurses/#{package.version}'
 
   features {
     cxx { enabled!

@@ -1,16 +1,15 @@
 Package.define('autoconf') {
-  behavior Behaviors::GNU
-  use      Modules::Fetching::GNU
+  behavior Behaviors::Standard
 
   maintainer 'meh. <meh@paranoici.org>'
 
-  tags 'application', 'system', 'development', 'utility'
+  tags 'application', 'system', 'development', 'utility', 'gnu'
 
   description 'Used to create autoconfiguration files'
   homepage    'http://www.gnu.org/software/autoconf/autoconf.html'
   license     'GPL-2'
 
-  source 'autoconf/#{package.version}'
+  source 'gnu://autoconf/#{package.version}'
 
   dependencies << 'development/interpreter/perl!'
 
