@@ -1,13 +1,11 @@
 Package.define('cygwin') { type 'library'
-  behavior Behaviors::Standard
-  
-  maintainer 'meh. <meh@paranoici.org>'
-
   tags 'library', 'system', 'development'
 
   description 'Linux-like environment for Windows'
   homepage    'http://cygwin.com/'
   license     'GPL-2'
+
+  maintainer 'meh. <meh@paranoici.org>'
 
   source 'ftp://sourceware.org/pub/cygwin/release/cygwin/cygwin-#{package.version}-#{package.revision + 1}-src.tar.bz2'
 

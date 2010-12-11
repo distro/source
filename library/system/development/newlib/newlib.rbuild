@@ -1,14 +1,11 @@
 Package.define('newlib') { type 'libc'
-  behavior Behaviors::Standard
-
-  maintainer 'meh. <meh@paranoici.org>'
-
   tags 'library', 'system', 'libc'
 
   description 'Newlib is a C library intended for use on embedded systems'
   homepage    'http://sourceware.org/newlib/'
   license     'NEWLIB', 'LIBGLOSS', 'GPL-2'
 
+  maintainer 'meh. <meh@paranoici.org>'
 
   source 'ftp://sources.redhat.com/pub/newlib/newlib-#{package.version}.tar.gz'
 

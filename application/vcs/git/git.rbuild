@@ -1,13 +1,11 @@
 Package.define('git') {
-  behavior Behaviors::Standard
-
   tags 'application', 'vcs'
-
-  maintainer 'meh. <meh@paranoici.org>'
 
   description 'GIT - the stupid content tracker, the revision control system heavily used by the Linux kernel team'
   homepage    'http://www.git-scm.com/'
   license     'GPL-2'
+
+  maintainer 'meh. <meh@paranoici.org>'
 
   source 'http://www.kernel.org/pub/software/scm/git/git-#{package.version}.tar.bz2'
 

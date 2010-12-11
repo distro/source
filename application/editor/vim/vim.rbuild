@@ -1,13 +1,11 @@
 Package.define('vim') {
-  behavior Behaviors::Standard
-
-  maintainer 'meh. <meh@paranoici.org>'
-
   tags 'application', 'editor'
 
   description 'Vim, an improved vi-style text editor'
   homepage    'http://www.vim.org/'
   license     'vim'
+
+  maintainer 'meh. <meh@paranoici.org>'
 
   source 'ftp://ftp.vim.org/pub/vim/unix/vim-#{package.version}.tar.bz2'
 
@@ -108,30 +106,24 @@ Package.define('vim') {
   }
 
   after :unpack do
-    Dir.chdir "#{package.workdir}/vim#{package.version.major}#{package.version.minor}"
+    Do.cd "#{package.workdir}/vim#{package.version.major}#{package.version.minor}"
   end
 
   after :dependencies do |result, deps|
-    deps.delete_if {|d|
-      d.name == 'python' && !d.slot
+    deps.delete_if {|dep|
+      dep.name == 'python' && !dep.slot
     }
   end
 
   # this fixes the configure, or it would be called during compile time
   before :configure do
-    FileUtils.rm 'src/auto/configure'
-
-    # TODO: write something in Ruby and not a sed call
-    Packo.sh "sed -i 's/ auto.config.mk:/:/' src/Makefile"
+    Do.rm  'src/auto/configure'
+    Do.sed 'src/Makefile', [' auto.config.mk:', ':']
 
     autotools.make '-j1', '-C', 'src', 'autoconf'
   end
 
-  after :configure do |result, conf|
-    autotools.configure conf
-  end
-
-  before :configure, 10 do |conf|
+  before :configure do |conf|
     conf.with 'modified-by', 'Distrø'
 
     conf.with 'tlib', 'curses'

@@ -1,13 +1,11 @@
 Package.define('unzip') {
-  behavior Behaviors::Standard
-
-  maintainer 'meh. <meh@paranoici.org>'
-
   tags 'application', 'archiving'
 
   description 'unzipper for pkzip-compressed files'
   homepage    'http://www.info-zip.org/'
   license     'Info-ZIP'
+
+  maintainer 'meh. <meh@paranoici.org>'
 
   flavor {
     documentation {
@@ -54,18 +52,13 @@ Package.define('unzip') {
   end
 
   before :compile do
-    case target
-      when 'i?686*-*linux*';   os = 'linux_asm'
-      when '*linux*';          os = 'linux_noasm'
-      when 'i?86*-*bsd*';      os = 'freebsd'
-      when 'i?86*-dragonfly*'; os = 'bsd'
-      when '*-darwin*';        os = 'macosx'
-      else;                    os = nil
-    end
-
-    if !os
-      raise RuntimeError.new('Unknown target')
-    end
+    os = case target
+      when 'i?686*-*linux*';   'linux_asm'
+      when '*linux*';          'linux_noasm'
+      when 'i?86*-*bsd*';      'freebsd'
+      when 'i?86*-dragonfly*'; 'bsd'
+      when '*-darwin*';        'macosx'
+    end or raise RuntimeError.new('Unknown target')
 
     if target == '*linux*'
       environment[:CFLAGS] << ' -DNO_LCHMOD'

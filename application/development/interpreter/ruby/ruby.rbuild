@@ -1,13 +1,11 @@
 Package.define('ruby') {
-  behavior Behaviors::Standard
-
-  maintainer 'meh. <meh@paranoici.org>'
-
   tags 'application', 'interpreter', 'development', 'ruby'
 
   description 'An object-oriented scripting language'
   homepage    'http://www.ruby-lang.org/'
   license     'MIT'
+
+  maintainer 'meh. <meh@paranoici.org>'
 
   source 'ftp://ftp.ruby-lang.org/pub/ruby/#{package.version.major}.#{package.version.minor}/ruby-#{package.version}.tar.gz'
 
@@ -104,7 +102,7 @@ Package.define('ruby') {
     }
   }
 
-  before :configure, -10 do |conf|
+  before :configure, :priority => -10 do |conf|
     autotools.autoreconf
 
     if package.features.readline.enabled? || package.features.libedit.enabled?

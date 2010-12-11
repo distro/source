@@ -1,13 +1,11 @@
 Package.define('gcc') { type 'compiler'
-  behavior Behaviors::Standard
-
-  maintainer 'meh. <meh@paranoici.org>'
-
   tags 'application', 'compiler', 'system', 'development', 'gnu'
 
   description 'The GNU Compiler Collection'
   homepage    'http://gcc.gnu.org/'
   license     'GPL-3', 'LGPL-3'
+
+  maintainer 'meh. <meh@paranoici.org>'
 
   source 'gnu://gcc/#{package.version}'
 

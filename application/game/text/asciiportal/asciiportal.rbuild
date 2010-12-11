@@ -1,20 +1,18 @@
 Package.define('asciiportal') {
-  behavior Behaviors::Standard
-
-  maintainer 'meh. <meh@paranoici.org>'
-
   tags 'application', 'game', 'text', 'action', 'puzzle'
 
   description 'ASCIIpOrtal is a Portal™ text-based remake'
   homepage    'http://cymonsgames.com/asciiportal/'
   license     'MIT'
 
+  maintainer 'meh. <meh@paranoici.org>'
+
   source 'http://cymonsgames.com/games/asciiportal/asciiportal#{package.version}-src.zip'
 
-  dependencies << 'library/text/ncurses'
+  dependencies << 'library/pdcurses'
 
   features {
-    sdl {
+    sdl { enabled!; force!
       before :configure do
         if enabled?
           package.environment[:LDFLAGS] << ' -lSDL'
@@ -25,12 +23,10 @@ Package.define('asciiportal') {
     }
 
     sound {
-      before :configure do
-        if package.features.sdl.disabled?
-          Packo.warn 'sdl is disabled, ignoring sound'
-        end
+      needs 'sdl'
 
-        if enabled? && package.features.sdl.enabled?
+      before :configure do
+        if enabled?
           package.environment[:LDFLAGS] << ' -lSDL_mixer'
         else
           package.environment[:CXXFLAGS] << ' -D__NOSOUND__'
@@ -41,6 +37,8 @@ Package.define('asciiportal') {
 
   after :initialize do
     package.arguments = []
+
+		autotools.disable!
   end
 
   after :unpack do
@@ -51,7 +49,7 @@ Package.define('asciiportal') {
     files = ['ap_input', 'ap_draw', 'ap_play', 'ap_sound', 'main', 'menu']
     
     files.each {|file|
-      Packo.sh "#{environment[:CXX]} #{environment[:CXXFLAGS]} -c #{file}.c -o #{file}.o"
+      Packo.sh "#{environment[:CXX]} #{environment[:CXXFLAGS]} -c #{file}.cpp -o #{file}.o"
     }
 
     Packo.sh "#{environment[:CXX]} #{environment[:LDFLAGS]} -o asciiportal #{files.join(' ')}"

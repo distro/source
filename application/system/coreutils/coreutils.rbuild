@@ -1,18 +1,15 @@
 Package.define('coreutils') {
-  behavior Behaviors::Standard
-
-  maintainer 'meh. <meh@paranoici.org>'
-
   tags 'application', 'system', 'utility', 'gnu'
   
   description 'Standard GNU file utilities (chmod, cp, dd, dir, ls...), text utilities (sort, tr, head, wc..), and shell utilities (whoami, who,...)'
   homepage    'http://www.gnu.org/software/coreutils/'
   license     'GPL-3'
 
+  maintainer 'meh. <meh@paranoici.org>'
+
   source 'gnu://coreutils/#{package.version}'
 
   dependencies << '>=system/library/ncurses-5.3'
-  dependencies << 'application/archive/xz!'
 
   features {
     nls {

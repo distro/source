@@ -1,13 +1,11 @@
 Package.define('binutils') {
-  behavior Behaviors::Standard
-
-  maintainer 'meh. <meh@paranoici.org>'
-
   tags 'application', 'system', 'development', 'utility', 'gnu'
 
   description 'Tools necessary to build programs'
   homepage    'http://sources.redhat.com/binutils/'
   license     'GPL-3', 'LGPL-3'
+
+  maintainer 'meh. <meh@paranoici.org>'
 
   source 'gnu://binutils/#{package.version}'
 

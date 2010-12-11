@@ -1,13 +1,11 @@
 Package.define('fluxbox') {
-  behavior Behaviors::Standard
-
-  maintainer 'meh. <meh@paranoici.org>'
-
   tags 'application', 'x11', 'window-manager'
 
   description 'Fluxbox is an X11 window manager featuring tabs and an iconbar'
   homepage    'http://www.fluxbox.org'
   license     'MIT'
+
+  maintainer 'meh. <meh@paranoici.org>'
 
   source 'sourceforge://fluxbox/#{package.version}'
 
