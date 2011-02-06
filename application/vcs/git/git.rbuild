@@ -1,7 +1,7 @@
 Package.define('git') {
   tags 'application', 'vcs'
 
-  description 'GIT - the stupid content tracker, the revision control system heavily used by the Linux kernel team'
+  description 'The stupid content tracker, the revision control system heavily used by the Linux kernel team'
   homepage    'http://www.git-scm.com/'
   license     'GPL-2'
 

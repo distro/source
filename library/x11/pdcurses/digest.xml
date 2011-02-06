@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<digest version="1.0">
+    <build version="3.4" slot="">
+        <features></features>
+        <files>
+            <file name="PDCurses-3.4.tar.gz">e36684442a6171cc3a5165c8c49c70f67db7288c</file>
+        </files>
+    </build>
+</digest>

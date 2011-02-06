@@ -93,6 +93,8 @@ Package.define('gcc') { type 'compiler'
     if host != target
       environment[:CPP] = "cpp --sysroot /usr/#{host}/#{target}"
 
+      conf.with 'sysroot', "/usr/#{host}/#{target}"
+
       conf.with 'as', "/usr/bin/#{target}-as"
       conf.with 'ld', "/usr/bin/#{target}-ld"
 
@@ -171,19 +173,18 @@ $$$
 $$$ selectors/select-gcc.rb $$$
 
 #! /usr/bin/env ruby
-require 'optitron'
-
 require 'packo'
-require 'packo/binary/helpers'
+require 'packo/models'
+require 'packo/cli'
 
-class Application < Optitron::CLI
+class Application < Thor
   include Packo
-  include Binary::Helpers
-  include Models
 
-  desc 'List available gcc versions'
+  class_option :help, :type => :boolean, :desc => 'Show help usage'
+
+  desc 'list', 'List available gcc versions'
   def list
-    info 'List of availaibale gcc versions'
+    CLI.info 'List of availaibale gcc versions'
 
     current = self.current
 
@@ -191,17 +192,17 @@ class Application < Optitron::CLI
       next if versions.empty?
 
       puts ''
-      puts colorize(target, :BLUE, :DEFAULT, :BOLD)
+      puts target.blue.bold
 
       versions.each_with_index {|version, i|
         puts (current[target] == version) ?
-          "  {#{colorize(i + 1, :GREEN)}}    #{version}" :
-          "  [#{i + 1}]    #{version}"
+          "  {#{(i + 1).to_s.green}}    #{version}" :
+          "  [#{i + 1             }]    #{version}"
       }
     }
   end
 
-  desc 'Choose what version of gcc to use'
+  desc "set VERSION [TARGET=#{System.host}]", 'Choose what version of gcc to use'
   def set (version, target=System.host.to_s)
     versions = self.versions[target]
 
@@ -225,33 +226,35 @@ class Application < Optitron::CLI
       FileUtils.ln_sf Dir.glob("/usr/#{System.host}/#{target}/gcc-bin/#{version}/#{target}-*"), '/usr/bin/'
     end
 
-    info "Set gcc to #{version} for #{target}"
+    CLI.info "Set gcc to #{version} for #{target}"
 
-    Selector.first(:name => 'gcc').update(:data => self.current.merge(target => version))
+    Models::Selector.first(:name => 'gcc').update(:data => self.current.merge(target => version))
   end
 
-  def current
-    (Selector.first(:name => 'gcc').data rescue nil) || {}
-  end
-
-  def versions
-    versions = Dir.glob("/usr/#{System.host}/*").select {|target|
-      Host.parse(target.sub("/usr/#{System.host}/", '')) && !target.end_with?('-bin')
-    }.map {|target|
-      [target.sub("/usr/#{System.host}/", ''), Dir.glob("#{target}/gcc-bin/*").map {|version|
-        Versionomy.parse(version.sub("#{target}/gcc-bin/", ''))
+  no_tasks {
+    def current
+      (Models::Selector.first(:name => 'gcc').data rescue nil) || {}
+    end
+  
+    def versions
+      versions = Dir.glob("/usr/#{System.host}/*").select {|target|
+        Host.parse(target.sub("/usr/#{System.host}/", '')) && !target.end_with?('-bin')
+      }.map {|target|
+        [target.sub("/usr/#{System.host}/", ''), Dir.glob("#{target}/gcc-bin/*").map {|version|
+          Versionomy.parse(version.sub("#{target}/gcc-bin/", ''))
+        }]
+      }
+  
+      versions << [System.host.to_s, Dir.glob("/usr/#{System.host}/gcc-bin/*").map {|version|
+        Versionomy.parse(version.sub("/usr/#{System.host}/gcc-bin/", ''))
       }]
-    }
-
-    versions << [System.host.to_s, Dir.glob("/usr/#{System.host}/gcc-bin/*").map {|version|
-      Versionomy.parse(version.sub("/usr/#{System.host}/gcc-bin/", ''))
-    }]
-
-    Hash[versions]
-  end
+  
+      Hash[versions]
+    end
+  }
 end
 
-Application.dispatch
+Application.start(ARGV)
 
 # gcc: Set the gcc version to use
 

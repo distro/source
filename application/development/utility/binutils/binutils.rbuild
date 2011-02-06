@@ -16,7 +16,7 @@ Package.define('binutils') {
 
 		documentation {
 			before :pack do
-				if disabled?
+				if disabled? && !flavor.vanilla?
 					FileUtils.rm_rf "#{distdir}/usr/share", :secure => true
 				end
 			end
@@ -36,7 +36,13 @@ Package.define('binutils') {
   }
 
   before :configure do |conf|
-    middle = (package.host != package.target) ? "#{package.host}/#{package.target}" : "#{package.target}"
+    if host != target
+      conf.with 'sysroot', "/usr/#{host}/#{target}"
+
+      middle = "#{package.host}/#{package.target}"
+    else
+      middle = target.to_s
+    end
 
     conf.set 'bindir',     "/usr/#{middle}/binutils-bin/#{package.version}"
     conf.set 'libdir',     "/usr/lib/binutils/#{middle}/#{package.version}"
@@ -46,7 +52,7 @@ Package.define('binutils') {
     conf.set 'infodir',    "/usr/share/binutils-data/#{middle}/#{package.version}/info"
     conf.set 'mandir',     "/usr/share/binutils-data/#{middle}/#{package.version}/man"
 
-    conf.enable  ['secureplt', '65-bit-bfd', 'shared']
+    conf.enable  ['secureplt', '64-bit-bfd', 'shared']
     conf.disable ['werror', 'static']
 
     conf.with 'pkgversion', "Distrø #{package.version}#{" #{package.target}" if package.host != package.target}"
@@ -61,19 +67,16 @@ $$$
 $$$ selectors/select-binutils.rb $$$
 
 #! /usr/bin/env ruby
-require 'optitron'
-
 require 'packo'
-require 'packo/binary/helpers'
+require 'packo/models'
+require 'packo/cli'
 
-class Application < Optitron::CLI
+class Application < Thor
   include Packo
-  include Binary::Helpers
-  include Models
 
-  desc 'List available binutils versions'
+  desc 'list', 'List available binutils versions'
   def list
-    info 'List of availaibale binutils versions'
+    CLI.info 'List of availaibale binutils versions'
 
     current = self.current
 
@@ -81,17 +84,17 @@ class Application < Optitron::CLI
       next if versions.empty?
 
       puts ''
-      puts colorize(target, :BLUE, :DEFAULT, :BOLD)
+      puts target.blue.bold
 
       versions.each_with_index {|version, i|
         puts (current[target] == version) ?
-          "  {#{colorize(i + 1, :GREEN)}}    #{version}" :
-          "  [#{i + 1}]    #{version}"
+          "  {#{(i + 1).to_s.green}}    #{version}" :
+          "  [#{i + 1             }]    #{version}"
       }
     }
   end
 
-  desc 'Choose what version of binutils to use'
+  desc "set VERSION [TARGET=#{System.host}]", 'Choose what version of binutils to use'
   def set (version, target=System.host.to_s)
     versions = self.versions[target]
 
@@ -109,38 +112,47 @@ class Application < Optitron::CLI
       exit 2
     end
 
+    files = ['ar', 'as', 'ld', 'nm', 'objcopy', 'objdump', 'ranlib', 'strip']
+
     if target == System.host.to_s
-      FileUtils.ln_sf Dir.glob("/usr/#{System.host}/binutils-bin/#{version}/*"), '/usr/bin'
+      files.each {|file|
+        FileUtils.ln_sf "/usr/#{System.host}/binutils-bin/#{version}/#{file}", "/usr/bin/#{target}-#{file}"
+        FileUtils.ln_sf "/usr/#{System.host}/binutils-bin/#{version}/#{file}", "/usr/bin/#{file}"
+      }
     else
-      FileUtils.ln_sf Dir.glob("/usr/#{System.host}/#{target}/binutils-bin/#{version}/#{target}-*"), '/usr/bin/'
+      files.each {|file|
+        FileUtils.ln_sf "/usr/#{System.host}/#{target}/binutils-bin/#{version}/#{file}", "/usr/bin/#{target}-#{file}"
+      }
     end
 
-    info "Set binutils to #{version} for #{target}"
+    CLI.info "Set binutils to #{version} for #{target}"
 
-    Selector.first(:name => 'binutils').update(:data => self.current.merge(target => version))
+    Models::Selector.first(:name => 'binutils').update(:data => self.current.merge(target => version))
   end
 
-  def current
-    (Selector.first(:name => 'binutils').data rescue nil) || {}
-  end
+  no_tasks {
+    def current
+      (Models::Selector.first(:name => 'binutils').data rescue nil) || {}
+    end
 
-  def versions
-    versions = Dir.glob("/usr/#{System.host}/*").select {|target|
-      Host.parse(target.sub("/usr/#{System.host}/", '')) && !target.end_with?('-bin')
-    }.map {|target|
-      [target.sub("/usr/#{System.host}/", ''), Dir.glob("#{target}/binutils-bin/*").map {|version|
-        Versionomy.parse(version.sub("#{target}/binutils-bin/", ''))
+    def versions
+      versions = Dir.glob("/usr/#{System.host}/*").select {|target|
+        Host.parse(target.sub("/usr/#{System.host}/", '')) && !target.end_with?('-bin')
+      }.map {|target|
+        [target.sub("/usr/#{System.host}/", ''), Dir.glob("#{target}/binutils-bin/*").map {|version|
+          Versionomy.parse(version.sub("#{target}/binutils-bin/", ''))
+        }]
+      }
+
+      versions << [System.host.to_s, Dir.glob("/usr/#{System.host}/binutils-bin/*").map {|version|
+        Versionomy.parse(version.sub("/usr/#{System.host}/binutils-bin/", ''))
       }]
-    }
 
-    versions << [System.host.to_s, Dir.glob("/usr/#{System.host}/binutils-bin/*").map {|version|
-      Versionomy.parse(version.sub("/usr/#{System.host}/binutils-bin/", ''))
-    }]
-
-    Hash[versions]
-  end
+      Hash[versions]
+    end
+  }
 end
 
-Application.dispatch
+Application.start(ARGV)
 
 # binutils: Set the binutils version to use

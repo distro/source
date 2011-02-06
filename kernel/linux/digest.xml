@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<digest version="1.0">
+    <build version="2.6.32.28" slot="">
+        <features>zen grsecurity</features>
+        <files>
+            <file name="linux-2.6.32.28.tar.bz2">730d2052425df00cc38b7932c759d66c46df8a23</file>
+            <file name="2.6.32-zen7.patch.lzma">78dc34e3c0d0b425c4a695d75944d4a8252656d5</file>
+            <file name="grsecurity-2.2.1-2.6.32.28-201101272313.patch">97b124e617c5f7363563dc066b9957b3fd4341af</file>
+        </files>
+    </build>
+    <build version="2.6.37" slot="">
+        <features>grsecurity</features>
+        <files>
+            <file name="linux-2.6.37.tar.bz2">eba83c89e71a86060ef6ff76aefff660aef819e2</file>
+            <file name="grsecurity-2.2.1-2.6.37-201101272240.patch">092cf8dcd59db53afbc21873d1f427f99ef36084</file>
+        </files>
+    </build>
+</digest>

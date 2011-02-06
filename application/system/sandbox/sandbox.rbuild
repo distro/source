@@ -25,4 +25,7 @@ CONFIG_PROTECT_MASK="/etc/sandbox.d"
 @@@ files/packo @@@
 
 SANDBOX_READ="/var/lib/packo"
+SANDBOX_READ="/var/tmp/packo"
+
 SANDBOX_WRITE="/var/lib/packo"
+SANDBOX_WRITE="/var/tmp/packo"
