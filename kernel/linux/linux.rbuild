@@ -18,25 +18,29 @@ Package.define('linux') { type 'kernel'
   def grsecurity?;         !!package.grsecurity         end
 
   after :initialize do
-    package.source = [package.source].flatten
+    package.source = { :default => package.source }
 
     features {
       if package.zen?
-        package.source << package.zen
+        package.source[:zen] = package.zen
 
         zen {
           description 'The Zen Kernel is a the result of a collaborative effort of kernel hackers to provide the best Linux kernel possible for every day systems.'
+
+          after :unpack, :priority => -1 do
+            package.patch package.unpack(package.distfiles[:zen]), :level => 1 if enabled?
+          end
         }
       end
 
       if package.grsecurity?
-        package.source << package.grsecurity
+        package.source[:grsecurity] = package.grsecurity
 
         grsecurity {
           description 'grsecurity is an innovative approach to security utilizing a multi-layered detection, prevention, and containment model.'
 
-          after :unpack do
-            
+          after :unpack, :priority => -1 do
+            package.patch package.distfiles[:grsecurity], :level => 1 if enabled?
           end
         }
       end
@@ -44,7 +48,7 @@ Package.define('linux') { type 'kernel'
   end
 
   after :unpack do
-    Do.mv "#{workdir}/linux-#{version}", "#{distdir}/usr/src/linux#{'-zen' if features.zen.enabled?}#{'-gr' if features.grsecurity.enabled?}-#{version}"
+    Do.mv "#{workdir}/linux-#{version}", "#{distdir}/usr/src/linux#{'-zen' if features.zen?}#{'-gr' if features.grsecurity?}-#{version}"
 
     throw :halt
   end
