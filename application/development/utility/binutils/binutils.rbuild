@@ -9,19 +9,19 @@ Package.define('binutils') {
 
   source 'gnu://binutils/#{package.version}'
 
-	flavor {
-		headers {
-			avoid :before, :pack, :headers
-		}
+  flavor {
+    headers {
+      avoid :before, :pack, :headers
+    }
 
-		documentation {
-			before :pack do
-				if disabled? && !flavor.vanilla?
-					FileUtils.rm_rf "#{distdir}/usr/share", :secure => true
-				end
-			end
-		}
-	}
+    documentation {
+      before :pack do
+        if disabled? && !flavor.vanilla?
+          FileUtils.rm_rf "#{distdir}/usr/share", :secure => true
+        end
+      end
+    }
+  }
 
   features {
     nls {
@@ -116,12 +116,12 @@ class Application < Thor
 
     if target == System.host.to_s
       files.each {|file|
-        FileUtils.ln_sf "/usr/#{System.host}/binutils-bin/#{version}/#{file}", "/usr/bin/#{target}-#{file}"
-        FileUtils.ln_sf "/usr/#{System.host}/binutils-bin/#{version}/#{file}", "/usr/bin/#{file}"
+        FileUtils.ln_sf "#{System.env![:INSTALL_PATH]}/usr/#{System.host}/binutils-bin/#{version}/#{file}", "#{System.env![:INSTALL_PATH]}/usr/bin/#{target}-#{file}"
+        FileUtils.ln_sf "#{System.env![:INSTALL_PATH]}/usr/#{System.host}/binutils-bin/#{version}/#{file}", "#{System.env![:INSTALL_PATH]}/usr/bin/#{file}"
       }
     else
       files.each {|file|
-        FileUtils.ln_sf "/usr/#{System.host}/#{target}/binutils-bin/#{version}/#{file}", "/usr/bin/#{target}-#{file}"
+        FileUtils.ln_sf "#{System.env![:INSTALL_PATH]}/usr/#{System.host}/#{target}/binutils-bin/#{version}/#{file}", "#{System.env![:INSTALL_PATH]}/usr/bin/#{target}-#{file}"
       }
     end
 
@@ -136,16 +136,16 @@ class Application < Thor
     end
 
     def versions
-      versions = Dir.glob("/usr/#{System.host}/*").select {|target|
-        Host.parse(target.sub("/usr/#{System.host}/", '')) && !target.end_with?('-bin')
+      versions = Dir.glob("#{System.env![:INSTALL_PATH]}/usr/#{System.host}/*").select {|target|
+        Host.parse(target.sub("#{System.env![:INSTALL_PATH]}/usr/#{System.host}/", '')) && !target.end_with?('-bin')
       }.map {|target|
-        [target.sub("/usr/#{System.host}/", ''), Dir.glob("#{target}/binutils-bin/*").map {|version|
+        [target.sub("#{System.env![:INSTALL_PATH]}/usr/#{System.host}/", ''), Dir.glob("#{target}/binutils-bin/*").map {|version|
           Versionomy.parse(version.sub("#{target}/binutils-bin/", ''))
         }]
       }
 
-      versions << [System.host.to_s, Dir.glob("/usr/#{System.host}/binutils-bin/*").map {|version|
-        Versionomy.parse(version.sub("/usr/#{System.host}/binutils-bin/", ''))
+      versions << [System.host.to_s, Dir.glob("#{System.env![:INSTALL_PATH]}/usr/#{System.host}/binutils-bin/*").map {|version|
+        Versionomy.parse(version.sub("#{System.env![:INSTALL_PATH]}/usr/#{System.host}/binutils-bin/", ''))
       }]
 
       Hash[versions]
