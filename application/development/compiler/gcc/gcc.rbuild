@@ -182,9 +182,9 @@ class Application < Thor
 
   class_option :help, :type => :boolean, :desc => 'Show help usage'
 
-  desc 'list', 'List available gcc versions'
+  desc 'list', 'List available GCC versions'
   def list
-    CLI.info 'List of availaibale gcc versions'
+    CLI.info 'List of availaibale GCC versions'
 
     current = self.current
 
@@ -202,7 +202,7 @@ class Application < Thor
     }
   end
 
-  desc "set VERSION [TARGET=#{System.host}]", 'Choose what version of gcc to use'
+  desc "set VERSION [TARGET=#{System.host}]", 'Choose what version of GCC to use'
   def set (version, target=System.host.to_s)
     versions = self.versions[target]
 
@@ -221,9 +221,9 @@ class Application < Thor
     end
 
     if target == System.host.to_s
-      FileUtils.ln_sf Dir.glob("/usr/#{System.host}/gcc-bin/#{version}/*"), '/usr/bin'
+      FileUtils.ln_sf Dir.glob("#{System.env![:INSTALL_PATH]}/usr/#{System.host}/gcc-bin/#{version}/*"), "#{System.env![:INSTALL_PATH]}/usr/bin"
     else
-      FileUtils.ln_sf Dir.glob("/usr/#{System.host}/#{target}/gcc-bin/#{version}/#{target}-*"), '/usr/bin/'
+      FileUtils.ln_sf Dir.glob("#{System.env![:INSTALL_PATH]}/usr/#{System.host}/#{target}/gcc-bin/#{version}/#{target}-*"), "#{System.env![:INSTALL_PATH]}/usr/bin/"
     end
 
     CLI.info "Set gcc to #{version} for #{target}"
@@ -237,16 +237,16 @@ class Application < Thor
     end
   
     def versions
-      versions = Dir.glob("/usr/#{System.host}/*").select {|target|
-        Host.parse(target.sub("/usr/#{System.host}/", '')) && !target.end_with?('-bin')
+      versions = Dir.glob("#{System.env![:INSTALL_PATH]}/usr/#{System.host}/*").select {|target|
+        Host.parse(target.sub("#{System.env![:INSTALL_PATH]}/usr/#{System.host}/", '')) && !target.end_with?('-bin')
       }.map {|target|
-        [target.sub("/usr/#{System.host}/", ''), Dir.glob("#{target}/gcc-bin/*").map {|version|
+        [target.sub("#{System.env![:INSTALL_PATH]}/usr/#{System.host}/", ''), Dir.glob("#{target}/gcc-bin/*").map {|version|
           Versionomy.parse(version.sub("#{target}/gcc-bin/", ''))
         }]
       }
   
-      versions << [System.host.to_s, Dir.glob("/usr/#{System.host}/gcc-bin/*").map {|version|
-        Versionomy.parse(version.sub("/usr/#{System.host}/gcc-bin/", ''))
+      versions << [System.host.to_s, Dir.glob("#{System.env![:INSTALL_PATH]}/usr/#{System.host}/gcc-bin/*").map {|version|
+        Versionomy.parse(version.sub("#{System.env![:INSTALL_PATH]}/usr/#{System.host}/gcc-bin/", ''))
       }]
   
       Hash[versions]
@@ -256,7 +256,7 @@ end
 
 Application.start(ARGV)
 
-# gcc: Set the gcc version to use
+# gcc: Set the GCC version to use
 
 $$$ patches/libstdc++-v3/crossconfig.path $$$
 

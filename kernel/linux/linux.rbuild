@@ -52,4 +52,8 @@ Package.define('linux') { type 'kernel'
 
     throw :halt
   end
+
+  before :pack do
+    package.slot = "#{package.version}#{'-zen' if features.zen?}#{'-gr' if features.grsecurity?}"
+  end
 }

@@ -1,124 +1,91 @@
 Package.define('ruby') {
-  tags 'application', 'interpreter', 'development', 'ruby'
+  tags 'application', 'development', 'interpreter', 'ruby', 'virtual'
+}
 
-  description 'An object-oriented scripting language'
-  homepage    'http://www.ruby-lang.org/'
-  license     'MIT'
+__END__
+$$$
 
-  maintainer 'meh. <meh@paranoici.org>'
+$$$ selectors/select-ruby.rb $$$
 
-  source 'ftp://ftp.ruby-lang.org/pub/ruby/#{package.version.major}.#{package.version.minor}/ruby-#{package.version}.tar.gz'
+>>> /usr/bin/erb1.9
+>>> /usr/bin/gem1.9
+>>> /usr/bin/irb1.9
+>>> /usr/bin/rake1.9
+>>> /usr/bin/rdoc1.9
+>>> /usr/bin/ri1.9
+>>> /usr/bin/ruby1.9
+>>> /usr/bin/testrb1.9
 
-  dependencies << 'system/library/zlib' << 'development/library/libffi'
 
-  flavors {
-    debug {
-      before :configure do |conf|
-        conf.enable 'debug', enabled?
-      end
+#! /usr/bin/env ruby
+require 'packo'
+require 'packo/models'
+
+class Application < Thor
+  include Packo
+
+  class_option :help, :type => :boolean, :desc => 'Show help usage'
+
+  desc 'list', 'List available Ruby versions'
+  def list
+    CLI.info 'List of availaibale Ruby versions'
+
+    current = self.current
+
+    self.versions.each {|version|
+      puts ''
+      puts target.blue.bold
+
+      versions.each_with_index {|version, i|
+        puts (current[target] == version) ?
+          "  {#{(i + 1).to_s.green}}    #{version}" :
+          "  [#{i + 1             }]    #{version}"
+      }
     }
+  end
 
-    documentation {
-      before :configure do |conf|
-        conf.enable 'install-doc', enabled?
-      end
-    }
-  }
+  desc "set VERSION [TARGET=#{System.host}]", 'Choose what version of gcc to use'
+  def set (version, target=System.host.to_s)
+    versions = self.versions[target]
 
-  features {
-    ipv6 {
-      before :configure do |conf|
-        conf.enable 'ipv6', enabled?
-        conf.with 'look-up-order-hack', 'INET' if enabled?
-      end
-    }
-
-    berkdb {
-      before :configure do |conf|
-        conf.with 'dbm', enabled?
-      end
-    }
-
-    gdbm {
-      before :configure do |conf|
-        conf.with 'gdbm', enabled?
-      end
-    }
-
-    ssl {
-      before :dependencies do |deps|
-        deps << 'development/library/openssl' if enabled?
-      end
-
-      before :configure do |conf|
-        conf.with 'openssl', enabled?
-      end
-    }
-
-    socks5 {
-      before :dependencies do |deps|
-        deps << '>=network/proxy/dante-1.1.13' if enabled?
-      end
-
-      before :configure do |conf|
-        conf.enable 'socks', enabled?
-      end
-    }
-
-    tk {
-      before :dependencies do |deps|
-        deps << 'development/interpreter/tk[threads]' if enabled?
-      end
-
-      before :configure do |conf|
-        conf.with 'tk', enabled?
-      end
-    }
-
-    ncurses {
-      before :dependencies do |deps|
-        deps << 'system/library/text/ncurses' if enabled?
-      end
-
-      before :configure do |conf|
-        conf.with 'curses', enabled?
-      end
-    }
-
-    libedit {
-      before :dependencies do |deps|
-        deps << 'development/library/text/edit' if enabled?
-      end
-
-      before :configure do |conf|
-        conf.enable 'libedit' if enabled?
-      end
-    }
-
-    self.set('readline') { enabled!
-      before :dependencies do |deps|
-        deps << 'system/library/text/readline' if enabled? && !package.features.libedit.enabled?
-      end
-    }
-  }
-
-  before :configure, :priority => -10 do |conf|
-    autotools.autoreconf
-
-    if package.features.readline.enabled? || package.features.libedit.enabled?
-      conf.with 'readline'
-    else
-      conf.without 'readline'
+    if version.numeric? && (version.to_i > versions.length || version.to_i < 1)
+      fatal "#{version} out of index"
+      exit 1
     end
 
-    conf.set 'program-suffix', package.slot
-    conf.with 'soname', package.slot
+    if version.numeric?
+      version = versions[version.to_i - 1]
+    end
 
-    conf.enable ['shared', 'pthread']
-    conf.enable 'option-checking', 'no'
+    if !versions.member? version
+      fatal "#{version} version not available for #{target}"
+      exit 2
+    end
+
+    if target == System.host.to_s
+      FileUtils.ln_sf Dir.glob("/usr/#{System.host}/gcc-bin/#{version}/*"), '/usr/bin'
+    else
+      FileUtils.ln_sf Dir.glob("/usr/#{System.host}/#{target}/gcc-bin/#{version}/#{target}-*"), '/usr/bin/'
+    end
+
+    CLI.info "Set gcc to #{version} for #{target}"
+
+    Models::Selector.first(:name => 'gcc').update(:data => self.current.merge(target => version))
   end
 
-  before :compile do
-    ENV['EXTLDFLAGS'] = ENV['LDFLAGS']
-  end
-}
+  no_tasks {
+    def current
+      Models::Selector.first(:name => 'ruby').data rescue nil
+    end
+  
+    def versions
+      Dir.glob('/usr/bin/ruby?*').map {|path|
+        path.sub('/usr/bin/ruby', '')
+      }
+    end
+  }
+end
+
+Application.start(ARGV)
+
+# ruby: Set the Ruby version to use
