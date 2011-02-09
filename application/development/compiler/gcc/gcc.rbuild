@@ -207,7 +207,7 @@ class Application < Thor
     versions = self.versions[target]
 
     if version.numeric? && (version.to_i > versions.length || version.to_i < 1)
-      fatal "#{version} out of index"
+      CLI.fatal "#{version} out of index"
       exit 1
     end
 
@@ -216,7 +216,7 @@ class Application < Thor
     end
 
     if !versions.member? version
-      fatal "#{version} version not available for #{target}"
+      CLI.fatal "#{version} version not available for #{target}"
       exit 2
     end
 
