@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<digest version="1.0">
+    <build version="2.8" slot="">
+        <features>optimizations jit threads libffi ocaml</features>
+        <files>
+            <file name="llvm-2.8.tgz">6d49fe039d28e8664de25491c775cb2c599e30c1</file>
+        </files>
+    </build>
+</digest>

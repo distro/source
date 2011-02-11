@@ -122,8 +122,8 @@ Package.define('gcc') { type 'compiler'
     conf.with 'gxx-include-dir', "/usr/lib/gcc/#{middle}/#{version}/include/g++v4"
     conf.with 'python-dir',      "/usr/share/gcc-data/#{middle}/#{version}/python"
 
-    conf.enable  ['secureplt']
-    conf.disable ['werror', 'libmudflap', 'libssp', 'libgomp', 'shared', 'bootstrap']
+    conf.enable  ['secureplt', 'shared']
+    conf.disable ['werror', 'libmudflap', 'libssp', 'libgomp', 'bootstrap']
     conf.with    ['system-zlib']
     conf.without ['ppl', 'cloog']
 
@@ -222,6 +222,7 @@ class Application < Thor
 
     if target == System.host.to_s
       FileUtils.ln_sf Dir.glob("#{System.env![:INSTALL_PATH]}/usr/#{System.host}/gcc-bin/#{version}/*"), "#{System.env![:INSTALL_PATH]}/usr/bin"
+			FileUtils.ln_sf "#{System.env![:INSTALL_PATH]}/usr/lib/gcc/#{System.host}/#{version}/include/g++v4", "#{System.env![:INSTALL_PATH]}/usr/include/g++v4"
     else
       FileUtils.ln_sf Dir.glob("#{System.env![:INSTALL_PATH]}/usr/#{System.host}/#{target}/gcc-bin/#{version}/#{target}-*"), "#{System.env![:INSTALL_PATH]}/usr/bin/"
     end

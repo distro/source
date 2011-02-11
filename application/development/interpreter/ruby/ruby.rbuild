@@ -16,7 +16,6 @@ $$$ selectors/select-ruby.rb $$$
 >>> /usr/bin/ruby1.9
 >>> /usr/bin/testrb1.9
 
-
 #! /usr/bin/env ruby
 require 'packo'
 require 'packo/models'
@@ -44,7 +43,7 @@ class Application < Thor
     }
   end
 
-  desc "set VERSION [TARGET=#{System.host}]", 'Choose what version of gcc to use'
+  desc "set VERSION [TARGET=#{System.host}]", 'Choose what version of Ruby to use'
   def set (version, target=System.host.to_s)
     versions = self.versions[target]
 
@@ -79,9 +78,25 @@ class Application < Thor
     end
   
     def versions
-      Dir.glob('/usr/bin/ruby?*').map {|path|
-        path.sub('/usr/bin/ruby', '')
-      }
+      versions = []
+
+      if File.executable?("#{System.env![:INSTALL_PATH]}/usr/bin/ruby1.8")
+        versions << 'mri-1.8'
+      end
+
+      if File.executable?("#{System.env![:INSTALL_PATH]}/usr/bin/ruby1.9")
+        versions << 'mri-1.9'
+      end
+
+      if File.executable?("#{System.env![:INSTALL_PATH]}/usr/bin/jruby")
+        versions << 'jruby'
+      end
+
+      if File.executable?("#{System.env![:INSTALL_PATH]}/usr/bin/rbx")
+        versions << 'rubinius'
+      end
+
+      versions
     end
   }
 end
