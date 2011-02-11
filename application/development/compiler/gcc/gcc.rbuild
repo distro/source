@@ -259,7 +259,7 @@ Application.start(ARGV)
 
 # gcc: Set the GCC version to use
 
-$$$ patches/libstdc++-v3/crossconfig.path $$$
+$$$ patches/libstdc++-v3/crossconfig.patch $$$
 
 --- crossconfig.m4.orig	2010-12-07 02:47:04.951291393 +0000
 +++ crossconfig.m4	2010-12-07 02:48:51.926279025 +0000

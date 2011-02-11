@@ -22,7 +22,7 @@ Package.define('unzip') {
     bzip2 {
       before :compile do
         if enabled?
-          environment[:CFLAGS] << ' -DUSE_BZIP2'
+          environment[:CFLAGS] << '-DUSE_BZIP2'
         end
       end
     }
@@ -30,7 +30,7 @@ Package.define('unzip') {
     unicode {
       before :compile do
         if enabled?
-          environment[:CFLAGS] << ' -DUNICODE_SUPPORT -DUNICODE_WCHAR -DUTF8_MAYBE_NATIVE'
+          environment[:CFLAGS] << '-DUNICODE_SUPPORT' << '-DUNICODE_WCHAR' << '-DUTF8_MAYBE_NATIVE'
         end
       end
     }
@@ -61,10 +61,10 @@ Package.define('unzip') {
     end or raise RuntimeError.new('Unknown target')
 
     if target == '*linux*'
-      environment[:CFLAGS] << ' -DNO_LCHMOD'
+      environment[:CFLAGS] << '-DNO_LCHMOD'
     end
 
-    environment[:CFLAGS] << ' -DLARGE_FILE_SUPPORT'
+    environment[:CFLAGS] << '-DLARGE_FILE_SUPPORT'
 
     autotools.make "-j#{environment[:MAKE_JOBS] || 1}", '-f', 'unix/Makefile', os
 

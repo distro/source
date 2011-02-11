@@ -1,20 +1,43 @@
 Package.define('ruby') {
-  tags 'application', 'development', 'interpreter', 'ruby', 'virtual'
+  tags 'application', 'development', 'interpreter', 'virtual'
+
+  avoid Behaviors::Default
+
+  description 'Virtual package for Ruby interpreters'
+
+  maintainer 'meh. <meh@paranoici.org>'
+
+  features {
+    self.set('mri1.8') {
+      before :dependencies do |deps|
+        deps << 'application/interpreter/development/ruby/mri%1.8' if enabled?
+      end
+    }
+
+    self.set('mri1.9') { enabled!
+      before :dependencies do |deps|
+        deps << 'application/interpreter/development/ruby/mri%1.9' if enabled?
+      end
+    }
+
+    self.set('rubinius') {
+      before :dependencies do |deps|
+        deps << 'application/interpreter/development/ruby/rubinius' if enabled?
+      end
+    }
+
+    self.set('jruby') {
+      before :dependencies do |deps|
+        deps << 'application/interpreter/development/ruby/jruby' if enabled?
+      end
+    }
+  }
 }
 
 __END__
 $$$
 
 $$$ selectors/select-ruby.rb $$$
-
->>> /usr/bin/erb1.9
->>> /usr/bin/gem1.9
->>> /usr/bin/irb1.9
->>> /usr/bin/rake1.9
->>> /usr/bin/rdoc1.9
->>> /usr/bin/ri1.9
->>> /usr/bin/ruby1.9
->>> /usr/bin/testrb1.9
 
 #! /usr/bin/env ruby
 require 'packo'
@@ -29,23 +52,16 @@ class Application < Thor
   def list
     CLI.info 'List of availaibale Ruby versions'
 
-    current = self.current
-
-    self.versions.each {|version|
-      puts ''
-      puts target.blue.bold
-
-      versions.each_with_index {|version, i|
-        puts (current[target] == version) ?
-          "  {#{(i + 1).to_s.green}}    #{version}" :
-          "  [#{i + 1             }]    #{version}"
-      }
+    self.versions.each_with_index {|version, i|
+      puts (self.current == version) ?
+        "  {#{(i + 1).to_s.green}}    #{version}" :
+        "  [#{i + 1             }]    #{version}"
     }
   end
 
-  desc "set VERSION [TARGET=#{System.host}]", 'Choose what version of Ruby to use'
-  def set (version, target=System.host.to_s)
-    versions = self.versions[target]
+  desc "set VERSION", 'Choose what version of Ruby to use'
+  def set (version)
+    versions = self.versions
 
     if version.numeric? && (version.to_i > versions.length || version.to_i < 1)
       fatal "#{version} out of index"
@@ -61,15 +77,33 @@ class Application < Thor
       exit 2
     end
 
-    if target == System.host.to_s
-      FileUtils.ln_sf Dir.glob("/usr/#{System.host}/gcc-bin/#{version}/*"), '/usr/bin'
-    else
-      FileUtils.ln_sf Dir.glob("/usr/#{System.host}/#{target}/gcc-bin/#{version}/#{target}-*"), '/usr/bin/'
+    files = [:erb, :gem, :irb, :rake, :rdoc, :ri, :ruby, :testrb]
+
+    case version
+      when 'mri-1.8'
+        files.each {|file|
+          FileUtils.ln_sf "#{System.env![:INSTALL_PATH]}/usr/bin/#{file}1.8", "#{System.env![:INSTALL_PATH]}/usr/bin/#{file}" rescue nil
+        }
+
+      when 'mri-1.9'
+        files.each {|file|
+          FileUtils.ln_sf "#{System.env![:INSTALL_PATH]}/usr/bin/#{file}1.9", "#{System.env![:INSTALL_PATH]}/usr/bin/#{file}" rescue nil
+        }
+
+      when 'jruby'
+        files.each {|file|
+          FileUtils.ln_sf "#{System.env![:INSTALL_PATH]}/usr/bin/j#{file}", "#{System.env![:INSTALL_PATH]}/usr/bin/#{file}" rescue nil
+        }
+
+      when 'rubinius'
+        files.each {|file|
+          FileUtils.ln_sf "#{System.env![:INSTALL_PATH]}/usr/bin/rbx", "#{System.env![:INSTALL_PATH]}/usr/bin/#{file}" rescue nil
+        }        
     end
 
-    CLI.info "Set gcc to #{version} for #{target}"
+    CLI.info "Set Ruby to #{version}"
 
-    Models::Selector.first(:name => 'gcc').update(:data => self.current.merge(target => version))
+    Models::Selector.first(:name => 'ruby').update(:data => version)
   end
 
   no_tasks {

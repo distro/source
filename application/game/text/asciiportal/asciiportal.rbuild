@@ -15,9 +15,9 @@ Package.define('asciiportal') {
     sdl { enabled!; force!
       before :configure do
         if enabled?
-          package.environment[:LDFLAGS] << ' -lSDL'
+          package.environment[:LDFLAGS] << '-lSDL'
         else
-          package.environment[:CXXFLAGS] << ' -D__NOSDL__'
+          package.environment[:CXXFLAGS] << '-D__NOSDL__'
         end
       end
     }
@@ -27,9 +27,9 @@ Package.define('asciiportal') {
 
       before :configure do
         if enabled?
-          package.environment[:LDFLAGS] << ' -lSDL_mixer'
+          package.environment[:LDFLAGS] << '-lSDL_mixer'
         else
-          package.environment[:CXXFLAGS] << ' -D__NOSOUND__'
+          package.environment[:CXXFLAGS] << '-D__NOSOUND__'
         end
       end
     }
