@@ -1,5 +1,5 @@
-Package.define('clang') {
-  tags 'application', 'development', 'compiler'
+Package.define('clang') { type 'compilar'
+  tags 'application', 'system', 'development', 'compiler'
 
   description 'C language family frontend for LLVM'
   homepage    'http://clang.llvm.org/'
@@ -7,7 +7,7 @@ Package.define('clang') {
 
   dependencies << 'library/system/development/llvm'
 
-  source 'http://llvm.org/releases/#{package.version}/llvm-#{package.version}.tgz'
+  source 'http://llvm.org/releases/#{package.version}/llvm-#{package.version}.tgz', 'http://llvm.org/releases/#{package.version}/clang-#{package.version}.tgz'
 
   before :configure do |conf|
     conf.with 'llvmgccdir', '/dev/null'
@@ -24,6 +24,13 @@ Package.define('clang') {
     conf.with 'cxx-include-arch', System.host.to_s
   end
 
+  after :unpack do
+    package.unpack distfiles.last, workdir
+    Do.mv "#{workdir}/clang-#{package.version}", "#{workdir}/llvm-#{package.version}/tools/clang"
+
+    Do.cd "#{workdir}/llvm-#{package.version}"
+  end
+
   before :compile do |conf|
     autotools.make 'VERBOSE=1', 'KEEP_SYMBOLS=1', 'REQUIRES_RTTI=1', 'clang-only'
 
@@ -31,7 +38,7 @@ Package.define('clang') {
   end
 
   before :install do |conf|
-    autotools.install nil, 'KEEP_SYMBOLS=1'
+    autotools.make 'KEEP_SYMBOLS=1', "DESTDIR=#{distdir}", 'install-clang'
 
     throw :halt
   end
