@@ -11,6 +11,8 @@ Package.define('bzip2') {
 
   flavor {
     static {
+      description 'Build bzip2 statically linked against libbz2'
+
       after :install do
         package.do.bin 'bzip2-shared', 'bzip2' unless enabled?
       end
@@ -45,9 +47,9 @@ Package.define('bzip2') {
     package.do.lib "libbz2.so.#{package.version}"
 
     package.do.into '/usr/lib' do
-      package.do.sym "libbz2.so.#{package.version}", "libzz2.so.#{package.version.major}.#{package.version.minor}"
-      package.do.sym "libbz2.so.#{package.version}", "libzz2.so.#{package.version.major}"
-      package.do.sym "libbz2.so.#{package.version}", "libzz2.so"
+      package.do.sym "libbz2.so.#{package.version}", "libbz2.so.#{package.version.major}.#{package.version.minor}"
+      package.do.sym "libbz2.so.#{package.version}", "libbz2.so.#{package.version.major}"
+      package.do.sym "libbz2.so.#{package.version}", "libbz2.so"
     end
 
     throw :halt
