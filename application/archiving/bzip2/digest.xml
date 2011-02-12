@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<digest version="1.0">
+    <build version="1.0.6" slot="">
+        <features></features>
+        <files>
+            <file name="bzip2-1.0.6.tar.gz">3f89f861209ce81a6bab1fd1998c0ef311712002</file>
+        </files>
+    </build>
+</digest>
