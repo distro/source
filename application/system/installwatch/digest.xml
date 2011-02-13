@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<digest version="1.0">
+    <build version="0.6.3" slot="">
+        <features></features>
+        <files>
+            <file name="installwatch-0.6.3.tar.gz">155c9b7e2f26c55c6ee58dd7fc23fb830fd12131</file>
+        </files>
+    </build>
+</digest>

@@ -10,13 +10,24 @@ Package.define('git') {
   source 'http://www.kernel.org/pub/software/scm/git/git-#{package.version}.tar.bz2'
 
   features {
-    curl {
+    http { enabled!
+      description 'Enable git push/pull for HTTP and HTTPS'
 
+      before :configure do |conf|
+        package.arguments[:NO_CURL]  = 'YesPlease' if disabled?
+        package.arguments[:NO_EXPAT] = 'YesPlease' if disabled?
+      end
     }
 
     threads {
       before :configure do |conf|
         package.arguments[:THREADED_DELTA_SEARCH] = 'YesPlease' if enabled?
+      end
+    }
+
+    ipv6 {
+      before :configure do |conf|
+        package.arguments[:NO_IPV6] = 'YesPlease' if disabled?
       end
     }
 
@@ -55,7 +66,7 @@ Package.define('git') {
     }
   }
 
-  after :initialize do
+  before :build do
     package.arguments = {
       :INSTALL    => 'install',
       :TAR        => 'tar',
@@ -66,9 +77,30 @@ Package.define('git') {
       :NO_DARWIN_PORTS => 'YesPlease',
 
       # Misc stuff
-      :SANE_TOOL_PATH   => '',
-      :OLD_ICONV        => '',
-      :NO_EXTERNAL_GREP => '',
+      :SANE_TOOL_PATH               => '',
+      :OLD_ICONV                    => '',
+      :GIT_TEST_OPTS                => '--no-color',
+      :NO_EXTERNAL_GREP             => '',
+      :NO_CROSS_DIRECTORY_HARDLINKS => 'YesPlease',
+      :DEFAULT_PAGER                => env[:PAGER],
+      :DEFAULT_EDITOR               => env[:EDITOR],
+
+      # Installation stuff
+      :DESTDIR    => distdir,
+      :prefix     => (env[:INSTALL_PATH] + '/usr').cleanpath,
+      :htmldir    => (env[:INSTALL_PATH] + "/usr/share/doc/git-#{package.version}").cleanpath,
+      :sysconfdir => (env[:INSTALL_PATH] + '/etc').cleanpath,
+
+      # Compilation stuff
+      :OPTCFLAGS  => env[:CFLAGS],
+      :OPTLDFLAGS => env[:LDFLAGS],
+      :OPTCC      => env[:CC],
+      :OPTAR      => env[:AR],
+      
+      # Language binding stuff
+      :PYTHON_PATH => "#{(env[:INSTALL_PATH] + '/usr/bin/env').cleanpath} python",
+      :PERL_PATH   => "#{(env[:INSTALL_PATH] + '/usr/bin/env').cleanpath} perl",
+      :PERL_MM_OPT => ''
     }
   end
 
@@ -77,14 +109,7 @@ Package.define('git') {
   end
 
   def make (*args)
-    autotools.make "DESTDIR=#{distdir}", "OPTCFLAGS=#{env[:CFLAGS]}", "OPTLDFLAGS=#{env[:LDFLAGS]}",
-      "OPTCC=#{env[:CC]}", "OPTAR=#{env[:AR]}", "prefix=#{(env[:INSTALL_PATH] + '/usr').cleanpath}",
-      "htmldir=#{(env[:INSTALL_PATH] + "/usr/share/doc/git-#{package.version}").cleanpath}",
-      "sysconfdir=#{(env[:INSTALL_PATH] + '/etc').cleanpath}",
-      "PYTHON_PATH=#{(env[:INSTALL_PATH] + '/usr/bin/env').cleanpath} python",
-      "PERL_PATH=#{(env[:INSTALL_PATH] + '/usr/bin/env').cleanpath} perl",
-      'PERL_MM_OPT=', 'GIT_TEST_OPTS=--no-color',
-      *package.arguments.map {|(name, value)| "#{name}=#{value}"}, *args
+    autotools.make *package.arguments.map {|(name, value)| "#{name}=#{value}"}, *args
   end
 
   before :compile do
