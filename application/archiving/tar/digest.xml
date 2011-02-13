@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<digest version="1.0">
+    <build version="1.25" slot="">
+        <features>nls</features>
+        <files>
+            <file name="tar-1.25.tar.xz">291f7ace4ccebe9ac736e23b33c9e89ef92e00d8</file>
+        </files>
+    </build>
+</digest>

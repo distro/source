@@ -5,6 +5,8 @@ Package.define('clang') { type 'compilar'
   homepage    'http://clang.llvm.org/'
   license     'UoI-NCSA'
 
+  maintainer 'meh. <meh@paranoici.org>'
+
   dependencies << 'library/system/development/llvm'
 
   source 'http://llvm.org/releases/#{package.version}/llvm-#{package.version}.tgz', 'http://llvm.org/releases/#{package.version}/clang-#{package.version}.tgz'
