@@ -34,7 +34,7 @@ Package.define('ruby') {
   }
 }
 
-__END__
+#__END__
 $$$
 
 $$$ selectors/select-ruby.rb $$$
@@ -82,22 +82,22 @@ class Application < Thor
     case version
       when 'mri-1.8'
         files.each {|file|
-          FileUtils.ln_sf "#{System.env![:INSTALL_PATH]}/usr/bin/#{file}1.8", "#{System.env![:INSTALL_PATH]}/usr/bin/#{file}" rescue nil
+          FileUtils.ln_sf((System.env![:INSTALL_PATH] + "/usr/bin/#{file}1.8").cleanpath, "#{System.env![:INSTALL_PATH]}/usr/bin/#{file}") rescue nil
         }
 
       when 'mri-1.9'
         files.each {|file|
-          FileUtils.ln_sf "#{System.env![:INSTALL_PATH]}/usr/bin/#{file}1.9", "#{System.env![:INSTALL_PATH]}/usr/bin/#{file}" rescue nil
+          FileUtils.ln_sf((System.env![:INSTALL_PATH] + "/usr/bin/#{file}1.9").cleanpath, "#{System.env![:INSTALL_PATH]}/usr/bin/#{file}") rescue nil
         }
 
       when 'jruby'
         files.each {|file|
-          FileUtils.ln_sf "#{System.env![:INSTALL_PATH]}/usr/bin/j#{file}", "#{System.env![:INSTALL_PATH]}/usr/bin/#{file}" rescue nil
+          FileUtils.ln_sf((System.env![:INSTALL_PATH] + "/usr/bin/j#{file}").cleanpath, "#{System.env![:INSTALL_PATH]}/usr/bin/#{file}") rescue nil
         }
 
       when 'rubinius'
         files.each {|file|
-          FileUtils.ln_sf "#{System.env![:INSTALL_PATH]}/usr/bin/rbx", "#{System.env![:INSTALL_PATH]}/usr/bin/#{file}" rescue nil
+          FileUtils.ln_sf((System.env![:INSTALL_PATH] + '/usr/bin/rbx').cleanpath, "#{System.env![:INSTALL_PATH]}/usr/bin/#{file}") rescue nil
         }        
     end
 

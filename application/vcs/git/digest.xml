@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <digest version="1.0">
-    <build version="1.7.3.2" slot="">
-        <features>curl threads cvs subversion</features>
+    <build version="1.7.4" slot="">
+        <features>curl threads cvs subversion perl python tk</features>
         <files>
-            <file name="git-1.7.3.2.tar.bz2">cd8d806752aa6f5716cf193585024a002e098bf4</file>
+            <file name="git-1.7.4.tar.bz2">57b783627d9a9515ce3ef8f79128074de6197b2e</file>
         </files>
     </build>
 </digest>

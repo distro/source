@@ -16,12 +16,14 @@ Package.define('git') {
 
     threads {
       before :configure do |conf|
-        package.arguments[:THREADED_DELTA_SEARCH] = 'YesPlease'
+        package.arguments[:THREADED_DELTA_SEARCH] = 'YesPlease' if enabled?
       end
     }
 
     cvs {
-
+      before :configure do |conf|
+        package.arguments[:NO_CVS] = 'YesPlease' if disabled?
+      end
     }
 
     subversion {
@@ -37,6 +39,12 @@ Package.define('git') {
         else
           package.arguments[:NO_PERL] = 'YesPlease'
         end
+      end
+    }
+
+    python {
+      before :configure do |conf|
+        package.arguments[:NO_PYTHON] = 'YesPlease' if disabled?
       end
     }
 
@@ -62,5 +70,32 @@ Package.define('git') {
       :OLD_ICONV        => '',
       :NO_EXTERNAL_GREP => '',
     }
+  end
+
+  before :configure do
+    throw :halt
+  end
+
+  def make (*args)
+    autotools.make "DESTDIR=#{distdir}", "OPTCFLAGS=#{env[:CFLAGS]}", "OPTLDFLAGS=#{env[:LDFLAGS]}",
+      "OPTCC=#{env[:CC]}", "OPTAR=#{env[:AR]}", "prefix=#{(env[:INSTALL_PATH] + '/usr').cleanpath}",
+      "htmldir=#{(env[:INSTALL_PATH] + "/usr/share/doc/git-#{package.version}").cleanpath}",
+      "sysconfdir=#{(env[:INSTALL_PATH] + '/etc').cleanpath}",
+      "PYTHON_PATH=#{(env[:INSTALL_PATH] + '/usr/bin/env').cleanpath} python",
+      "PERL_PATH=#{(env[:INSTALL_PATH] + '/usr/bin/env').cleanpath} perl",
+      'PERL_MM_OPT=', 'GIT_TEST_OPTS=--no-color',
+      *package.arguments.map {|(name, value)| "#{name}=#{value}"}, *args
+  end
+
+  before :compile do
+    make
+
+    throw :halt
+  end
+
+  before :install do
+    make 'install'
+
+    throw :halt
   end
 }

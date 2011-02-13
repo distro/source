@@ -56,8 +56,8 @@ Package.define('llvm') {
 
     conf.disable ['assertions', 'expensive-checks']
 
-    conf.with 'c-include-dirs',   "#{System.env[:INSTALL_PATH]}/usr/include"
-    conf.with 'cxx-include-root', "#{System.env[:INSTALL_PATH]}/usr/include/g++v4"
+    conf.with 'c-include-dirs',   (env[:INSTALL_PATH] + '/usr/include').cleanpath
+    conf.with 'cxx-include-root', (env[:INSTALL_PATH] + '/usr/include/g++v4').cleanpath
     conf.with 'cxx-include-arch', System.host.to_s
   end
 
