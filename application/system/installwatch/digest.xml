@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <digest version="1.0">
-    <build version="0.6.3" slot="">
+    <build version="0.7.0beta7" slot="">
         <features></features>
         <files>
-            <file name="installwatch-0.6.3.tar.gz">155c9b7e2f26c55c6ee58dd7fc23fb830fd12131</file>
+            <file name="checkinstall-1.6.2.tar.gz">22ade12667b7931fa9ab5148c8ef41c91a3f0dda</file>
         </files>
     </build>
 </digest>
