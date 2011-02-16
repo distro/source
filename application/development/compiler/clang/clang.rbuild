@@ -21,8 +21,8 @@ Package.define('clang') { type 'compilar'
 
     conf.disable ['assertions', 'expensive-checks']
 
-    conf.with 'c-include-dirs',   (env[:INSTALL_PATH] + '/usr/include').cleanpath
-    conf.with 'cxx-include-root', (env[:INSTALL_PATH] + '/usr/include/g++v4').cleanpath
+    conf.with 'c-include-dirs',   (env[:INSTALL_PATH] + 'usr/include').cleanpath
+    conf.with 'cxx-include-root', (env[:INSTALL_PATH] + 'usr/include/g++v4').cleanpath
     conf.with 'cxx-include-arch', System.host.to_s
   end
 

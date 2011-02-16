@@ -87,9 +87,9 @@ Package.define('git') {
 
       # Installation stuff
       :DESTDIR    => distdir,
-      :prefix     => (env[:INSTALL_PATH] + '/usr').cleanpath,
-      :htmldir    => (env[:INSTALL_PATH] + "/usr/share/doc/git-#{package.version}").cleanpath,
-      :sysconfdir => (env[:INSTALL_PATH] + '/etc').cleanpath,
+      :prefix     => (env[:INSTALL_PATH] + 'usr').cleanpath,
+      :htmldir    => (env[:INSTALL_PATH] + "usr/share/doc/git-#{package.version}").cleanpath,
+      :sysconfdir => (env[:INSTALL_PATH] + 'etc').cleanpath,
 
       # Compilation stuff
       :OPTCFLAGS  => env[:CFLAGS],
@@ -98,8 +98,8 @@ Package.define('git') {
       :OPTAR      => env[:AR],
       
       # Language binding stuff
-      :PYTHON_PATH => "#{(env[:INSTALL_PATH] + '/usr/bin/env').cleanpath} python",
-      :PERL_PATH   => "#{(env[:INSTALL_PATH] + '/usr/bin/env').cleanpath} perl",
+      :PYTHON_PATH => "#{(env[:INSTALL_PATH] + 'usr/bin/env').cleanpath} python",
+      :PERL_PATH   => "#{(env[:INSTALL_PATH] + 'usr/bin/env').cleanpath} perl",
       :PERL_MM_OPT => ''
     }
   end

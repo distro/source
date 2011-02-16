@@ -24,14 +24,14 @@ Package.define('rubinius') {
 
     conf = Modules::Building::Autotools::Configuration.new
 
-    conf.set 'prefix',     (env[:INSTALL_PATH] + '/usr').cleanpath
-    conf.set 'gemsdir',    (env[:INSTALL_PATH] + '/usr/lib/ruby').cleanpath
-    conf.set 'bindir',     (env[:INSTALL_PATH] + '/usr/bin').cleanpath
-    conf.set 'includedir', (env[:INSTALL_PATH] + '/usr/include/rubinius').cleanpath
-    conf.set 'mandir',     (env[:INSTALL_PATH] + '/usr/share').cleanpath
-    conf.set 'libdir',     (env[:INSTALL_PATH] + '/usr/lib/ruby').cleanpath
-    conf.set 'sitedir',    (env[:INSTALL_PATH] + '/usr/lib/ruby/rubinius/site').cleanpath
-    conf.set 'vendordir',  (env[:INSTALL_PATH] + '/usr/lib/ruby/rubinius/vendor').cleanpath
+    conf.set 'prefix',     (env[:INSTALL_PATH] + 'usr').cleanpath
+    conf.set 'gemsdir',    (env[:INSTALL_PATH] + 'usr/lib/ruby').cleanpath
+    conf.set 'bindir',     (env[:INSTALL_PATH] + 'usr/bin').cleanpath
+    conf.set 'includedir', (env[:INSTALL_PATH] + 'usr/include/rubinius').cleanpath
+    conf.set 'mandir',     (env[:INSTALL_PATH] + 'usr/share').cleanpath
+    conf.set 'libdir',     (env[:INSTALL_PATH] + 'usr/lib/ruby').cleanpath
+    conf.set 'sitedir',    (env[:INSTALL_PATH] + 'usr/lib/ruby/rubinius/site').cleanpath
+    conf.set 'vendordir',  (env[:INSTALL_PATH] + 'usr/lib/ruby/rubinius/vendor').cleanpath
 
     Packo.sh "./configure #{conf}"
 
