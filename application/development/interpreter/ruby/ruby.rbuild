@@ -34,7 +34,7 @@ Package.define('ruby') {
   }
 }
 
-#__END__
+__END__
 $$$
 
 $$$ selectors/select-ruby.rb $$$
