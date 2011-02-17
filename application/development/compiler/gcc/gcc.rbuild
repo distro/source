@@ -9,13 +9,15 @@ Package.define('gcc') { type 'compiler'
 
   source 'gnu://gcc/#{package.version}'
 
-  features {
+  flavor {
     multilib {
       before :configure do |conf|
         conf.disable 'multilib' unless enabled?
       end
     }
+  }
 
+  features {
     ada {
       before :build do |pkg|
         pkg.languages << 'ada' if enabled?
