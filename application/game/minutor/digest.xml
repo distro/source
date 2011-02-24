@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<digest version="1.0">
+    <build version="0.9.5" slot="">
+        <features></features>
+        <files>
+            <file name="minutor-0.9.5.tar.gz">33b25eb4a700c93685ed6a9f50ed5a6217c7a473</file>
+        </files>
+    </build>
+</digest>

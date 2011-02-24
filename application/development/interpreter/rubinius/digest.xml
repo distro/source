@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <digest version="1.0">
-    <build version="9999" slot="">
+    <build version="1.2.2" slot="">
         <features></features>
-        <files/>
-    </build>
-    <build version="1.2.1" slot="">
-        <features/>
         <files>
-            <file name="rubinius-release-1.2.1.tar.gz">0cad0425953f2bc57d0e624535a4ecd42af23279</file>
+            <file name="rubinius-release-1.2.2.tar.gz">9de43dfda7a801ff382ad5d3c84c5cecc9cbe12e</file>
         </files>
+    </build>
+    <build version="9999" slot="">
+        <features/>
+        <files/>
     </build>
 </digest>
