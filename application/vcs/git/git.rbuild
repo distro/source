@@ -19,13 +19,13 @@ Package.define('git') {
       end
     }
 
-    threads {
+    threads { enabled!
       before :configure do |conf|
         package.arguments[:THREADED_DELTA_SEARCH] = 'YesPlease' if enabled?
       end
     }
 
-    ipv6 {
+    ipv6 { enabled!
       before :configure do |conf|
         package.arguments[:NO_IPV6] = 'YesPlease' if disabled?
       end
@@ -96,7 +96,7 @@ Package.define('git') {
       :OPTLDFLAGS => env[:LDFLAGS],
       :OPTCC      => env[:CC],
       :OPTAR      => env[:AR],
-      
+
       # Language binding stuff
       :PYTHON_PATH => "#{(env[:INSTALL_PATH] + 'usr/bin/env').cleanpath} python",
       :PERL_PATH   => "#{(env[:INSTALL_PATH] + 'usr/bin/env').cleanpath} perl",

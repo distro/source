@@ -91,17 +91,3 @@ $$$ patches/vm/external_libs/libgdtoa/Makefile.patch $$$
  endif
  
  CFLAGS += -fPIC $(CPPFLAGS)
-
-$$$ patches/rakelib/vm.rake.patch $$$
-
---- vm.rake.orig	2011-02-11 15:11:53.031316502 +0100
-+++ vm.rake	2011-02-11 15:11:59.855902502 +0100
-@@ -330,7 +330,7 @@
-   # Flag setup
- 
-   task :normal_flags do
--    FLAGS.concat %w[ -ggdb3 -O2 -Werror ]
-+#    FLAGS.concat %w[ -ggdb3 -O2 -Werror ]
-   end
- 
-   task :inline_flags => :normal_flags do

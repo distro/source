@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<digest version="1.0">
+    <build version="4.3.11" slot="">
+        <features>mail cap</features>
+        <files>
+            <file name="zsh-4.3.11.tar.bz2">25cf0daadc4543d147f6241573d6730b60f16016</file>
+        </files>
+    </build>
+</digest>
