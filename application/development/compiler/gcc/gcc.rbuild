@@ -12,8 +12,12 @@ Package.define('gcc') { type 'compiler'
   flavor {
     multilib {
       before :configure do |conf|
-        conf.disable 'multilib' unless enabled?
+        conf.enable 'multilib', enabled?
       end
+    }
+
+    hardened {
+
     }
   }
 
@@ -56,8 +60,8 @@ Package.define('gcc') { type 'compiler'
 
     optimizations { enabled!
       before :configure do |conf|
-        conf.enable('altivec', enabled? && ['ppc', '~ppc'].member?(package.environment[:ARCH]))
-        conf.enable('fixed-point', enabled? && ['mips', '~mips'].member?(package.environment[:ARCH]))
+        conf.enable 'altivec', (enabled? && ['ppc', '~ppc'].member?(package.environment[:ARCH]))
+        conf.enable 'fixed-point', (enabled? && ['mips', '~mips'].member?(package.environment[:ARCH]))
       end
     }
 
@@ -81,6 +85,9 @@ Package.define('gcc') { type 'compiler'
     package.languages = ['c']
   end
 
+  after :initialized do
+  end
+
   before :dependencies do |deps|
     if target.kernel == 'cygwin'
       if host != target
@@ -93,33 +100,39 @@ Package.define('gcc') { type 'compiler'
 
   before :configure do |conf|
     if host != target
-      environment[:CPP] = "cpp --sysroot /usr/#{host}/#{target}"
+      env[:CPP] = "cpp --sysroot /usr/#{host}/#{target}"
 
       conf.with 'sysroot', "/usr/#{host}/#{target}"
+      conf.with 'as',      "/usr/bin/#{target}-as"
+      conf.with 'ld',      "/usr/bin/#{target}-ld"
 
-      conf.with 'as', "/usr/bin/#{target}-as"
-      conf.with 'ld', "/usr/bin/#{target}-ld"
+      env[:CXXFLAGS] = env[:CFLAGS] = '-O2 -pipe'
 
       middle = "#{host}/#{target}"
     else
+      env[:CXXFLAGS].replace '-O.', '-O2'
+      env[:CFLAGS].replace   '-O.', '-O2'
+
       middle = target.to_s
     end
-
-    environment[:CXXFLAGS] = environment[:CFLAGS] = '-O2 -pipe'
-    environment[:LDFLAGS]  = ''
 
     Do.dir "#{workdir}/build"
     Do.cd  "#{workdir}/build"
 
     conf.path = "#{workdir}/gcc-#{version}/configure"
 
-    conf.set 'bindir',     "/usr/#{middle}/gcc-bin/#{version}"
-    conf.set 'libdir',     "/usr/lib/gcc/#{middle}/#{version}"
-    conf.set 'libexecdir', "/usr/lib/gcc/#{middle}/#{version}"
-    conf.set 'includedir', "/usr/lib/gcc/#{middle}/#{version}/include"
-    conf.set 'datadir',    "/usr/share/gcc-data/#{middle}/#{version}"
-    conf.set 'infodir',    "/usr/share/gcc-data/#{middle}/#{package.version}/info"
-    conf.set 'mandir',     "/usr/share/gcc-data/#{middle}/#{package.version}/man"
+    env[:GCC_LANG]      = package.languages.join(',')
+    env[:PREFIX]        = (env![:INSTALL_PATH] + '/usr').cleanpath
+    env[:BINPATH]       = (env![:INSTALL_PATH] + "/usr/#{middle}/gcc-bin/#{version}").cleanpath
+    env[:LIBPATH]       = (env![:INSTALL_PATH] + "/usr/lib/gcc/#{middle}/#{version}").cleanpath
+    env[:DATAPATH]      = (env![:INSTALL_PATH] + "/usr/share/gcc-data/#{middle}/#{version}").cleanpath
+    env[:STDCXX_INCDIR] = (env![:INSTALL_PATH] + "/usr/lib/gcc/#{middle}/#{version}/include/g++v4").cleanpath
+    
+    conf.set 'prefix',  "/usr"
+    conf.set 'bindir',  "/usr/#{middle}/gcc-bin/#{version}"
+    conf.set 'datadir', "/usr/share/gcc-data/#{middle}/#{version}"
+    conf.set 'mandir',  "/usr/share/gcc-data/#{middle}/#{package.version}/man"
+    conf.set 'infodir', "/usr/share/gcc-data/#{middle}/#{package.version}/info"
 
     conf.with 'gxx-include-dir', "/usr/lib/gcc/#{middle}/#{version}/include/g++v4"
     conf.with 'python-dir',      "/usr/share/gcc-data/#{middle}/#{version}/python"
@@ -137,10 +150,15 @@ Package.define('gcc') { type 'compiler'
 
     # Various conditional configurations
 
-    if host.kernel == 'cygwin'
-      conf.enable 'threads', 'win32'
-    else
-      conf.enable 'threads', 'posix'
+    case host
+      when 'mingw*', '*-mingw*', '*-cygwin'
+        conf.enable 'threads', 'win32'
+
+      when '*-mint*'
+        conf.disable 'threads'
+
+      else
+        conf.enable 'threads', 'posix'
     end
 
     if target.kernel == 'darwin'
@@ -163,9 +181,47 @@ Package.define('gcc') { type 'compiler'
   end
 
   before :compile do
-    autotools.make '-j1'
+    autotools.make "-j#{env[:MAKE_JOBS] || 1}",
+      "LDFLAGS=#{env[:LDFLAGS]}",
+      "STAGE1_CFLAGS=#{env[:STAGE1_CFLAGS] || env[:CFLAGS]}",
+      "BOOT_CFLAGS=#{env[:BOOT_CFLAGS] || env[:CFLAGS]}"
 
     throw :halt
+  end
+
+  before :pack do
+    remove = []
+
+    `gcc -print-multi-lib`.split("\n").map {|dir|
+      dir.split(';').first
+    }.each {|dir|
+      multidir    = `gcc "#{dir}" --print-multi-directory`.strip
+      multidir_os = `gcc "#{dir}" --print-multi-os-directory`.strip
+      todir       = "#{package.distdir}/#{env[:LIBPATH]}/#{multidir}"
+
+      Do.dir(todir)
+
+      ["#{env[:LIBPATH]}/#{multidir}", "#{env[:LIBPATH]}/../#{multidir_os}",
+       "#{env[:PREFIX]}/lib/#{multidir_os}", "#{env[:PREFIX]}/#{target}/lib/#{multidir_os}",
+       "#{env[:PREFIX]}/lib/#{multidir}"
+      ].map {|dir|
+        "#{package.distdir}/#{dir}"
+      }.each {|dir|
+        next if dir == todir || !File.directory?(dir)
+
+        Do.cp Dir.glob("#{dir}/*").map {|file|
+          next if File.directory?(file)
+
+          remove << file
+
+          file
+        }.compact, todir
+      }
+    }
+
+    remove.each {|file|
+      Do.rm file
+    }
   end
 }
 
