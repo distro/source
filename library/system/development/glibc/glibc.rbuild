@@ -10,6 +10,12 @@ Package.define('glibc') { type 'libc'
   source 'gnu://glibc/#{package.version}'
 
   flavor {
+    multilib {
+      before :configure do |conf|
+        conf.enable 'multilib', enabled?
+      end
+    }
+
     hardened {
       before :configure do |conf|
         conf.enable 'stackguard-randomization', enabled?
@@ -26,17 +32,14 @@ Package.define('glibc') { type 'libc'
   }
 
   before :configure do |conf|
-    if host != target
-      env[:CXXFLAGS] = env[:CFLAGS] = '-O2 -pipe'
-    else
-      env[:CXXFLAGS].replace '-O.', '-O2'
-      env[:CFLAGS].replace   '-O.', '-O2'
-    end
+    env[:CXXFLAGS] = env[:CFLAGS] = '-O2 -fno-strict-aliasing -pipe'
 
     Do.dir "#{workdir}/build"
     Do.cd  "#{workdir}/build"
 
     conf.path = "#{workdir}/glibc-#{package.version}/configure"
+
+    conf.with 'headers', "/usr/include"
 
     conf.enable  ['bind-now']
     conf.disable ['profile', 'multi-arch']
@@ -45,7 +48,7 @@ Package.define('glibc') { type 'libc'
   end
 
   before :compile do
-    autotools.make '-j1'
+    autotools.make
 
     throw :halt
   end

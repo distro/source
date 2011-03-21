@@ -1,5 +1,11 @@
 <?xml version="1.0"?>
 <digest version="1.0">
+    <build version="2.5" slot="">
+        <features></features>
+        <files>
+            <file name="sandbox-2.5.tar.xz">bfa2456d3a8b9f35b460f733b97a1fe7f00c5ca5</file>
+        </files>
+    </build>
     <build version="2.3" slot="">
         <features>multilib</features>
         <files>

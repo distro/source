@@ -52,6 +52,8 @@ Package.define('binutils') {
     conf.set 'infodir',    "/usr/share/binutils-data/#{middle}/#{package.version}/info"
     conf.set 'mandir',     "/usr/share/binutils-data/#{middle}/#{package.version}/man"
 
+		conf.with 'binutils-ldscript-dir', "/usr/lib/binutils/#{middle}/#{package.version}/ldscripts"
+
     conf.enable  ['secureplt', '64-bit-bfd', 'shared']
     conf.disable ['werror', 'static']
 
@@ -59,6 +61,17 @@ Package.define('binutils') {
 
     conf.with 'arch', package.target.arch
   end
+
+	before :pack do
+    if host != target
+      middle = "#{package.host}/#{package.target}"
+    else
+      middle = target.to_s
+    end
+
+		Do.rm Dir["#{distdir}/usr/#{middle}/bin/*"]
+		Do.mv "#{distdir}/usr/#{middle}/lib/ldscripts", "#{distdir}/usr/#{middle}/#{version}"
+	end
 }
 
 __END__
