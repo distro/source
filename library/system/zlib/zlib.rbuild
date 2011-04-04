@@ -1,5 +1,6 @@
 Package.define('zlib') {
-  type 'library'
+  use Modules::Building::CMake
+
   tags 'library', 'system', 'compression'
 
   description 'Standard (de)compression library'
@@ -8,12 +9,19 @@ Package.define('zlib') {
 
   maintainer  'shura <shura1991@gmail.com>'
 
-  source      'http://zlib.net/zlib-#{package.version}.tar.gz'
+  source 'http://zlib.net/zlib-#{package.version}.tar.gz'
 
-  after :configure do
-    base = (System.env[:INSTALL_PATH] + '/usr').cleanpath
-    Packo.sh './configure', '--shared', "--prefix=#{base}", "--libdir=#{base + '/lib'}"
+  autotools.force!
 
-    throw :halt
+  before :configure do |conf|
+    conf.delete :other, [:sharedstatedir, :host, :build, :target]
+  end
+
+  before :compile do |conf|
+    if host == '*-mingw*' || host == 'mingw*' || host == '*cygwin*'
+      autotools.make '-f', 'win32/Makefile.gcc', "prefix=/usr/", 'STRIP=', "PREFIX=#{host}-"
+
+      throw :halt
+    end
   end
 }

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<digest version="1.0">
+    <build version="11.1.1" slot="">
+        <features>threads</features>
+        <files>
+            <file name="ecl-11.1.1.tar.gz">9c4c88683f6186f8152866033e6850e19eb8cc1f</file>
+        </files>
+    </build>
+</digest>

@@ -7,5 +7,5 @@ Package.define('m4') {
 
   maintainer  'shura <shura1991@gmail.com>'
 
-  source      'gnu://m4/#{package.version}'
+  source 'gnu://m4/#{package.version}'
 }
