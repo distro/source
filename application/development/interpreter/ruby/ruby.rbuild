@@ -1,8 +1,6 @@
 Package.define('ruby') {
   tags 'application', 'development', 'interpreter', 'virtual'
 
-  avoid Behaviors::Default
-
   description 'Virtual package for Ruby interpreters'
 
   maintainer 'meh. <meh@paranoici.org>'
