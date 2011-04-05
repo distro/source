@@ -16,5 +16,7 @@ Package.define('spidermonkey') {
       package.do.sym 'libmozjs185.so.1.0.0', 'libmozjs185.so.1.0'
       package.do.sym 'libmozjs185.so.1.0', 'libmozjs185.so'
     end
+
+    Do.cp 'shell/js', "#{distdir}/usr/bin/mozilla-js"
   end
 }
