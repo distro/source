@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<digest version="1.0">
+    <build version="1.8.5" slot="">
+        <features></features>
+        <files>
+            <file name="js185-1.0.0.tar.gz">52a01449c48d7a117b35f213d3e4263578d846d6</file>
+        </files>
+    </build>
+</digest>

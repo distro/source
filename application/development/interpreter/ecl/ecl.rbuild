@@ -15,6 +15,12 @@ Package.define('ecl') {
         conf.enable 'threads', enabled?
       end
     }
+
+    unicode { enabled!
+      before :configure do |conf|
+        conf.enable 'unicode', enabled?
+      end
+    }
   }
 
   before :compile do |conf|

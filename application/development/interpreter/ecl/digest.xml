@@ -1,5 +1,11 @@
 <?xml version="1.0"?>
 <digest version="1.0">
+    <build version="11.1.1" slot="">
+        <features>threads unicode</features>
+        <files>
+            <file name="ecl-11.1.1.tar.gz">9c4c88683f6186f8152866033e6850e19eb8cc1f</file>
+        </files>
+    </build>
     <build version="9.12.3" slot="">
         <features>threads</features>
         <files>
@@ -10,12 +16,6 @@
         <features>threads</features>
         <files>
             <file name="ecl-10.4.1.tar.gz">044c579b7f0c42d15e05b662c433488e8da85020</file>
-        </files>
-    </build>
-    <build version="11.1.1" slot="">
-        <features>threads</features>
-        <files>
-            <file name="ecl-11.1.1.tar.gz">9c4c88683f6186f8152866033e6850e19eb8cc1f</file>
         </files>
     </build>
 </digest>

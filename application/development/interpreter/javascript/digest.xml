@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<digest version="1.0">
+    <build version="0" slot="">
+        <features>spidermonkey v8</features>
+        <files/>
+    </build>
+</digest>
