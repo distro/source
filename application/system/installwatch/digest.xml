@@ -3,7 +3,7 @@
     <build version="0.7.0beta7" slot="">
         <features></features>
         <files>
-            <file name="checkinstall-1.6.2.tar.gz">22ade12667b7931fa9ab5148c8ef41c91a3f0dda</file>
+            <file name="checkinstall-1.6.2.tar.gz" url="http://asic-linux.com.mx/~izto/checkinstall/files/source/checkinstall-1.6.2.tar.gz">22ade12667b7931fa9ab5148c8ef41c91a3f0dda</file>
         </files>
     </build>
 </digest>

@@ -3,7 +3,7 @@
     <build version="5.12.3" slot="">
         <features>threads berkdb gdbm</features>
         <files>
-            <file name="perl-5.12.3.tar.bz2">86d77c6cbc7a60068dc14c88ffd0729324d1174f</file>
+            <file name="perl-5.12.3.tar.bz2" url="http://www.cpan.org/src/5.0/perl-5.12.3.tar.bz2">86d77c6cbc7a60068dc14c88ffd0729324d1174f</file>
         </files>
     </build>
 </digest>

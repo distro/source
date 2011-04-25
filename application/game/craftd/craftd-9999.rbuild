@@ -6,5 +6,5 @@ Package.define('craftd', '9999') {
 
   use Modules::Misc::Fetching::Git
 
-  source 'git://github.com/kev009/craftd.git'
+  source 'git://github.com/craftd/craftd.git'
 }

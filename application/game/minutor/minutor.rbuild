@@ -5,7 +5,7 @@ Package.define('minutor') {
   homepage    'http://seancode.com/minutor/'
   license     
 
-  source 'http://seancode.com/minutor/#{package.version.major}.#{package.version.minor}/minutor-#{package.version}.tar.gz'
+  source 'http://seancode.com/minutor/#{package.version.major}.#{package.version.minor}/minutor_#{package.version}.tar.gz'
 
   after :unpack do
     Do.cd "#{workdir}/minutor"

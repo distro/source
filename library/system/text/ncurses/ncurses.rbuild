@@ -1,5 +1,5 @@
 Package.define('ncurses') { type 'library'
-  tags 'library', 'system', 'text'
+  tags 'library', 'system', 'text', 'gnu'
 
   description 'console display library'
   homepage    'http://www.gnu.org/software/ncurses/', 'http://dickey.his.com/ncurses/'

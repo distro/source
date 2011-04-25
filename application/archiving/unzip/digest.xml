@@ -3,7 +3,7 @@
     <build version="6.0" slot="">
         <features>bzip2 unicode</features>
         <files>
-            <file name="unzip60.tar.gz">abf7de8a4018a983590ed6f5cbd990d4740f8a22</file>
+            <file name="unzip60.tar.gz" url="sourceforge://infozip/UnZip%206.x%20%28latest%29/UnZip%206.0/unzip60">abf7de8a4018a983590ed6f5cbd990d4740f8a22</file>
         </files>
     </build>
 </digest>

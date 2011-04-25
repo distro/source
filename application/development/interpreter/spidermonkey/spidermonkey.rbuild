@@ -7,16 +7,26 @@ Package.define('spidermonkey') {
 
   maintainer 'meh. <meh@paranoici.org>'
 
+  features {
+    ctypes {
+      before :configure do |conf|
+        conf.enable 'ctypes', enabled?
+      end
+    }
+  }
+
   after :unpack do
     Do.cd "js-#{package.version}/js/src"
   end
 
-  before :pack do
-    package.do.into '/usr/lib' do
-      package.do.sym 'libmozjs185.so.1.0.0', 'libmozjs185.so.1.0'
-      package.do.sym 'libmozjs185.so.1.0', 'libmozjs185.so'
-    end
+  before :configure do |conf|
+    conf.enable 'threadsafe'
+    conf.with   'system-nspr'
+  end
 
+  before :pack do
     Do.cp 'shell/js', "#{distdir}/usr/bin/mozilla-js"
+
+    File.chmod 0755, "#{distdir}/usr/bin/mozilla-js"
   end
 }

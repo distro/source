@@ -1,4 +1,4 @@
-Package.define('linux', '2.6.37') {
+Package.define('linux', '2.6.36') {
   arch     '~x86', '~amd64'
   compiler 'gcc'
   libc     'glibc'

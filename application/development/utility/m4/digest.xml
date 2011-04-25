@@ -3,7 +3,7 @@
     <build version="1.4.16" slot="">
         <features></features>
         <files>
-            <file name="m4-1.4.16.tar.xz">d8688d1d84e058366134301e018e57bbbdc33463</file>
+            <file name="m4-1.4.16.tar.xz" url="gnu://m4/1.4.16">d8688d1d84e058366134301e018e57bbbdc33463</file>
         </files>
     </build>
 </digest>

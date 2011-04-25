@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <digest version="1.0">
     <build version="1.2c" slot="">
-        <features></features>
+        <features>sdl sound</features>
         <files>
-            <file name="asciiportal1.2c-src.zip">ca339127b98b280425c0795182dccf91e9311184</file>
+            <file name="asciiportal1.2c-src.zip" url="http://cymonsgames.com/games/asciiportal/asciiportal1.2c-src.zip">ca339127b98b280425c0795182dccf91e9311184</file>
         </files>
     </build>
 </digest>

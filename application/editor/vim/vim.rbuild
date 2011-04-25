@@ -7,7 +7,7 @@ Package.define('vim') {
 
   maintainer 'meh. <meh@paranoici.org>'
 
-  source 'ftp://ftp.vim.org/pub/vim/unix/vim-#{package.version}.tar.bz2'
+  source 'ftp://ftp.vim.org/pub/vim/unix/vim-#{package.version.major}.#{package.version.minor}.tar.bz2'
 
   features {
     ruby {
@@ -105,8 +105,28 @@ Package.define('vim') {
     }
   }
 
+  before :initialize do
+    next unless package.version.tiny > 0
+
+    package.source = [package.source].flatten
+
+    1.upto(package.version.tiny) {|p|
+      package.source << "ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.#{'%03d' % p}"
+    }
+  end
+
   after :unpack do
     Do.cd "#{package.workdir}/vim#{package.version.major}#{package.version.minor}"
+  end
+
+  before :patch do
+    next unless package.version.tiny > 0
+
+    CLI.info "Applying #{package.version.tiny} patches, be patient"
+
+    package.distfiles[1, package.distfiles.length].each {|p|
+      package.patch(p.path, silent: true) rescue nil
+    }
   end
 
   after :dependencies do |result, deps|
@@ -117,6 +137,17 @@ Package.define('vim') {
 
   # this fixes the configure, or it would be called during compile time
   before :configure do
+	  # Patch to build with ruby-1.8.0_pre5 and following
+	  Do.sed 'src/if_ruby.c', ['defout', 'stdout']
+    Do.sed 'src/configure.in', [' libc.h ', ' ']
+
+	  # Read vimrc and gvimrc from /etc/vim
+	  File.append 'src/feature.h', %{#define SYS_VIMRC_FILE  "#{env[:INSTALL_PATH]}/etc/vim/vimrc"}
+	  File.append 'src/feature.h', %{#define SYS_GVIMRC_FILE "#{env[:INSTALL_PATH]}/etc/vim/gvimrc"}
+
+    env[:CFLAGS].delete('-funroll-all-loops')
+    env[:CFLAGS].replace('-O3', '-O2')
+
     Do.rm  'src/auto/configure'
     Do.sed 'src/Makefile', [' auto.config.mk:', ':']
 
@@ -126,6 +157,7 @@ Package.define('vim') {
   before :configure do |conf|
     conf.with 'modified-by', 'Distrø'
 
+    conf.with 'features', 'huge'
     conf.with 'tlib', 'curses'
 
     if !(features.gtk.enabled? || features.gnome.enabled?)

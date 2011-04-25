@@ -1,4 +1,4 @@
-Package.define('minutor', '0.9.5') {
+Package.define('minutor', '1.1') {
   arch     'x86', 'x86_64'
   kernel   'linux'
   compiler 'gcc'
