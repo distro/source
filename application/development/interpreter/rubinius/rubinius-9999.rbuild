@@ -6,14 +6,16 @@ Package.define('rubinius', '9999') {
 
   use Modules::Misc::Fetching::Git
 
-  source 'git://github.com/evanphx/rubinius.git'
+  git {
+    repository: 'git://github.com/evanphx/rubinius.git'
+  }
 
   flavor {
     hydra {
       description 'Enable the hydra branch, deletetion of GIL in progress'
 
       before :fetch do
-        source 'git://github.com/evanphx/rubinius.git:hydra' if enabled?
+        git[:branch] = 'hydra' if enabled?
       end
     }
   }

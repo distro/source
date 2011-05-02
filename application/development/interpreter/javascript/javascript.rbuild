@@ -64,9 +64,11 @@ class Application < Thor
     end
 
     case version
-      when 'ecl'
+      when 'spidermonkey'
+        FileUtils.ln_sf((System.env![:INSTALL_PATH] + "/usr/bin/mozilla-js").cleanpath, (System.env![:INSTALL_PATH] + "/usr/bin/js").cleanpath) rescue nil
 
-      when 'sbcl'
+      when 'v8'
+        FileUtils.ln_sf((System.env![:INSTALL_PATH] + "/usr/bin/google-js").cleanpath, (System.env![:INSTALL_PATH] + "/usr/bin/js").cleanpath) rescue nil
     end
 
     CLI.info "Set JavaScript to #{version}"
@@ -82,10 +84,12 @@ class Application < Thor
     def versions
       versions = []
 
-      if File.executable?("#{System.env![:INSTALL_PATH]}/usr/bin/ecl")
+      if File.executable?("#{System.env![:INSTALL_PATH]}/usr/bin/mozilla-js")
+        versions << 'spidermonkey'
       end
 
-      if File.executable?("#{System.env![:INSTALL_PATH]}/usr/bin/sbcl")
+      if File.executable?("#{System.env![:INSTALL_PATH]}/usr/bin/google-js")
+        versions << 'v8'
       end
 
       versions

@@ -1,5 +1,5 @@
 Package.define('spidermonkey') {
-  tags 'application', 'interpreter', 'development', 'javascript', 'embeddable'
+  tags 'application', 'interpreter', 'development', 'javascript', 'embeddable', 'mozilla'
 
   description 'Mozilla JavaScript engine.'
   homepage    'http://www.mozilla.org/js/spidermonkey/'
@@ -25,8 +25,8 @@ Package.define('spidermonkey') {
   end
 
   before :pack do
-    Do.cp 'shell/js', "#{distdir}/usr/bin/mozilla-js"
-
-    File.chmod 0755, "#{distdir}/usr/bin/mozilla-js"
+    package.do.into '/usr' do
+      package.do.bin 'shell/js', 'mozilla-js'
+    end
   end
 }
