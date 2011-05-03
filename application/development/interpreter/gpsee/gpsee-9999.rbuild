@@ -4,7 +4,9 @@ Package.define('gpsee', '9999') {
   compiler 'gcc'
   libc     'glibc'
 
-  use Modules::Misc::Fetching::Mercurial
+  use Fetching::Mercurial
 
-  source 'https://gpsee.googlecode.com/hg/'
+  mercurial(
+    repository: 'https://gpsee.googlecode.com/hg/'
+  )
 }

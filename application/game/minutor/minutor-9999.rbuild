@@ -4,7 +4,9 @@ Package.define('minutor', '9999') {
   compiler 'gcc'
   libc     'glibc'
 
-  use Modules::Misc::Fetching::Mercurial
+  use Fetching::Mercurial
 
-  source 'http://seancode.com/hg/minutor'
+  mercurial(
+    repository: 'http://seancode.com/hg/minutor'
+  )
 }

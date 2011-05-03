@@ -4,11 +4,11 @@ Package.define('rubinius', '9999') {
   libc     'glibc'
   compiler 'gcc', 'clang'
 
-  use Modules::Misc::Fetching::Git
+  use Fetching::Git
 
-  git {
+  git(
     repository: 'git://github.com/evanphx/rubinius.git'
-  }
+  )
 
   flavor {
     hydra {

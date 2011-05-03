@@ -6,7 +6,9 @@ Package.define('vim', '9999') {
 
   autotools.version :autoconf, '2.6'
 
-	use Modules::Misc::Fetching::Mercurial
+	use Fetching::Mercurial
 
-	source 'https://vim.googlecode.com/hg/'
+	mercurial(
+    repository: 'https://vim.googlecode.com/hg/'
+  )
 }

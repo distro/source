@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<digest version="1.0">
+    <build version="0" slot="">
+        <features>cpython2.4 cpython2.5 cpython2.6 cpython2.7 cpython3.1 jython pypy</features>
+        <files/>
+    </build>
+</digest>

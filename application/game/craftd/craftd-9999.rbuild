@@ -4,9 +4,9 @@ Package.define('craftd', '9999') {
   compiler 'gcc', 'clang'
   libc     'glibc'
 
-  use Modules::Misc::Fetching::Git
+  use Fetching::Git
 
-  git {
+  git(
     repository: 'git://github.com/craftd/craftd.git'
-  }
+  )
 }

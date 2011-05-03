@@ -9,10 +9,10 @@ Package.define('v8') {
 
   maintainer 'meh. <meh@paranoici.org>'
 
-  subversion Hash[
+  subversion(
     repository: 'http://v8.googlecode.com/svn',
     tag:        '#{package.version}'
-  ]
+  )
 
   flavor {
     debug {
@@ -50,7 +50,7 @@ Package.define('v8') {
     conf.set 'library',    'shared'
     conf.set 'sample',     'shell'
     conf.set 'visibility', 'default'
-    conf.set 'importenv',  'LINKFLAGS,WARNINGFLAGS,PATH,'
+    conf.set 'importenv',  'LINKFLAGS,PATH'
   end
 
   after :install do
