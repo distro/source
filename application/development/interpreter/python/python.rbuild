@@ -53,10 +53,11 @@ Package.define('python') {
 __END__
 $$$
 
-$$$ selectors/select-python.rb $$$
+$$$ selectors/select-pythonrb $$$
 
-#! /usr/bin/env python
+#! /usr/bin/env ruby
 require 'packo'
+require 'packo/cli'
 require 'packo/models'
 
 class Application < Thor
@@ -68,16 +69,32 @@ class Application < Thor
   def list
     CLI.info 'List of availaibale Python versions'
 
-    self.versions.each_with_index {|version, i|
-      puts (self.current == version) ?
-        "  {#{(i + 1).to_s.green}}    #{version}" :
-        "  [#{i + 1             }]    #{version}"
+    current = self.current
+
+    self.versions.each {|target, versions|
+      next if versions.empty?
+
+      if target == 'default'
+        name = 'Default Python'
+      else
+        name = "Python #{target}"
+      end
+
+      puts ''
+      puts name.blue.bold
+
+      versions.each_with_index {|version, i|
+        puts (current[target] == version) ?
+          "  {#{(i + 1).to_s.green}}    #{version}" :
+          "  [#{i + 1             }]    #{version}"
+      }
     }
   end
 
-  desc "set VERSION", 'Choose what version of Python to use'
-  def set (version)
-    versions = self.versions
+  desc "set VERSION [TARGET=default]", 'Choose what version of Python to use'
+  def set (version, target=:default)
+    target   = normalize(target)
+    versions = self.versions[target]
 
     if version.numeric? && (version.to_i > versions.length || version.to_i < 1)
       fatal "#{version} out of index"
@@ -93,26 +110,98 @@ class Application < Thor
       exit 2
     end
 
+    place = case target
+      when 'default' then 'python'
+      when '2'       then 'python2'
+      when '3'       then 'python3'
+    end
+
     case version
+      when 'cpython-2.4'
+        FileUtils.ln_sf((System.env![:INSTALL_PATH] + "/usr/bin/python2.4").cleanpath, (System.env![:INSTALL_PATH] + "/usr/bin/#{place}").cleanpath) rescue nil
+
+      when 'cpython-2.5'
+        FileUtils.ln_sf((System.env![:INSTALL_PATH] + "/usr/bin/python2.5").cleanpath, (System.env![:INSTALL_PATH] + "/usr/bin/#{place}").cleanpath) rescue nil
+
+      when 'cpython-2.6'
+        FileUtils.ln_sf((System.env![:INSTALL_PATH] + "/usr/bin/python2.6").cleanpath, (System.env![:INSTALL_PATH] + "/usr/bin/#{place}").cleanpath) rescue nil
+
+      when 'cpython-2.7'
+        FileUtils.ln_sf((System.env![:INSTALL_PATH] + "/usr/bin/python2.7").cleanpath, (System.env![:INSTALL_PATH] + "/usr/bin/#{place}").cleanpath) rescue nil
+
+      when 'cpython-3.0'
+        FileUtils.ln_sf((System.env![:INSTALL_PATH] + "/usr/bin/python3.0").cleanpath, (System.env![:INSTALL_PATH] + "/usr/bin/#{place}").cleanpath) rescue nil
+
+      when 'cpython-3.1'
+        FileUtils.ln_sf((System.env![:INSTALL_PATH] + "/usr/bin/python3.1").cleanpath, (System.env![:INSTALL_PATH] + "/usr/bin/#{place}").cleanpath) rescue nil
+
+      when 'cpython-3.2'
+        FileUtils.ln_sf((System.env![:INSTALL_PATH] + "/usr/bin/python3.2").cleanpath, (System.env![:INSTALL_PATH] + "/usr/bin/#{place}").cleanpath) rescue nil
+
+      when 'pypy'
+        FileUtils.ln_sf((System.env![:INSTALL_PATH] + "/usr/bin/pypy").cleanpath, (System.env![:INSTALL_PATH] + "/usr/bin/#{place}").cleanpath) rescue nil
     end
 
     CLI.info "Set Python to #{version}"
 
-    Models::Selector.first(:name => 'python').update(:data => version)
+    Models::Selector.first_or_create(:name => 'python').update(:data => self.current.merge(target => version))
   end
 
   no_tasks {
     def current
-      Models::Selector.first(:name => 'python').data rescue nil
+      (Models::Selector.first_or_create(:name => 'python').data rescue nil) || {}
     end
   
     def versions
-      versions = []
+      versions = { ?2 => [], ?3 => [] }
 
-      if File.executable?("#{System.env![:INSTALL_PATH]}/usr/bin/python1.8")
+      if File.executable?("#{System.env![:INSTALL_PATH]}/usr/bin/python2.4")
+        versions[?2] << 'cpython-2.4'
       end
 
+      if File.executable?("#{System.env![:INSTALL_PATH]}/usr/bin/python2.5")
+        versions[?2] << 'cpython-2.5'
+      end
+
+      if File.executable?("#{System.env![:INSTALL_PATH]}/usr/bin/python2.6")
+        versions[?2] << 'cpython-2.6'
+      end
+
+      if File.executable?("#{System.env![:INSTALL_PATH]}/usr/bin/python2.7")
+        versions[?2] << 'cpython-2.7'
+      end
+
+      if File.executable?("#{System.env![:INSTALL_PATH]}/usr/bin/python3.0")
+        versions[?3] << 'cpython-3.0'
+      end
+
+      if File.executable?("#{System.env![:INSTALL_PATH]}/usr/bin/python3.1")
+        versions[?3] << 'cpython-3.1'
+      end
+
+      if File.executable?("#{System.env![:INSTALL_PATH]}/usr/bin/python3.2")
+        versions[?3] << 'cpython-3.2'
+      end
+
+      if File.executable?("#{System.env![:INSTALL_PATH]}/usr/bin/pypy")
+        versions[?2] << 'pypy'
+      end
+
+      versions['default'] = versions[?2] + versions[?3]
+
       versions
+    end
+
+    def normalize (target)
+      target = target.to_s
+
+      if target.match(/2/)
+        '2'
+      elsif target.to_s.match(/3/)
+        '3'
+      else
+        'default'
+      end
     end
   }
 end

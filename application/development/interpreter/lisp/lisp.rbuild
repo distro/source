@@ -25,8 +25,9 @@ $$$
 
 $$$ selectors/select-lisp.rb $$$
 
-#! /usr/bin/env lisp
+#! /usr/bin/env ruby
 require 'packo'
+require 'packo/cli'
 require 'packo/models'
 
 class Application < Thor

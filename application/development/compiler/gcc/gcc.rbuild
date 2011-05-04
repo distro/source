@@ -232,8 +232,8 @@ $$$ selectors/select-gcc.rb $$$
 
 #! /usr/bin/env ruby
 require 'packo'
-require 'packo/models'
 require 'packo/cli'
+require 'packo/models'
 
 class Application < Thor
   include Packo

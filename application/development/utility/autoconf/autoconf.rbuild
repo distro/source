@@ -32,30 +32,29 @@ $$$
 $$$ selectors/select-autoconf.rb $$$
 
 #! /usr/bin/env ruby
-require 'optitron'
-
 require 'packo'
-require 'packo/binary/helpers'
+require 'packo/cli'
+require 'packo/models'
 
-class Application < Optitron::CLI
+class Application < Thor
   include Packo
   include Binary::Helpers
   include Models
 
-  desc 'List available autoconf versions'
+  desc 'list', 'List available autoconf versions'
   def list
-    info 'List of availaibale autoconf versions'
+    CLI.info 'List of availaibale autoconf versions'
 
     current = self.current
 
     self.versions.each_with_index {|version, i|
       puts (current == version) ?
-        "  {#{colorize(i + 1, :GREEN)}}    #{version}" :
-        "  [#{i + 1}]    #{version}"
+        "  {#{i + 1).to_s.green}}    #{version}" :
+        "  [#{i + 1            }]    #{version}"
     }
   end
 
-  desc 'Choose what version of autoconf to use'
+  desc 'set VERSION', 'Choose what version of autoconf to use'
   def set (version)
     versions = self.versions
 
@@ -77,13 +76,13 @@ class Application < Optitron::CLI
       FileUtils.ln_sf "#{bin}-#{version}", "/usr/bin/#{bin}"
     }
 
-    info "Set autoconf to #{version}"
+    CLI.info "Set autoconf to #{version}"
 
     Selector.first(:name => 'autoconf').update(:data => version)
   end
 
   def current
-    (Selector.first(:name => 'autoconf').data rescue nil) || {}
+    (Selector.first_or_create(:name => 'autoconf').data rescue nil) || {}
   end
 
   def versions

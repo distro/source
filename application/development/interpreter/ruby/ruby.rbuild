@@ -39,6 +39,7 @@ $$$ selectors/select-ruby.rb $$$
 
 #! /usr/bin/env ruby
 require 'packo'
+require 'packo/cli'
 require 'packo/models'
 
 class Application < Thor
@@ -106,7 +107,7 @@ class Application < Thor
 
   no_tasks {
     def current
-      Models::Selector.first(:name => 'ruby').data rescue nil
+      Models::Selector.first_or_create(:name => 'ruby').data rescue nil
     end
   
     def versions

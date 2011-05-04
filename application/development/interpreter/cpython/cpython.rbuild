@@ -93,7 +93,6 @@ Package.define('cpython') {
     end
 
     env[:PYTHON_DISABLE_MODULES] = package.disable.join(' ')
-    env[:OPT]                    = env[:CFLAGS].replace('-O3', '-Os')
 
     CLI.info "Disabled modules: #{env[:PYTHON_DISABLE_MODULES]}"
 
@@ -113,5 +112,9 @@ Package.define('cpython') {
     end
 
     autotools.autoreconf
+  end
+
+  after :install do
+    package.do.rm '/usr/bin/python'
   end
 }

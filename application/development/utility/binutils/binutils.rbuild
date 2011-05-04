@@ -81,8 +81,8 @@ $$$ selectors/select-binutils.rb $$$
 
 #! /usr/bin/env ruby
 require 'packo'
-require 'packo/models'
 require 'packo/cli'
+require 'packo/models'
 
 class Application < Thor
   include Packo
@@ -145,7 +145,7 @@ class Application < Thor
 
   no_tasks {
     def current
-      (Models::Selector.first(:name => 'binutils').data rescue nil) || {}
+      (Models::Selector.first_or_create(:name => 'binutils').data rescue nil) || {}
     end
 
     def versions

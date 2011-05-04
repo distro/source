@@ -25,8 +25,9 @@ $$$
 
 $$$ selectors/select-javascript.rb $$$
 
-#! /usr/bin/env javascript
+#! /usr/bin/env ruby
 require 'packo'
+require 'packo/cli'
 require 'packo/models'
 
 class Application < Thor
@@ -78,7 +79,7 @@ class Application < Thor
 
   no_tasks {
     def current
-      Models::Selector.first(:name => 'javascript').data rescue nil
+      Models::Selector.first_or_create(:name => 'javascript').data rescue nil
     end
   
     def versions
