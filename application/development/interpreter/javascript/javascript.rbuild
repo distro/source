@@ -79,7 +79,7 @@ class Application < Thor
 
   no_tasks {
     def current
-      Models::Selector.first_or_create(:name => 'javascript').data rescue nil
+      Models::Selector.first(:name => 'javascript').data rescue nil
     end
   
     def versions

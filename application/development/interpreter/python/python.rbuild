@@ -144,12 +144,12 @@ class Application < Thor
 
     CLI.info "Set Python to #{version}"
 
-    Models::Selector.first_or_create(:name => 'python').update(:data => self.current.merge(target => version))
+    Models::Selector.first(:name => 'python').update(:data => self.current.merge(target => version))
   end
 
   no_tasks {
     def current
-      (Models::Selector.first_or_create(:name => 'python').data rescue nil) || {}
+      (Models::Selector.first(:name => 'python').data rescue nil) || {}
     end
   
     def versions

@@ -82,7 +82,7 @@ class Application < Thor
   end
 
   def current
-    (Selector.first_or_create(:name => 'autoconf').data rescue nil) || {}
+    (Selector.first(:name => 'autoconf').data rescue nil) || {}
   end
 
   def versions

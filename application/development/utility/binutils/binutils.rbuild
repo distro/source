@@ -145,7 +145,7 @@ class Application < Thor
 
   no_tasks {
     def current
-      (Models::Selector.first_or_create(:name => 'binutils').data rescue nil) || {}
+      (Models::Selector.first(:name => 'binutils').data rescue nil) || {}
     end
 
     def versions
