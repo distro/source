@@ -5,6 +5,8 @@ Package.define('ctags') {
   homepage    'http://ctags.sourceforge.net'
   license     'GPL-2'
 
+	maintaner 'meh. <meh@paranoici.org>'
+
   source 'sourceforge://ctags/ctags/#{package.version}/ctags-#{package.version}'
 
   before :configure do |conf|
