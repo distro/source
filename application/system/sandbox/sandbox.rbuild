@@ -10,8 +10,8 @@ Package.define('sandbox') {
   source 'http://dev.gentoo.org/~vapier/dist/sandbox-#{package.version}.tar.xz'
 
   after :install do
-    File.write("#{package.distdir}/etc/sandbox.d/09sandbox", package.filesystem['files/sandbox'])
-    File.write("#{package.distdir}/etc/sandbox.d/10packo", package.filesystem['files/packo'])
+    package.filesystem['files/sandbox'].save("#{package.distdir}/etc/sandbox.d/09sandbox")
+    package.filesystem['files/packo'].save("#{package.distdir}/etc/sandbox.d/10packo")
   end
 }
 
