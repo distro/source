@@ -161,10 +161,10 @@ Package.define('bitlbee') {
     package.autotools.make 'install-etc', "DESTDIR=#{package.distdir}"
   end
 
-  admin.do {|sys|
-    sys.useradd :bitlbee, home: Path.clean(env[:INSTALL_PATH] + '/var/lib/bitlbee')
+  admin.do {
+    useradd :bitlbee, home: Path.clean(package.env[:INSTALL_PATH] + '/var/lib/bitlbee')
 
-    sys.chown Path.clean(env[:INSTALL_PATH] + '/var/lib/bilbee'), user: :bitlbee, group: :bitlbee
-    sys.chown Path.clean(env[:INSTALL_PATH] + '/var/run/bilbee'), user: :bitlbee, group: :bitlbee
+    chown Path.clean(package.env[:INSTALL_PATH] + '/var/lib/bilbee'), user: :bitlbee, group: :bitlbee
+    chown Path.clean(package.env[:INSTALL_PATH] + '/var/run/bilbee'), user: :bitlbee, group: :bitlbee
   }
 }

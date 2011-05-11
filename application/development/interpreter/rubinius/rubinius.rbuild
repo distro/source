@@ -1,6 +1,5 @@
 Package.define('rubinius') {
-  avoid Modules::Building::Autotools
-  use   Modules::Building::Rake
+  use Building::Rake
 
   tags 'application', 'interpreter', 'development', 'ruby'
 
@@ -18,23 +17,25 @@ Package.define('rubinius') {
     Do.cd Dir.glob("#{workdir}/*").first
   end
 
-  before :compile do
-    environment[:LD]       = environment[:CXX]
-    environment[:FAKEROOT] = distdir 
+  before :configure do |conf|
+    env[:LD]       = env[:CXX]
+    env[:FAKEROOT] = distdir 
+    env[:RUBYOPT]  = '-rrubygems'
+    env[:CFLAGS]  << '-Wno-error'
 
-    conf = Modules::Building::Autotools::Configuration.new
+    conf.set 'prefix',     Path.clean(env[:INSTALL_PATH] + 'usr')
+    conf.set 'gemsdir',    Path.clean(env[:INSTALL_PATH] + 'usr/lib/ruby')
+    conf.set 'bindir',     Path.clean(env[:INSTALL_PATH] + 'usr/bin')
+    conf.set 'includedir', Path.clean(env[:INSTALL_PATH] + 'usr/include/rubinius')
+    conf.set 'mandir',     Path.clean(env[:INSTALL_PATH] + 'usr/share')
+    conf.set 'libdir',     Path.clean(env[:INSTALL_PATH] + 'usr/lib/ruby')
+    conf.set 'sitedir',    Path.clean(env[:INSTALL_PATH] + 'usr/lib/ruby/rubinius/site')
+    conf.set 'vendordir',  Path.clean(env[:INSTALL_PATH] + 'usr/lib/ruby/rubinius/vendor')
 
-    conf.set 'prefix',     (env[:INSTALL_PATH] + 'usr').cleanpath
-    conf.set 'gemsdir',    (env[:INSTALL_PATH] + 'usr/lib/ruby').cleanpath
-    conf.set 'bindir',     (env[:INSTALL_PATH] + 'usr/bin').cleanpath
-    conf.set 'includedir', (env[:INSTALL_PATH] + 'usr/include/rubinius').cleanpath
-    conf.set 'mandir',     (env[:INSTALL_PATH] + 'usr/share').cleanpath
-    conf.set 'libdir',     (env[:INSTALL_PATH] + 'usr/lib/ruby').cleanpath
-    conf.set 'sitedir',    (env[:INSTALL_PATH] + 'usr/lib/ruby/rubinius/site').cleanpath
-    conf.set 'vendordir',  (env[:INSTALL_PATH] + 'usr/lib/ruby/rubinius/vendor').cleanpath
+    conf.execute
+  end
 
-    Packo.sh "./configure #{conf}"
-
+  before :compile do |conf|
     package.rake.do 'build'
 
     throw :halt
@@ -42,7 +43,7 @@ Package.define('rubinius') {
 
   after :install do
     [:rake, :rdoc, :ruby, :ri, :gem, :irb].each {|file|
-      Do.rm("#{distdir}/usr/bin/#{file}")
+      package.do.rm("/usr/bin/#{file}")
     }
   end
 }
