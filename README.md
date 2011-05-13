@@ -1,4 +1,4 @@
 Distrø Tree
 ===========
 
-The main rbuild tree of Distrø.
+The main tree of Distrø with officially checked and maintained rbuilds.
