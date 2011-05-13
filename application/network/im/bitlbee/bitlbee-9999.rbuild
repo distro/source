@@ -6,10 +6,10 @@ Package.define('bitlbee', '9999') {
 
   use Fetching::Bazaar
 
-  bazaar(
+  source Location[
     repository: 'http://code.bitlbee.org/',
     branch:     'bitlbee'
-  )
+  ]
 
   flavor {
     killer {

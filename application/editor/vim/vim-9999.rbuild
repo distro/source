@@ -8,7 +8,7 @@ Package.define('vim', '9999') {
 
 	use Fetching::Mercurial
 
-	mercurial(
+  source Location[
     repository: 'https://vim.googlecode.com/hg/'
-  )
+  ]
 }

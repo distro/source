@@ -6,7 +6,7 @@ Package.define('craftd', '9999') {
 
   use Fetching::Git
 
-  git(
+  source Location[
     repository: 'git://github.com/craftd/craftd.git'
-  )
+  ]
 }

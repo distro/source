@@ -6,7 +6,7 @@ Package.define('minutor', '9999') {
 
   use Fetching::Mercurial
 
-  mercurial(
+  source Location[
     repository: 'http://seancode.com/hg/minutor'
-  )
+  ]
 }

@@ -9,10 +9,10 @@ Package.define('v8') {
 
   maintainer 'meh. <meh@paranoici.org>'
 
-  subversion(
+  source Location[
     repository: 'http://v8.googlecode.com/svn',
     tag:        '#{package.version}'
-  )
+  ]
 
   flavor {
     debug {

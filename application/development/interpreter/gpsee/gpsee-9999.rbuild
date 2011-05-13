@@ -6,7 +6,7 @@ Package.define('gpsee', '9999') {
 
   use Fetching::Mercurial
 
-  mercurial(
+  source Location[
     repository: 'https://gpsee.googlecode.com/hg/'
-  )
+  ]
 }

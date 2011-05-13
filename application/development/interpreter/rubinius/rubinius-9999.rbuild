@@ -6,9 +6,9 @@ Package.define('rubinius', '9999') {
 
   use Fetching::Git
 
-  git(
+  source Location[
     repository: 'git://github.com/evanphx/rubinius.git'
-  )
+  ]
 
   flavor {
     hydra {

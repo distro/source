@@ -6,7 +6,7 @@ Package.define('pypy', '9999') {
 
   use Fetching::Mercurial
 
-  mercurial(
+  source Location[
     repository: 'http://bitbucket.org/pypy/pypy'
-  )
+  ]
 }
