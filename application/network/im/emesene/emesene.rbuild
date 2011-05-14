@@ -15,6 +15,8 @@ Package.define('emesene') {
 
   features {
     webcam {
+      description 'Enable webcam support'
+
       before :patch do
         Do.sed 'setup.py', [/(\[.*?)libmimic_module(.*?\])/, '\1\2']
       end
