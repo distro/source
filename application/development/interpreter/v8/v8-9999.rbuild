@@ -4,8 +4,6 @@ Package.define('v8', '9999') {
   compiler 'gcc'
   libc     'glibc'
 
-  subversion.merge!(
-    tag:    nil,
-    branch: :bleeding_edge
-  )
+  source.delete(:tag)
+  source.branch = :bleeding_edge
 }

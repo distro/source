@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <repository version="1.0" name="universe" type="source">
-    <address>git://github.com/organo/source.git</address>
+    <location type="git">
+        <repository>git://github.com/distro/source.git</repository>
+        <branch>universe</branch>
+    </location>
 </repository>
