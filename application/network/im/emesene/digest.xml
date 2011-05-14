@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<digest version="1.0">
+    <build version="1.6.3" slot="">
+        <features>webcam</features>
+        <files>
+            <file name="emesene-1.6.3.tar.gz" url="sourceforge://emesene/emesene-1.6.3/emesene-1.6.3">c4759efe180c8e1589bd966c6b84106aa7cd356e</file>
+        </files>
+    </build>
+</digest>
