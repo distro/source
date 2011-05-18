@@ -20,7 +20,7 @@ Package.define('bzip2') {
   }
 
   before :configure do
-    throw :halt
+    skip
   end
 
   before :compile do
@@ -32,7 +32,7 @@ Package.define('bzip2') {
     autotools.make "CC=#{environment[:CC]}", "AR=#{environment[:AR]}", "RANLIB=#{environment[:RANLIB]}",
       'all'
 
-    throw :halt
+    skip
   end
 
   before :install do
@@ -52,7 +52,7 @@ Package.define('bzip2') {
       package.do.sym "libbz2.so.#{package.version}", "libbz2.so"
     end
 
-    throw :halt
+    skip
   end
 }
 

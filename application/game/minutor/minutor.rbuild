@@ -12,6 +12,6 @@ Package.define('minutor') {
   end
 
   before :configure do
-    throw :halt
+    skip
   end
 }

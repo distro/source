@@ -50,7 +50,7 @@ Package.define('linux') { type 'kernel'
   after :unpack do
     Do.mv "#{workdir}/linux-#{version}", "#{distdir}/usr/src/linux#{'-zen' if features.zen?}#{'-gr' if features.grsecurity?}-#{version}"
 
-    throw :halt
+    skip
   end
 
   before :pack do

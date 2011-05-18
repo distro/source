@@ -23,7 +23,7 @@ Package.define('cygwin') { type 'library'
   end
 
   before :compile do
-    throw :halt
+    skip
   end
 
   before :install do |conf|
@@ -39,6 +39,6 @@ Package.define('cygwin') { type 'library'
 
     package.autotools.make 'install-headers', "tooldir='/usr/#{middle}/usr'", "DESTDIR='#{package.distdir}'"
 
-    throw :halt
+    skip
   end
 }

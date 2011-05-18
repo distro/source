@@ -48,7 +48,7 @@ Package.define('unzip') {
   end
 
   before :configure do
-    throw :halt
+    skip
   end
 
   before :compile do
@@ -68,14 +68,14 @@ Package.define('unzip') {
 
     autotools.make "-j#{environment[:MAKE_JOBS] || 1}", '-f', 'unix/Makefile', os
 
-    throw :halt
+    skip
   end
 
   before :install do
     package.do.bin 'unzip', 'funzip', 'unzipsfx', 'unix/zipgrep'
     package.do.sym 'unzip', '/usr/bin/zipinfo'
 
-    throw :halt
+    skip
   end
 }
 

@@ -105,7 +105,7 @@ Package.define('git') {
   end
 
   before :configure do
-    throw :halt
+    skip
   end
 
   def make (*args)
@@ -115,12 +115,12 @@ Package.define('git') {
   before :compile do
     make
 
-    throw :halt
+    skip
   end
 
   before :install do
     make 'install'
 
-    throw :halt
+    skip
   end
 }

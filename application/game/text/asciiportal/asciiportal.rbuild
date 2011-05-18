@@ -54,6 +54,6 @@ Package.define('asciiportal') {
 
     Packo.sh "#{environment[:CXX]} #{environment[:LDFLAGS]} -o asciiportal #{files.join(' ')}"
 
-    throw :halt
+    skip
   end
 }

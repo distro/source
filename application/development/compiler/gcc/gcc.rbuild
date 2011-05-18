@@ -186,7 +186,7 @@ Package.define('gcc') { type 'compiler'
       "STAGE1_CFLAGS=#{env[:STAGE1_CFLAGS] || env[:CFLAGS]}",
       "BOOT_CFLAGS=#{env[:BOOT_CFLAGS] || env[:CFLAGS]}"
 
-    throw :halt
+    skip
   end
 
   before :pack do

@@ -21,7 +21,7 @@ Package.define('zlib') {
     if host == '*-mingw*' || host == 'mingw*' || host == '*cygwin*'
       autotools.make '-f', 'win32/Makefile.gcc', "prefix=/usr/", 'STRIP=', "PREFIX=#{host}-"
 
-      throw :halt
+      skip
     end
   end
 }

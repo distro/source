@@ -26,6 +26,6 @@ Package.define('ecl') {
   before :compile do |conf|
     autotools.make
 
-    throw :halt
+    skip
   end
 }

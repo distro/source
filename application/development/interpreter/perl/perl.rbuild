@@ -51,6 +51,6 @@ Package.define('perl') {
 
     Packo.sh './Configure', *flags
 
-    throw :halt
+    skip
   end
 }

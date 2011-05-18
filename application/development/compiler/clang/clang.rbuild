@@ -36,13 +36,13 @@ Package.define('clang') { type 'compilar'
   before :compile do |conf|
     autotools.make 'VERBOSE=1', 'KEEP_SYMBOLS=1', 'REQUIRES_RTTI=1', 'clang-only'
 
-    throw :halt
+    skip
   end
 
   before :install do |conf|
     autotools.make 'KEEP_SYMBOLS=1', "DESTDIR=#{distdir}", 'install-clang'
 
-    throw :halt
+    skip
   end
 
 }

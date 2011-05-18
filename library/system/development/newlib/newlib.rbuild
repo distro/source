@@ -44,6 +44,6 @@ Package.define('newlib') { type 'libc'
   before :compile do
     package.autotools.make '-j1'
 
-    throw :halt
+    skip
   end
 }

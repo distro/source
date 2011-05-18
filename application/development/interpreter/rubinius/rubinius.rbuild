@@ -38,7 +38,7 @@ Package.define('rubinius') {
   before :compile do |conf|
     package.rake.do 'build'
 
-    throw :halt
+    skip
   end
 
   after :install do

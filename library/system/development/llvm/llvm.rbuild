@@ -64,12 +64,12 @@ Package.define('llvm') {
   before :compile do |conf|
     autotools.make 'VERBOSE=1', 'KEEP_SYMBOLS=1', 'REQUIRES_RTTI=1'
 
-    throw :halt
+    skip
   end
 
   before :install do |conf|
     autotools.install nil, 'KEEP_SYMBOLS=1'
 
-    throw :halt
+    skip
   end
 }

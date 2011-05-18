@@ -10,6 +10,6 @@ Package.define('installwatch') {
   before :configure do |conf|
     env[:PREFIX] = (env[:INSTALL_PATH] + '/usr').cleanpath
 
-    throw :halt
+    skip
   end
 }

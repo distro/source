@@ -50,7 +50,7 @@ Package.define('glibc') { type 'libc'
   before :compile do
     autotools.make
 
-    throw :halt
+    skip
   end
 }
 
