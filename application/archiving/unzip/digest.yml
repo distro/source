@@ -1,0 +1,8 @@
+--- 
+packages: 
+- version: "6.0"
+  features: bzip2 unicode
+  files: 
+  - name: unzip60.tar.gz
+    url: sourceforge://infozip/UnZip%206.x%20%28latest%29/UnZip%206.0/unzip60
+    digest: abf7de8a4018a983590ed6f5cbd990d4740f8a22

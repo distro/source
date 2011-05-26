@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<digest version="1.0">
-    <build version="1.18.0" slot="">
-        <features>unicode nls threads iconv</features>
-        <files>
-            <file name="newlib-1.18.0.tar.gz">a47d3b8a508304143334b36bdb5b33786a61ce94</file>
-        </files>
-    </build>
-</digest>

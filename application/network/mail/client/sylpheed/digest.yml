@@ -1,0 +1,8 @@
+--- 
+packages: 
+- version: 3.1.1
+  features: ipv6 ssl crypt ldap nls pda spell xface
+  files: 
+  - name: sylpheed-3.1.1.tar.bz2
+    url: http://sylpheed.sraoss.jp/sylpheed/v3.1/sylpheed-3.1.1.tar.bz2
+    digest: 1217c528f2362311922518a89b4d4866bfa09cd0

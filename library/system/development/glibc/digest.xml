@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<digest version="1.0">
-    <build version="2.11.2" slot="">
-        <features></features>
-        <files>
-            <file name="glibc-2.11.2.tar.xz">fb0663bbcc7516170c104f8bd27432d696df9f56</file>
-        </files>
-    </build>
-</digest>

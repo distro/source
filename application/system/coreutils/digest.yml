@@ -1,0 +1,8 @@
+--- 
+packages: 
+- version: "8.9"
+  features: nls caps acl xattr gmp
+  files: 
+  - name: coreutils-8.9.tar.xz
+    url: gnu://coreutils/8.9
+    digest: 8cb711149daaa3af0d285fa83a4e9727912fd3a9

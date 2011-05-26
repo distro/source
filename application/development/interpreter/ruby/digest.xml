@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<digest version="1.0">
-    <build version="0" slot="">
-        <features>mri1.8 mri1.9 rubinius jruby</features>
-        <files/>
-    </build>
-</digest>

@@ -1,0 +1,12 @@
+--- 
+packages: 
+- version: "1.5"
+  features: jit sandbox stackless ssl ncurses xml zlib bz2
+  files: 
+  - name: pypy-1.5-src.tar.bz2
+    url: http://pypy.org/download/pypy-1.5-src.tar.bz2
+    digest: 0ebcecaa4c725bf1a48272033d9f429b8a82b7e1
+- version: "9999"
+  features: jit sandbox stackless ssl ncurses xml zlib bz2
+  files: []
+

@@ -1,0 +1,6 @@
+--- 
+packages: 
+- version: "0"
+  features: cpython2.4 cpython2.5 cpython2.6 cpython2.7 cpython3.1 jython pypy
+  files: []
+

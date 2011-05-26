@@ -1,0 +1,8 @@
+--- 
+packages: 
+- version: 2.3.1
+  features: ncurses slang spell nls unicode justify
+  files: 
+  - name: nano-2.3.1.tar.gz
+    url: http://www.nano-editor.org/dist/v2.3/nano-2.3.1.tar.gz
+    digest: bd1993189f82649b4960b1ccd7142a61f43f2993

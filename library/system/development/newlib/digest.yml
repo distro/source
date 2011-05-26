@@ -1,0 +1,8 @@
+--- 
+packages: 
+- version: 1.18.0
+  features: unicode nls threads iconv
+  files: 
+  - name: newlib-1.18.0.tar.gz
+    url: ftp://sources.redhat.com/pub/newlib/newlib-1.18.0.tar.gz
+    digest: a47d3b8a508304143334b36bdb5b33786a61ce94

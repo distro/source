@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<digest version="1.0">
-    <build version="1.4" slot="">
-        <features></features>
-        <files>
-            <file name="gzip-1.4.tar.xz" url="gnu://gzip/1.4">d383b8a1dadc5fa9c34e2a2ebe2452be7dd27393</file>
-        </files>
-    </build>
-</digest>

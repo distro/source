@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<digest version="1.0">
-    <build version="1.7.5.rc1" slot="">
-        <features>http threads ipv6 cvs subversion perl python tk</features>
-        <files>
-            <file name="git-1.7.5.rc1.tar.bz2" url="http://www.kernel.org/pub/software/scm/git/git-1.7.5.rc1.tar.bz2">0d68a770d363272bc7dbcedfdd2602310379242e</file>
-        </files>
-    </build>
-</digest>

@@ -1,0 +1,8 @@
+--- 
+packages: 
+- version: 1.7.7
+  features: ""
+  files: 
+  - name: cygwin-1.7.7-1-src.tar.bz2
+    url: ftp://sourceware.org/pub/cygwin/release/cygwin/cygwin-1.7.7-1-src.tar.bz2
+    digest: 988a8085738bc2929268a7acbd01454e044c7688

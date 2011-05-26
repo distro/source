@@ -1,0 +1,8 @@
+--- 
+packages: 
+- version: 2.11.2
+  features: nls
+  files: 
+  - name: glibc-2.11.2.tar.xz
+    url: gnu://glibc/2.11.2
+    digest: fb0663bbcc7516170c104f8bd27432d696df9f56

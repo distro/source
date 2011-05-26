@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<digest version="1.0">
-    <build version="1.7.7" slot="">
-        <features></features>
-        <files>
-            <file name="cygwin-1.7.7-1-src.tar.bz2">988a8085738bc2929268a7acbd01454e044c7688</file>
-        </files>
-    </build>
-</digest>

@@ -1,0 +1,20 @@
+--- 
+packages: 
+- version: 11.1.1
+  features: threads unicode
+  files: 
+  - name: ecl-11.1.1.tar.gz
+    url: sourceforge://ecls/ecls/11.1/ecl-11.1.1
+    digest: 9c4c88683f6186f8152866033e6850e19eb8cc1f
+- version: 10.4.1
+  features: threads unicode
+  files: 
+  - name: ecl-10.4.1.tar.gz
+    url: sourceforge://ecls/ecls/10.4/ecl-10.4.1
+    digest: 044c579b7f0c42d15e05b662c433488e8da85020
+- version: 9.12.3
+  features: threads unicode
+  files: 
+  - name: ecl-9.12.3.tgz
+    url: sourceforge://ecls/ecls/9.12/ecl-9.12.3
+    digest: cf293b029f33b0b0f9539e9163618a9d31df6f30

@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<digest version="1.0">
-    <build version="2.20.1" slot="">
-        <features>nls</features>
-        <files>
-            <file name="binutils-2.20.1.tar.bz2" url="gnu://binutils/2.20.1">fd2ba806e6f3a55cee453cb25c86991b26a75dee</file>
-        </files>
-    </build>
-</digest>

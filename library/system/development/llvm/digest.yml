@@ -1,0 +1,14 @@
+--- 
+packages: 
+- version: "2.8"
+  features: optimizations jit threads libffi ocaml
+  files: 
+  - name: llvm-2.8.tgz
+    url: http://llvm.org/releases/2.8/llvm-2.8.tgz
+    digest: 6d49fe039d28e8664de25491c775cb2c599e30c1
+- version: "2.9"
+  features: optimizations jit threads libffi ocaml
+  files: 
+  - name: llvm-2.9.tgz
+    url: http://llvm.org/releases/2.9/llvm-2.9.tgz
+    digest: 500f587f840199ac53c4fc7572839d08fa9d9123

@@ -1,0 +1,16 @@
+--- 
+packages: 
+- version: 1.8.7-p334
+  slot: "1.8"
+  features: ipv6 berkdb gdbm ssl socks5 tk ncurses libedit readline
+  files: 
+  - name: ruby-1.8.7-p334.tar.gz
+    url: ftp://ftp.ruby-lang.org/pub/ruby/1.8/ruby-1.8.7-p334.tar.gz
+    digest: 318054ca9442a49abbf710adbf61225b6b3cb352
+- version: 1.9.2-p180
+  slot: "1.9"
+  features: ipv6 berkdb gdbm ssl socks5 tk ncurses libedit readline
+  files: 
+  - name: ruby-1.9.2-p180.tar.gz
+    url: ftp://ftp.ruby-lang.org/pub/ruby/1.9/ruby-1.9.2-p180.tar.gz
+    digest: 6a482bc07239b37bcadf68dda63c65d20dc19ebe

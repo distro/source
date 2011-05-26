@@ -1,0 +1,8 @@
+--- 
+packages: 
+- version: "1.4"
+  features: ""
+  files: 
+  - name: gzip-1.4.tar.xz
+    url: gnu://gzip/1.4
+    digest: d383b8a1dadc5fa9c34e2a2ebe2452be7dd27393

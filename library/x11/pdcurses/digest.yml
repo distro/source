@@ -1,0 +1,8 @@
+--- 
+packages: 
+- version: "3.4"
+  features: ""
+  files: 
+  - name: PDCurses-3.4.tar.gz
+    url: sourceforge://pdcurses/pdcurses/3.4/PDCurses-3.4
+    digest: e36684442a6171cc3a5165c8c49c70f67db7288c

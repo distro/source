@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<digest version="1.0">
-    <build version="5.9" slot="">
-        <features>cxx unicode gpm ada</features>
-        <files>
-            <file name="ncurses-5.9.tar.gz" url="gnu://ncurses/5.9">3e042e5f2c7223bffdaac9646a533b8c758b65b5</file>
-        </files>
-    </build>
-</digest>

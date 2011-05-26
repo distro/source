@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<digest version="1.0">
-    <build version="2.3.1" slot="">
-        <features>ncurses slang spell nls unicode justify</features>
-        <files>
-            <file name="nano-2.3.1.tar.gz" url="http://www.nano-editor.org/dist/v2.3/nano-2.3.1.tar.gz">bd1993189f82649b4960b1ccd7142a61f43f2993</file>
-        </files>
-    </build>
-</digest>

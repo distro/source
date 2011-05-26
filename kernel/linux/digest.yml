@@ -1,0 +1,11 @@
+--- 
+packages: 
+- version: 2.6.36
+  features: zen
+  files: 
+  - name: linux-2.6.36.tar.bz2
+    url: http://kernel.org/pub/linux/kernel/v2.6/linux-2.6.36.tar.bz2
+    digest: b546ab66458d7d614151d80adbc03b4d28977ae2
+  - name: 2.6.36-zen2.patch.lzma
+    url: http://downloads.zen-kernel.org/2.6.36/2.6.36-zen2.patch.lzma
+    digest: bbb01531f7db9af89907c916e3b9426d516d7d0c
