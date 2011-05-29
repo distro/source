@@ -72,12 +72,12 @@ class Application < Thor
         Host.parse(target.sub("#{System.env![:INSTALL_PATH]}/usr/#{System.host}/", '')) && !target.end_with?('-bin')
       }.map {|target|
         [target.sub("#{System.env![:INSTALL_PATH]}/usr/#{System.host}/", ''), Dir.glob("#{target}/binutils-bin/*").map {|version|
-          Versionub.parse(version.sub("#{target}/binutils-bin/", ''))
+          version.sub("#{target}/binutils-bin/", '')
         }]
       }
 
       versions << [System.host.to_s, Dir.glob("#{System.env![:INSTALL_PATH]}/usr/#{System.host}/binutils-bin/*").map {|version|
-        Versionub.parse(version.sub("#{System.env![:INSTALL_PATH]}/usr/#{System.host}/binutils-bin/", ''))
+        version.sub("#{System.env![:INSTALL_PATH]}/usr/#{System.host}/binutils-bin/", '')
       }]
 
       Hash[versions]
