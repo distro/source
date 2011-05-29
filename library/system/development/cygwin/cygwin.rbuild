@@ -31,7 +31,7 @@ Package.define('cygwin') { type 'library'
 
     middle = (package.host != package.target) ? "#{package.host}/#{package.target}" : "#{package.target}"
     
-    package.do.into("#{package.distdir}/usr/#{middle}/usr/include") {
+    package.do.into("/usr/#{middle}/usr/include") {
       package.do.ins '../../winsup/w32api/include/*'
       package.do.ins '../../newlib/libc/include/*'
       package.do.sym 'usr/include', '../../sys-include'
