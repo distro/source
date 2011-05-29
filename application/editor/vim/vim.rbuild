@@ -106,7 +106,7 @@ Package.define('vim') {
   }
 
   before :initialize do
-    next unless package.version.tiny > 0
+    next unless package.version.tiny.to_i > 0
 
     package.source = [package.source].flatten
 
