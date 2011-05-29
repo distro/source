@@ -14,3 +14,8 @@ packages:
   - name: ruby-1.9.2-p180.tar.gz
     url: ftp://ftp.ruby-lang.org/pub/ruby/1.9/ruby-1.9.2-p180.tar.gz
     digest: 6a482bc07239b37bcadf68dda63c65d20dc19ebe
+- version: "9999"
+  slot: "1.9"
+  features: ipv6 berkdb gdbm ssl socks5 tk ncurses libedit readline
+  files: []
+

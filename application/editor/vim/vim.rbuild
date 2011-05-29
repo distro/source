@@ -120,7 +120,7 @@ Package.define('vim') {
   end
 
   before :patch do
-    next unless package.version.tiny > 0
+    next unless package.version.tiny.to_i > 0
 
     CLI.info "Applying #{package.version.tiny} patches, be patient"
 
