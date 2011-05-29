@@ -1,5 +1,5 @@
-Package.define('cygwin') { type 'library'
-  tags 'library', 'system', 'development'
+Package.define('cygwin') {
+  tags 'misc', 'kernel'
 
   description 'Linux-like environment for Windows'
   homepage    'http://cygwin.com/'
@@ -18,15 +18,10 @@ Package.define('cygwin') { type 'library'
 
     conf.clear
     conf.set 'target', package.target
-
-    Do.cd 'winsup/cygwin'
-  end
-
-  before :compile do
-    skip
   end
 
   before :install do |conf|
+=begin
     next unless package.host != package.target
 
     middle = (package.host != package.target) ? "#{package.host}/#{package.target}" : "#{package.target}"
@@ -40,5 +35,6 @@ Package.define('cygwin') { type 'library'
     package.autotools.make 'install-headers', "tooldir='/usr/#{middle}/usr'", "DESTDIR='#{package.distdir}'"
 
     skip
+=end
   end
 }
