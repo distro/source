@@ -110,7 +110,7 @@ Package.define('vim') {
 
     package.source = [package.source].flatten
 
-    1.upto(package.version.tiny) {|p|
+    1.upto(package.version.tiny.to_i) {|p|
       package.source << "ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.#{'%03d' % p}"
     }
   end
