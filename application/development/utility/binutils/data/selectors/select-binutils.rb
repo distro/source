@@ -44,16 +44,16 @@ class Application < Thor
       exit 2
     end
 
-    files = ['ar', 'as', 'ld', 'nm', 'objcopy', 'objdump', 'ranlib', 'strip']
-
-    if target == System.host.to_s
-      files.each {|file|
-        FileUtils.ln_sf "#{System.env![:INSTALL_PATH]}/usr/#{System.host}/binutils-bin/#{version}/#{file}", "#{System.env![:INSTALL_PATH]}/usr/bin/#{target}-#{file}"
-        FileUtils.ln_sf "#{System.env![:INSTALL_PATH]}/usr/#{System.host}/binutils-bin/#{version}/#{file}", "#{System.env![:INSTALL_PATH]}/usr/bin/#{file}"
+    if target == System.host
+      Dir["#{System.env![:INSTALL_PATH]}/usr/#{System.host}/binutils-bin/#{version}/*"].each {|file|
+        FileUtils.ln_sf file, "#{System.env![:INSTALL_PATH]}/usr/bin/#{File.basename(file)}"
+        FileUtils.ln_sf file, "#{System.env![:INSTALL_PATH]}/usr/bin/#{File.basename(file).sub("#{target.to_s}-", '')}"
       }
     else
-      files.each {|file|
-        FileUtils.ln_sf "#{System.env![:INSTALL_PATH]}/usr/#{System.host}/#{target}/binutils-bin/#{version}/#{file}", "#{System.env![:INSTALL_PATH]}/usr/bin/#{target}-#{file}"
+      Dir["#{System.env![:INSTALL_PATH]}/usr/#{System.host}/#{target}/binutils-bin/#{version}/*"].each {|file|
+        next unless File.basename(file).start_with?(target.to_s)
+
+        FileUtils.ln_sf file, "#{System.env![:INSTALL_PATH]}/usr/bin/#{File.basename(file)}"
       }
     end
 
