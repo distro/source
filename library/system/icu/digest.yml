@@ -1,0 +1,8 @@
+--- 
+packages: 
+- version: "4.8"
+  features: debug static
+  files: 
+  - name: icu4c-4_8-src.tgz
+    url: http://download.icu-project.org/files/icu4c/4.8/icu4c-4_8-src.tgz
+    digest: f458b41800cc21bbb92ceb119380ad3249252fd6
