@@ -1,0 +1,10 @@
+---
+version: 1.0
+
+type: source
+name: multiverse
+
+location:
+  type:       git
+  repository: git://github.com/distro/source.git
+  branch:     multiverse

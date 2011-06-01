@@ -1,0 +1,8 @@
+--- 
+packages: 
+- version: 1.6.3
+  features: webcam
+  files: 
+  - name: emesene-1.6.3.tar.gz
+    url: sourceforge://emesene/emesene-1.6.3/emesene-1.6.3
+    digest: c4759efe180c8e1589bd966c6b84106aa7cd356e
