@@ -7,7 +7,7 @@ Package.define('sandbox') {
 
   maintainer 'meh. <meh@paranoici.org>'
 
-  source 'http://dev.gentoo.org/~vapier/dist/sandbox-#{package.version}.tar.xz'
+  source 'http://dev.gentoo.org/~vapier/dist/sandbox-#{version}.tar.xz'
 
   after :install do
     package.filesystem['/files/sandbox'].save("#{package.distdir}/etc/sandbox.d/09sandbox")

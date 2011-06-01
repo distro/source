@@ -9,7 +9,7 @@ Package.define('rubinius') {
 
   maintainer 'meh. <meh@paranoici.org>'
 
-  source 'github://evanphx/rubinius/release-#{package.version}'
+  source 'github://evanphx/rubinius/release-#{version}'
 
   dependencies << '>=library/system/development/llvm-2.8'
 

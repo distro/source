@@ -7,7 +7,7 @@ Package.define('tar') {
 
   maintainer 'meh. <meh@paranoici.org>'
 
-  source 'gnu://tar/#{package.version}'
+  source 'gnu://tar/#{version}'
 
   flavor {
     static {

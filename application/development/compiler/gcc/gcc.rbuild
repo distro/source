@@ -7,7 +7,7 @@ Package.define('gcc') { type 'compiler'
 
   maintainer 'meh. <meh@paranoici.org>'
 
-  source 'gnu://gcc/#{package.version}'
+  source 'gnu://gcc/#{version}'
 
   flavor {
     multilib {

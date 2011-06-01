@@ -7,7 +7,7 @@ Package.define('icu') {
 
   maintainer 'Bronsa <brobronsa@gmail.com>'
 
-  source default: 'http://download.icu-project.org/files/icu4c/#{version}/icu4c-#{version.major}_#{version.minor}-src.tgz'
+  source default: 'http://download.icu-project.org/files/icu4c/#{version}/icu4c-#{version.gsub(".", "_")}-src.tgz'
 
   flavor {
     documentation {
@@ -17,7 +17,7 @@ Package.define('icu') {
         end
 
         before :fetch do
-          package.source[:docs] = 'http://download.icu-project.org/files/icu4c/#{version}/icu4c-#{version.major}_#{version.minor}-docs.tgz'
+          package.source[:docs] = 'http://download.icu-project.org/files/icu4c/#{version}/icu4c-#{version.gsub(".", "_")}-docs.tgz'
         end
 
         after :install do

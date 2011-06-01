@@ -7,7 +7,7 @@ Package.define('xz') {
 
   maintainer 'meh. <meh@paranoici.org>'
 
-  source 'http://tukaani.org/xz/xz-#{package.version}.tar.gz'
+  source 'http://tukaani.org/xz/xz-#{version}.tar.gz'
 
   flavor {
     static {

@@ -7,7 +7,7 @@ Package.define('detox') {
 
   dependencies << 'development/library/popt' << 'system/development/flex!' << 'system/development/bison!'
 
-  source 'sourceforge://detox/detox/#{package.version}/detox-#{package.version}'
+  source 'sourceforge://detox/detox/#{version}/detox-#{version}'
 
   before :configure do |conf|
     conf.with ['popt']

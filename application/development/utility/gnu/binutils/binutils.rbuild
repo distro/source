@@ -7,7 +7,7 @@ Package.define('binutils') {
 
   maintainer 'meh. <meh@paranoici.org>'
 
-  source 'gnu://binutils/#{package.version}'
+  source 'gnu://binutils/#{version}'
 
   flavor {
     headers {

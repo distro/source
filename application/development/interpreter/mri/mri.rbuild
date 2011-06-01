@@ -7,7 +7,7 @@ Package.define('mri') {
 
   maintainer 'meh. <meh@paranoici.org>'
 
-  source 'ftp://ftp.ruby-lang.org/pub/ruby/#{package.version.major}.#{package.version.minor}/ruby-#{package.version}.tar.gz'
+  source 'ftp://ftp.ruby-lang.org/pub/ruby/#{version.major}.#{version.minor}/ruby-#{version}.tar.gz'
 
   dependencies << 'system/library/zlib' << 'development/library/libffi'
 

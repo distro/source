@@ -7,7 +7,7 @@ Package.define('bzip2') {
 
   maintainer 'meh. <meh@paranoici.org>'
 
-  source 'http://www.bzip.org/#{package.version}/bzip2-#{package.version}.tar.gz'
+  source 'http://www.bzip.org/#{version}/bzip2-#{version}.tar.gz'
 
   flavor {
     static {

@@ -9,7 +9,7 @@ Package.define('pypy') {
 
   maintainer 'meh. <meh@paranoici.org>'
 
-  source 'http://pypy.org/download/pypy-#{package.version}-src.tar.bz2'
+  source 'http://pypy.org/download/pypy-#{version}-src.tar.bz2'
 
   features {
     jit { enabled!

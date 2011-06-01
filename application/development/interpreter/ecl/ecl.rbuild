@@ -7,7 +7,7 @@ Package.define('ecl') {
 
   maintainer 'meh. <meh@paranoici.org>'
 
-  source 'sourceforge://ecls/ecls/#{package.version.major}.#{package.version.minor}/ecl-#{package.version}'
+  source 'sourceforge://ecls/ecls/#{version.major}.#{version.minor}/ecl-#{version}'
 
   features {
     threads { enabled!

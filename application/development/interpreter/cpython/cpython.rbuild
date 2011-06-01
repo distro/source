@@ -7,7 +7,7 @@ Package.define('cpython') {
 
   maintainer 'meh. <meh@paranoici.org>'
 
-  source 'http://www.python.org/ftp/python/#{package.version}/Python-#{package.version}.tar.bz2'
+  source 'http://www.python.org/ftp/python/#{version}/Python-#{version}.tar.bz2'
 
   dependencies << 'system/library/zlib' << 'development/library/libffi'
 

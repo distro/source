@@ -5,7 +5,7 @@ Package.define('perl') {
   homepage    'http://www.perl.org/'
   license     'Artistic', 'GPL-1', 'GPL-2', 'GPL-3'
 
-  source 'http://www.cpan.org/src/#{package.version.major}.0/perl-#{package.version}.tar.bz2'
+  source 'http://www.cpan.org/src/#{version.major}.0/perl-#{version}.tar.bz2'
 
   features {
     threads {

@@ -7,7 +7,7 @@ Package.define('nano') {
 
   maintainer 'meh. <meh@paranoici.org>' 
 
-  source 'http://www.nano-editor.org/dist/v#{package.version.major}.#{package.version.minor}/nano-#{package.version}.tar.gz'
+  source 'http://www.nano-editor.org/dist/v#{version.major}.#{version.minor}/nano-#{version}.tar.gz'
 
   flavor {
     debug {

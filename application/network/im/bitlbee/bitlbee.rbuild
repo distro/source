@@ -9,7 +9,7 @@ Package.define('bitlbee') {
 
   maintainer 'meh. <meh@paranoici.org>'
 
-  source 'http://get.bitlbee.org/src/bitlbee-#{package.version}.tar.gz'
+  source 'http://get.bitlbee.org/src/bitlbee-#{version}.tar.gz'
 
   flavor {
     documentation {

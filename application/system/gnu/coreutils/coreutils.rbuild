@@ -7,7 +7,7 @@ Package.define('coreutils') {
 
   maintainer 'meh. <meh@paranoici.org>'
 
-  source 'gnu://coreutils/#{package.version}'
+  source 'gnu://coreutils/#{version}'
 
   dependencies << '>=system/library/ncurses-5.3'
 

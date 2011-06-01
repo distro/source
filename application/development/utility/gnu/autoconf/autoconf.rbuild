@@ -7,7 +7,7 @@ Package.define('autoconf') {
 
   maintainer 'meh. <meh@paranoici.org>'
 
-  source 'gnu://autoconf/#{package.version}'
+  source 'gnu://autoconf/#{version}'
 
   dependencies << 'development/interpreter/perl!'
 

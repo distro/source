@@ -9,7 +9,7 @@ Package.define('clang') { type 'compilar'
 
   dependencies << 'library/system/development/llvm'
 
-  source 'http://llvm.org/releases/#{package.version}/llvm-#{package.version}.tgz', 'http://llvm.org/releases/#{package.version}/clang-#{package.version}.tgz'
+  source 'http://llvm.org/releases/#{version}/llvm-#{version}.tgz', 'http://llvm.org/releases/#{version}/clang-#{version}.tgz'
 
   before :configure do |conf|
     conf.with 'llvmgccdir', '/dev/null'

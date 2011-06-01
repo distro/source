@@ -7,7 +7,7 @@ Package.define('vim') {
 
   maintainer 'meh. <meh@paranoici.org>'
 
-  source 'ftp://ftp.vim.org/pub/vim/unix/vim-#{package.version.major}.#{package.version.minor}.tar.bz2'
+  source 'ftp://ftp.vim.org/pub/vim/unix/vim-#{version.major}.#{version.minor}.tar.bz2'
 
   features {
     ruby {

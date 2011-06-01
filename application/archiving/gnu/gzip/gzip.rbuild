@@ -7,5 +7,5 @@ Package.define('gzip') {
 
   maintainer 'meh. <meh@paranoici.org>'
 
-  source 'gnu://gzip/#{package.version}'
+  source 'gnu://gzip/#{version}'
 }

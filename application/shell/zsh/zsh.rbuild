@@ -7,7 +7,7 @@ Package.define('zsh') {
 
   maintainer 'meh. <meh@paranoici.org>'
 
-  source 'ftp://ftp.zsh.org/pub/zsh-#{package.version}.tar.bz2'
+  source 'ftp://ftp.zsh.org/pub/zsh-#{version}.tar.bz2'
 
   dependencies << 'library/system/ncurses[unicode]'
 

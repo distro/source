@@ -7,7 +7,7 @@ Package.define('ctags') {
 
 	maintaner 'meh. <meh@paranoici.org>'
 
-  source 'sourceforge://ctags/ctags/#{package.version}/ctags-#{package.version}'
+  source 'sourceforge://ctags/ctags/#{version}/ctags-#{version}'
 
   before :configure do |conf|
     conf.enable 'tmpdir', '/tmp'

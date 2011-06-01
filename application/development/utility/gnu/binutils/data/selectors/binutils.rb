@@ -1,4 +1,4 @@
-#! /usr/bin/env ruby
+#! /usr/bin/env packo-selector-do
 
 desc 'list', 'List available binutils versions'
 def list

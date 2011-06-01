@@ -7,7 +7,7 @@ Package.define('fluxbox') {
 
   maintainer 'meh. <meh@paranoici.org>'
 
-  source 'sourceforge://fluxbox/fluxbox/#{package.version}/fluxbox-#{package.version}'
+  source 'sourceforge://fluxbox/fluxbox/#{version}/fluxbox-#{version}'
 
   dependencies << 'x11/library/Xft' << 'x11/library/Xpm' << 'x11/application/xmessage'
   dependencies << 'x11/protocol/xext!'

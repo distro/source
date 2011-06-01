@@ -11,7 +11,7 @@ Package.define('v8') {
 
   source Location[
     repository: 'http://v8.googlecode.com/svn',
-    tag:        '#{package.version}'
+    tag:        '#{version}'
   ]
 
   flavor {
