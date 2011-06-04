@@ -1,0 +1,9 @@
+#! /usr/bin/env ruby
+# encoding: utf-8
+require 'packo'
+require 'packo/cli'
+
+puts "Distrø, #{'THE'.bold} distribution. http://distro.github.com"
+puts '--------------------------------------------------'
+puts ''
+
