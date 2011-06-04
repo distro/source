@@ -9,7 +9,7 @@ Package.define('zlib') {
 
   maintainer  'shura <shura1991@gmail.com>'
 
-  source 'http://zlib.net/zlib-#{package.version}.tar.gz'
+  source 'http://zlib.net/zlib-#{version}.tar.gz'
 
   autotools.force!
 

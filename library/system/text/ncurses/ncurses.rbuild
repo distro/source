@@ -7,7 +7,7 @@ Package.define('ncurses') { type 'library'
 
   maintainer 'meh. <meh@paranoici.org>'
 
-  source 'gnu://ncurses/#{package.version}'
+  source 'gnu://ncurses/#{version}'
 
   features {
     cxx { enabled!

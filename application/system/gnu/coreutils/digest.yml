@@ -1,8 +1,19 @@
 --- 
 packages: 
-- version: "8.9"
+- version: "8.12"
   features: nls caps acl xattr gmp
   files: 
-  - name: coreutils-8.9.tar.xz
-    url: gnu://coreutils/8.9
-    digest: 8cb711149daaa3af0d285fa83a4e9727912fd3a9
+  - name: coreutils-8.12.tar.xz
+    url: !ruby/object:URI::Generic 
+      fragment: 
+      host: coreutils
+      opaque: 
+      parser: 
+      password: 
+      path: /8.12
+      port: 
+      query: 
+      registry: 
+      scheme: gnu
+      user: 
+    digest: c27b1578a96a57a6ac3cd6ac927ce480db122ee8

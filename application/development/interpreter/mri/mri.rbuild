@@ -95,7 +95,7 @@ Package.define('mri') {
       end
     }
 
-    self.set('readline') { enabled!
+    set('readline') { enabled!
       before :dependencies do |deps|
         deps << 'system/library/text/readline' if enabled? && !package.features.libedit.enabled?
       end
@@ -116,7 +116,9 @@ Package.define('mri') {
     end
 
     conf.set 'program-suffix', package.slot
+
     conf.with 'soname', package.slot
+    cnof.with 'ruby-version', 'minor'
 
     conf.enable ['shared', 'pthread']
     conf.enable 'option-checking', 'no'

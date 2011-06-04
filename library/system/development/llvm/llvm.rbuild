@@ -7,7 +7,7 @@ Package.define('llvm') {
 
   maintainer 'meh. <meh@paranoici.org>'
 
-  source 'http://llvm.org/releases/#{package.version}/llvm-#{package.version}.tgz'
+  source 'http://llvm.org/releases/#{version}/llvm-#{version}.tgz'
 
   features {
     optimizations { enabled!

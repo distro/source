@@ -7,7 +7,7 @@ Package.define('newlib') { type 'libc'
 
   maintainer 'meh. <meh@paranoici.org>'
 
-  source 'ftp://sources.redhat.com/pub/newlib/newlib-#{package.version}.tar.gz'
+  source 'ftp://sources.redhat.com/pub/newlib/newlib-#{version}.tar.gz'
 
   features {
     unicode { enabled!
