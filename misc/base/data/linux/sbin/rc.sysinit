@@ -117,35 +117,21 @@ if File.directory?('/sys/class/net/lo')
   end
 end
 
-if (Config['system']['devices']['raid'] rescue nil)
+if raid?
   CLI.message 'Activating FakeRAID arrays' do
     sh! 'dmraid -i -ay'
   end
 end
 
-if (Config['system']['devices']['btrfs'] rescue nil)
+if btrfs?
   CLI.message 'Activating BTRFS volumes' do
     sh! 'btrfs device scan'
   end
 end
 
-def lvm?
-  (Config['system']['devices']['lvm'] rescue nil) && File.executable?('/sbin/lvm') && File.directory('/sys/block')
-end
-  
-def lvm_start
-  return unless lvm?
-
-  sh! 'modprobe -q dm-mod'
-
-  CLI.message 'Activating LVM2 groups...' do
-    sh! 'vgchange --sysinit -a y'
-  end
-end
-
 lvm_start
 
-if File.readable?('/etc/crypttab') && File.read('/etc/crypttab').lines.any? { |line| !line.sub(/#.*$/, '').strip.empty? }
+if crypttab?
   sh! 'modprobe -q dm-crypt'
 
   CLI.message 'Unlocking encrypted volumes:' do
@@ -179,18 +165,6 @@ if File.readable?('/etc/crypttab') && File.read('/etc/crypttab').lines.any? { |l
   end
 end
 
-def reboot
-  CLI.echo 'Automatic reboot in progress...'
-
-  sh! %{
-    umount -a
-    mount -n -o remount,ro /
-    reboot -f
-  }
-
-  exit 0
-end
-
 netfs = 'nonfs,nonfs4,nosmbfs,nocifs,nocodafs,noncpfs,nosysfs,noshfs,nofuse,nofuseblk,noglusterfs,nodavfs'
 
 if File.executable?('/sbin/fsck')
@@ -203,10 +177,10 @@ if File.executable?('/sbin/fsck')
   if status & 2 == 2
     CLI.puts %{
       ********************** REBOOT REQUIRED *********************
-		  *                                                          *
-		  * The system will be rebooted automatically in 15 seconds. *
-		  *                                                          *
-		  ************************************************************
+      *                                                          *
+      * The system will be rebooted automatically in 15 seconds. *
+      *                                                          *
+      ************************************************************
     }
 
     sleep 15
@@ -256,13 +230,13 @@ CLI.message 'Activating swap...' do
   sh! 'swapon -a'
 end
 
-if Config['general']['timezone'] && File.readable?("/usr/share/zoneinfo/#{Config['general']['timezone']}")
+if timezone?
   CLI.message 'Configuring Time Zone...' do
-    Do.cp "/usr/share/zoneinfo/#{Config['general']['timezone']}", '/etc/localtime'
+    Do.cp timezone!, '/etc/localtime'
   end
 end
 
-if File.readable('/var/lib/misc/random-seed')
+if random_seed?
   CLI.message 'Initializing Random Seed...' do
     sh! 'cat /var/lib/misc/random-seed > /dev/urandom'
   end

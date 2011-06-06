@@ -1,0 +1,115 @@
+#! /usr/bin/packo-do rc
+
+puts 'Initiating Shutdown...'
+puts ''
+
+Hooks[:shutdown, :start].run
+
+if File.executable?('/etc/rc.local.shutdown')
+  Packo.sh '/etc/rc.local.shutdown'
+end
+
+Service.all.select {|service|
+  service.started?  
+}.each {|service|
+  service.stop!
+}
+
+
+Hooks[:shutdown, :killall, :pre].run
+
+CLI.message 'Sending SIGTERM To Processes...' do
+  sh! %{
+    killall5 -15
+    sleep 5
+  }
+end
+
+CLI.message 'Sending SIGKILL To Processes...' do
+   sh! %{
+    killall5 -9
+    sleep 5
+  }
+end
+
+Hooks[:shutdown, :killall, :post].run
+
+CLI.message 'Saving Random Seed...' do
+  sh! %{
+    rm -rf #{random_seed!.shellescape}
+    touch #{random_seed!.shellescape}
+    chmod 0600 #{random_seed!.shellescape}
+  }
+
+  size = File.read('/proc/sys/kernel/random/poolsize') rescue nil
+  size = 512 unless size && !size.empty?
+
+  sh! "dd if=/dev/urandom of=#{random_seed!.shellescape} count=1 bs=#{size}"
+end
+
+if timezone?
+  sh! %{
+    rm -f /etc/localtime
+    cp #{timezone!.shellescape} /etc/localtime
+  }
+end
+
+sh! 'halt -w'
+
+CLI.message 'Deactivating Swap...' do
+  sh! 'swapoff -a'
+end
+
+if lvm?
+  CLI.message 'Deactivating monitoring of LVM2' do
+    sh! 'vgchange --monitor n'
+  end
+end
+
+CLI.message 'Unmounting Filesystems...' do
+  if File.read('/proc/filesystems').include?('devtmpfs')
+    sh! 'umount -a -r -t nosysfs,noproc,nodevtmpfs,nodevpts -O no_netdev'
+  else
+    sh! 'umount -a -r -t notmpfs,nosysfs,noproc,nodevpts -O no_netdev'
+  end
+end
+
+if crypttab?
+  CLI.message 'Deactivating encrypted volumes:' do
+    sh! 'vgchange --sysinit -a n' if lvm?
+
+    File.read('/etc/crypttab').lines.map {|line|
+      matches = line.match(/^\s*(.*?)\s*(.*?)\s*(.*?)\s*(.*?)$/) or next
+
+      matches.to_a[1 .. -1]
+    }.compact.all? {|name, source, password, options|
+      sh! "crypttab remove #{name.shellescape}"
+    }
+  end
+end
+
+if lvm?
+  CLI.message 'Deactivating LVM2 groups...' do
+    sh! 'vgchange --sysinit -a n'
+  end
+end
+
+CLI.message 'Remounting Root Filesystem Read-only...' do
+  sh! 'mount -n -o remount,ro /'
+end
+
+Hooks[:shutdown, :poweroff].run
+
+if Runlevel == 0
+  CLI.info 'POWER OFF'
+
+  sh! 'poweroff -d -f -h -i'
+else
+  CLI.info 'REBOOT'
+
+  if File.executable?('/sbin/kexec')
+    sh! 'kexec -e'
+  end
+
+  sh! 'reboot -d -f -i'
+end
