@@ -1,5 +1,5 @@
 Package.define('bitlbee') {
-  use Misc::Administration
+  use Helpers::Administration
 
   tags 'application', 'network', 'im', 'irc'
 
