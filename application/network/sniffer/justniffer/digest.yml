@@ -1,0 +1,7 @@
+--- 
+packages: 
+- version: 0.5.8
+  files: 
+  - name: justniffer_0.5.8.tar.gz
+    url: sourceforge://justniffer/justniffer/justniffer%200.5.8/justniffer_0.5.8
+    digest: a0ca65d0e7fab9ae2d299927cce9d0b9bb16ffc2
