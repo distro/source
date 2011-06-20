@@ -15,6 +15,10 @@ Package.define('netcommander') {
     repository: 'git://github.com/evilsocket/NetCommander.git',
   )
 
+  dependencies.set {
+    depends_on 'python%2'
+  }
+
   before :install do |conf|
     py.fix_shebang 'netcmd.py', 2
 
