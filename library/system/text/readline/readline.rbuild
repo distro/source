@@ -10,7 +10,7 @@ Package.define('readline') { type 'library'
   source      'gnu://readline/#{version}'
 
   flavor {
-#    needs 'static || shared'
+    needs 'static || shared'
 
     static { enabled!
       before :configure do |conf|
