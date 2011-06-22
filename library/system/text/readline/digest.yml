@@ -1,0 +1,7 @@
+--- 
+packages: 
+- version: "6.2"
+  files: 
+  - name: readline-6.2.tar.gz
+    url: gnu://readline/6.2
+    digest: a9761cd9c3da485eb354175fcc2fe35856bc43ac
