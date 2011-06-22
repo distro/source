@@ -23,16 +23,15 @@ Package.define('libffi') { type 'library'
     }
   }
 
+  after :unpack do
+    Do.cd "#{package.workdir}/libffi-#{package.version.to_s.gsub('_', '')}"
+  end
+
   before :configure do |conf|
-    begin
-      env[:HOST] = env[:CHOST] if System.has?('coreutils').tags.include?('bsd')
-    rescue
+    if System.has?('coreutils') && System.has?('coreutils').tags.include?('bsd')
+      env[:HOST] = env[:CHOST]
     end
 
     conf.enable 'dependency-tracking'
-  end
-
-  after :unpack do
-    Do.cd "#{package.workdir}/libffi-#{package.version.to_s.gsub('_', '')}"
   end
 }
