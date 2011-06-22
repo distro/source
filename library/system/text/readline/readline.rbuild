@@ -27,7 +27,7 @@ Package.define('readline') { type 'library'
     vanilla {
       after :initialized do
         package.flavor.static!
-	package.flavor.shared!
+        package.flavor.shared!
       end
     }
   }
