@@ -1,5 +1,5 @@
 Package.define('readline') { type 'library'
-  tags 'library', 'system', 'test', 'gnu'
+  tags 'library', 'system', 'text', 'gnu'
 
   description 'GNU readline library'
   homepage    'http://cnswww.cns.cwru.edu/php/chet/readline/rltop.html'
@@ -10,17 +10,24 @@ Package.define('readline') { type 'library'
   source      'gnu://readline/#{version}'
 
   flavor {
-    needs 'static || shared'
+    needs 'vanilla || static || shared'
 
-    static { enabled!
+    static {
       before :configure do |conf|
         conf.enable 'static', enabled?
       end
     }
 
-    shared { enabled!
+    shared {
       before :configure do |conf|
         conf.enable 'shared', enabled?
+      end
+    }
+
+    vanilla {
+      after :initialized do
+        package.flavor.static!
+	package.flavor.shared!
       end
     }
   }
