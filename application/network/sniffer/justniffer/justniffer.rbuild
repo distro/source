@@ -11,6 +11,10 @@ Package.define('justniffer') {
 
   source 'sourceforge://justniffer/justniffer/justniffer%20#{version}/justniffer_#{version}'
 
+  dependencies.set {
+    needs 'python%2'
+  }
+
   after :unpack do
     py.fix_shebangs 'python/', 2
   end
