@@ -1,8 +1,6 @@
---- 
-packages: 
+---
 - version: 1.0.6
-  features: ""
-  files: 
+  files:
   - name: bzip2-1.0.6.tar.gz
     url: http://www.bzip.org/1.0.6/bzip2-1.0.6.tar.gz
-    digest: 3f89f861209ce81a6bab1fd1998c0ef311712002
+    digest: a2848f34fcd5d6cf47def00461fcb528a0484d8edef8208d6d2e2909dc61d9cd
