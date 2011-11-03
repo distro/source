@@ -1,60 +1,64 @@
-Package.define('bzip2') {
-  tags 'application', 'archiving'
+maintainer 'meh. <meh@paranoici.org>'
 
-  description 'A high-quality data compressor'
-  homepage    'http://www.bzip.org/'
-  license     'BZIP2'
+name 'bzip2'
+tags 'application', 'archiving'
 
-  maintainer 'meh. <meh@paranoici.org>'
+description 'A high-quality data compressor'
+homepage    'http://www.bzip.org/'
+license     'BZIP2'
 
-  source 'http://www.bzip.org/#{version}/bzip2-#{version}.tar.gz'
+source 'http://www.bzip.org/#{version}/bzip2-#{version}.tar.gz'
 
-  flavor {
-    static {
-      description 'Build bzip2 statically linked against libbz2'
+flavor {
+	static {
+		description 'Build bzip2 statically linked against libbz2'
 
-      after :install do
-        package.do.bin 'bzip2-shared', 'bzip2' unless enabled?
-      end
-    }
-  }
+		after :install do
+			package.do.bin 'bzip2-shared', 'bzip2' unless enabled?
+		end
 
-  before :configure do
-    skip
-  end
-
-  before :compile do
-    autotools.make "CC=#{environment[:CC]}", "AR=#{environment[:AR]}", "RANLIB=#{environment[:RANLIB]}",
-      '-f', 'Makefile-libbz2_so', 'all'
-
-    environment[:CFLAGS] << '-static' if flavor.static?
-
-    autotools.make "CC=#{environment[:CC]}", "AR=#{environment[:AR]}", "RANLIB=#{environment[:RANLIB]}",
-      'all'
-
-    skip
-  end
-
-  before :install do
-    autotools.make "PREFIX=#{distdir}/usr", 'LIBDIR=/usr/lib', 'install'
-
-    [[:bzcat, :bzip2], [:bunzip2, :bzip2], [:bzcmp, :bzdiff], [:bzegrep, :bzgrep], [:bzless, :bzmore], [:bzfgrep, :bzgrep]].each {|(from, to)|
-      package.do.into '/usr/bin' do
-        package.do.sym to.to_s, from.to_s
-      end
-    }
-
-    package.do.lib "libbz2.so.#{package.version}"
-
-    package.do.into '/usr/lib' do
-      package.do.sym "libbz2.so.#{package.version}", "libbz2.so.#{package.version.major}.#{package.version.minor}"
-      package.do.sym "libbz2.so.#{package.version}", "libbz2.so.#{package.version.major}"
-      package.do.sym "libbz2.so.#{package.version}", "libbz2.so"
-    end
-
-    skip
-  end
+		before :compile do
+			env[:CFLAGS] << '-static' if enabled?
+		end
+	}
 }
+
+before :configure do
+	skip
+end
+
+before :compile do
+	autotools.make "CC=#{env[:CC]}", "AR=#{env[:AR]}", "RANLIB=#{env[:RANLIB]}",
+		'-f', 'Makefile-libbz2_so', 'all'
+
+	autotools.make "CC=#{env[:CC]}", "AR=#{env[:AR]}", "RANLIB=#{env[:RANLIB]}",
+		'all'
+
+	skip
+end
+
+before :install do
+	autotools.make "PREFIX=#{distdir}/usr", 'LIBDIR=/usr/lib', 'install'
+
+	[[:bzcat, :bzip2], [:bunzip2, :bzip2], [:bzcmp, :bzdiff], [:bzegrep, :bzgrep], [:bzless, :bzmore], [:bzfgrep, :bzgrep]].each {|(from, to)|
+		package.do.into '/usr/bin' do
+			package.do.sym to.to_s, from.to_s
+		end
+	}
+
+	package.do.lib "libbz2.so.#{package.version}"
+
+	package.do.into '/usr/lib' do
+		package.do.mv  "libbz2.so.#{package.version}/libbz2.so.#{package.version}", 'tmp'
+		package.do.rm  "libbz2.so.#{package.version}"
+		package.do.mv  'tmp', "libbz2.so.#{package.version}"
+		package.do.sym "libbz2.so.#{package.version}", "libbz2.so.#{package.version.major}.#{package.version.minor}"
+		package.do.sym "libbz2.so.#{package.version}", "libbz2.so.#{package.version.major}"
+		package.do.sym "libbz2.so.#{package.version}", "libbz2.so"
+	end
+
+	skip
+end
 
 __END__
 $$$
