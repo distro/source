@@ -1,1 +1,1 @@
-Package.define('ruby', '0')
+version '0'
