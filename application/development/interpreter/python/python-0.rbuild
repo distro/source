@@ -1,1 +1,1 @@
-Package.define('python', '0')
+version '0'
