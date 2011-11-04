@@ -1,1 +1,1 @@
-Package.define('lisp', '0')
+version '0'

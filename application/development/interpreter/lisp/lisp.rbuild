@@ -1,21 +1,20 @@
-Package.define('lisp') {
-  tags 'application', 'development', 'interpreter', 'virtual'
+maintainer 'meh. <meh@paranoici.org>'
 
-  description 'Virtual package for LISP interpreters'
+name 'lisp'
+tags 'application', 'development', 'interpreter', 'virtual'
 
-  maintainer 'meh. <meh@paranoici.org>'
+description 'Virtual package for LISP interpreters'
 
-  features {
-    self.set('ecl') {
-      before :dependencies do |deps|
-        deps << 'application/interpreter/development/lisp/ecl' if enabled?
-      end
-    }
+features {
+	ecl {
+		before :dependencies do |deps|
+			deps << 'application/interpreter/development/lisp/ecl' if enabled?
+		end
+	}
 
-    self.set('sbcl') {
-      before :dependencies do |deps|
-        deps << 'application/interpreter/development/lisp/sbcl' if enabled?
-      end
-    }
-  }
+	sbcl {
+		before :dependencies do |deps|
+			deps << 'application/interpreter/development/lisp/sbcl' if enabled?
+		end
+	}
 }
