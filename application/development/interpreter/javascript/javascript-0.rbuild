@@ -1,1 +1,1 @@
-Package.define('javascript', '0')
+version '0'
