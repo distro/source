@@ -49,9 +49,6 @@ before :install do
 	package.do.lib "libbz2.so.#{package.version}"
 
 	package.do.into '/usr/lib' do
-		package.do.mv  "libbz2.so.#{package.version}/libbz2.so.#{package.version}", 'tmp'
-		package.do.rm  "libbz2.so.#{package.version}"
-		package.do.mv  'tmp', "libbz2.so.#{package.version}"
 		package.do.sym "libbz2.so.#{package.version}", "libbz2.so.#{package.version.major}.#{package.version.minor}"
 		package.do.sym "libbz2.so.#{package.version}", "libbz2.so.#{package.version.major}"
 		package.do.sym "libbz2.so.#{package.version}", "libbz2.so"
