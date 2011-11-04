@@ -1,8 +1,6 @@
---- 
-packages: 
-- version: 5.0.1
-  features: threads nls
-  files: 
-  - name: xz-5.0.1.tar.gz
-    url: http://tukaani.org/xz/xz-5.0.1.tar.gz
-    digest: a5e7b697d4413f79e36a6c5959ece3db40938c1c
+---
+- version: 5.0.3
+  files:
+  - name: xz-5.0.3.tar.gz
+    url: http://tukaani.org/xz/xz-5.0.3.tar.gz
+    digest: 10eb4df72dffb2fb14c3d2d82b450e72282ffcb9ee3908a8e5b392b8f09681bf
