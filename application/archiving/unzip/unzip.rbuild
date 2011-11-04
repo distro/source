@@ -1,83 +1,77 @@
-Package.define('unzip') {
-  tags 'application', 'archiving'
+maintainer 'meh. <meh@paranoici.org>'
 
-  description 'unzipper for pkzip-compressed files'
-  homepage    'http://www.info-zip.org/'
-  license     'Info-ZIP'
+name 'unzip'
+tags 'application', 'archiving'
 
-  maintainer 'meh. <meh@paranoici.org>'
+description 'unzipper for pkzip-compressed files'
+homepage    'http://www.info-zip.org/'
+license     'Info-ZIP'
 
-  flavor {
-    documentation {
-      before :install do
-        next if disabled? && !flavor.vanilla?
+flavor {
+	documentation {
+		before :install do
+			next if disabled? && !flavor.vanilla?
 
-        package.do.man  'man/*.1'
-        package.do.doc  'BUGS', 'History*', 'README', 'ToDo', 'WHERE'
-      end
-    }
-  }
-  
-  features {
-    bzip2 {
-      before :compile do
-        if enabled?
-          environment[:CFLAGS] << '-DUSE_BZIP2'
-        end
-      end
-    }
-
-    unicode {
-      before :compile do
-        if enabled?
-          environment[:CFLAGS] << '-DUNICODE_SUPPORT' << '-DUNICODE_WCHAR' << '-DUTF8_MAYBE_NATIVE'
-        end
-      end
-    }
-  }
-
-  after :unpack do
-    Do.cd "#{workdir}/unzip#{version.major}#{version.minor}"
-  end
-
-  after :patch do
-    Do.sed('unix/Makefile',
-      [/(CC|LD|AS)=gcc2?/, '\1=$(\1)'],
-      [/CFLAGS=".*?"/,     'CFLAGS="$(CFLAGS)"']
-    )
-  end
-
-  before :configure do
-    skip
-  end
-
-  before :compile do
-    os = case target
-      when 'i?686*-*linux*';   'linux_asm'
-      when '*linux*';          'linux_noasm'
-      when 'i?86*-*bsd*';      'freebsd'
-      when 'i?86*-dragonfly*'; 'bsd'
-      when '*-darwin*';        'macosx'
-    end or raise RuntimeError.new('Unknown target')
-
-    if target == '*linux*'
-      environment[:CFLAGS] << '-DNO_LCHMOD'
-    end
-
-    environment[:CFLAGS] << '-DLARGE_FILE_SUPPORT'
-
-    autotools.make "-j#{environment[:MAKE_JOBS] || 1}", '-f', 'unix/Makefile', os
-
-    skip
-  end
-
-  before :install do
-    package.do.bin 'unzip', 'funzip', 'unzipsfx', 'unix/zipgrep'
-    package.do.sym 'unzip', '/usr/bin/zipinfo'
-
-    skip
-  end
+			package.do.man  'man/*.1'
+			package.do.doc  'BUGS', 'History*', 'README', 'ToDo', 'WHERE'
+		end
+	}
 }
+
+features {
+	bzip2 {
+		before :compile do
+			env[:CFLAGS] << '-DUSE_BZIP2' if enabled?
+		end
+	}
+
+	unicode {
+		before :compile do
+			env[:CFLAGS] << '-DUNICODE_SUPPORT' << '-DUNICODE_WCHAR' << '-DUTF8_MAYBE_NATIVE' if enabled?
+		end
+	}
+}
+
+after :unpack do
+	Do.cd "#{workdir}/unzip#{version.major}#{version.minor}"
+end
+
+after :patch do
+	Do.sed 'unix/Makefile',
+		[/(CC|LD|AS)=gcc2?/, '\1=$(\1)'],
+		[/CFLAGS=".*?"/,     'CFLAGS="$(CFLAGS)"']
+end
+
+before :configure do
+	skip
+end
+
+before :compile do
+	if target == '*linux*'
+		env[:CFLAGS] << '-DNO_LCHMOD'
+	end
+
+	env[:CFLAGS] << '-DLARGE_FILE_SUPPORT'
+
+	autotools.make "-j#{env[:MAKE_JOBS] || 1}", '-f', 'unix/Makefile', case target
+		when 'i?686*-*linux*'   then 'linux_asm'
+		when '*linux*'          then 'linux_noasm'
+		when 'i?86*-*bsd*'      then 'freebsd'
+		when 'i?86*-dragonfly*' then 'bsd'
+		when '*-darwin*'        then 'macosx'
+	end or raise 'unknown target'
+
+	skip
+end
+
+before :install do
+	package.do.into '/usr' do
+		package.do.bin 'unzip', 'funzip', 'unzipsfx', 'unix/zipgrep'
+		package.do.sym 'unzip', 'bin/zipinfo'
+	end
+
+	skip
+end
 
 __END__
 $$$
