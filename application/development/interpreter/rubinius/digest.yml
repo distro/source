@@ -1,12 +1,8 @@
---- 
-packages: 
-- version: "9999"
-  features: ""
+---
+- version: '9999'
   files: []
-
 - version: 1.2.3
-  features: ""
-  files: 
+  files:
   - name: rubinius-release-1.2.3.tar.gz
-    url: github://evanphx/rubinius/release-1.2.3
-    digest: 858a433ecb61449c32321e4d95bf311af99d541d
+    url: github://rubinius/rubinius/release-1.2.3
+    digest: c3943892e98d5133723a9248bc9500ad6aac9695e69e5453b72cf1f70b98f46b

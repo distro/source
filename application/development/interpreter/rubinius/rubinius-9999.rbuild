@@ -1,22 +1,12 @@
-Package.define('rubinius', '9999') {
-  arch     'x86', 'x86_64'
-  kernel   'linux', 'darwin'
-  libc     'glibc'
-  compiler 'gcc', 'clang'
+version '9999'
 
-  use Fetching::Git
+arch     'x86', 'x86_64'
+kernel   'linux', 'darwin'
+libc     'glibc'
+compiler 'gcc', 'clang'
 
-  source Location[
-    repository: 'git://github.com/evanphx/rubinius.git'
-  ]
+use Fetching::Git
 
-  flavor {
-    hydra {
-      description 'Enable the hydra branch, deletetion of GIL in progress'
-
-      before :fetch do
-        git[:branch] = 'hydra' if enabled?
-      end
-    }
-  }
-}
+source Location[
+	repository: 'git://github.com/rubinius/rubinius.git'
+]

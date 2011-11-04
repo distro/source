@@ -1,52 +1,51 @@
-Package.define('rubinius') {
-  use Building::Rake
+maintainer 'meh. <meh@paranoici.org>'
 
-  tags 'application', 'interpreter', 'development', 'ruby'
+use Building::Rake
 
-  description 'An environment for the Ruby programming language providing performance, accessibility, and improved programmer productivity'
-  homepage    'http://rubini.us/'
-  license     'BSD'
+name 'rubinius'
+tags 'application', 'interpreter', 'development', 'ruby'
 
-  maintainer 'meh. <meh@paranoici.org>'
+description 'An environment for the Ruby programming language providing performance, accessibility, and improved programmer productivity'
+homepage    'http://rubini.us/'
+license     'BSD'
 
-  source 'github://evanphx/rubinius/release-#{version}'
+source 'github://rubinius/rubinius/release-#{version}'
 
-  dependencies << '>=library/system/development/llvm-2.8'
+dependencies << '>=library/system/development/llvm-2.8'
 
-  after :unpack do
-    Do.cd Dir.glob("#{workdir}/*").first
-  end
+after :unpack do
+	Do.cd Dir.glob("#{workdir}/*").first
+end
 
-  before :configure do |conf|
-    env[:LD]       = env[:CXX]
-    env[:FAKEROOT] = distdir 
-    env[:RUBYOPT]  = '-rrubygems'
-    env[:CFLAGS]  << '-Wno-error'
+before :configure do |conf|
+	env[:LD]       = env[:CXX]
+	env[:FAKEROOT] = distdir 
+	env[:RUBYOPT]  = '-rrubygems'
+	env[:CFLAGS]  << '-Wno-error'
 
-    conf.set 'prefix',     Path.clean(env[:INSTALL_PATH] + 'usr')
-    conf.set 'gemsdir',    Path.clean(env[:INSTALL_PATH] + 'usr/lib/ruby')
-    conf.set 'bindir',     Path.clean(env[:INSTALL_PATH] + 'usr/bin')
-    conf.set 'includedir', Path.clean(env[:INSTALL_PATH] + 'usr/include/rubinius')
-    conf.set 'mandir',     Path.clean(env[:INSTALL_PATH] + 'usr/share')
-    conf.set 'libdir',     Path.clean(env[:INSTALL_PATH] + 'usr/lib/ruby')
-    conf.set 'sitedir',    Path.clean(env[:INSTALL_PATH] + 'usr/lib/ruby/rubinius/site')
-    conf.set 'vendordir',  Path.clean(env[:INSTALL_PATH] + 'usr/lib/ruby/rubinius/vendor')
+	conf.set 'prefix',     Path.clean(env[:INSTALL_PATH] + 'usr')
+	conf.set 'gemsdir',    Path.clean(env[:INSTALL_PATH] + 'usr/lib/ruby')
+	conf.set 'bindir',     Path.clean(env[:INSTALL_PATH] + 'usr/bin')
+	conf.set 'includedir', Path.clean(env[:INSTALL_PATH] + 'usr/include/rubinius')
+	conf.set 'mandir',     Path.clean(env[:INSTALL_PATH] + 'usr/share')
+	conf.set 'libdir',     Path.clean(env[:INSTALL_PATH] + 'usr/lib/ruby')
+	conf.set 'sitedir',    Path.clean(env[:INSTALL_PATH] + 'usr/lib/ruby/rubinius/site')
+	conf.set 'vendordir',  Path.clean(env[:INSTALL_PATH] + 'usr/lib/ruby/rubinius/vendor')
 
-    conf.execute
-  end
+	conf.execute
+end
 
-  before :compile do |conf|
-    package.rake.do 'build'
+before :compile do |conf|
+	package.rake.do 'build'
 
-    skip
-  end
+	skip
+end
 
-  after :install do
-    [:rake, :rdoc, :ruby, :ri, :gem, :irb].each {|file|
-      package.do.rm("/usr/bin/#{file}")
-    }
-  end
-}
+after :install do
+	[:rake, :rdoc, :ruby, :ri, :gem, :irb].each {|file|
+		package.do.rm("/usr/bin/#{file}")
+	}
+end
 
 __END__
 $$$
