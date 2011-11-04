@@ -1,12 +1,12 @@
-Package.define('pypy', '9999') {
-  arch     '~x86', '~x86_64'
-  kernel   'linux'
-  compiler 'gcc'
-  libc     'glibc'
+version '9999'
 
-  use Fetching::Mercurial
+arch     '~x86', '~x86_64'
+kernel   'linux'
+compiler 'gcc'
+libc     'glibc'
 
-  source Location[
-    repository: 'http://bitbucket.org/pypy/pypy'
-  ]
-}
+use Fetching::Mercurial
+
+source Location[
+	repository: 'http://bitbucket.org/pypy/pypy'
+]
