@@ -1,9 +1,8 @@
-Package.define('gpsee') {
-  tags 'application', 'interpreter', 'development', 'javascript', 'embeddable'
+maintainer 'meh. <meh@paranoici.org>'
 
-  description 'General Purpose Spidermonkey Embedding Ecosystem.'
-  homepage    'http://code.google.com/p/gpsee/'
-  license     'MPL'
+name 'gpsee'
+tags 'application', 'interpreter', 'development', 'javascript', 'embeddable'
 
-  maintainer 'meh. <meh@paranoici.org>'
-}
+description 'General Purpose Spidermonkey Embedding Ecosystem.'
+homepage    'http://code.google.com/p/gpsee/'
+license     'MPL'

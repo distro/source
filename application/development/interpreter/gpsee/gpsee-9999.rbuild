@@ -1,12 +1,12 @@
-Package.define('gpsee', '9999') {
-  arch     'x86', 'x86_64'
-  kernel   'linux'
-  compiler 'gcc'
-  libc     'glibc'
+version '9999'
 
-  use Fetching::Mercurial
+arch     'x86', 'x86_64'
+kernel   'linux'
+compiler 'gcc'
+libc     'glibc'
 
-  source Location[
-    repository: 'https://gpsee.googlecode.com/hg/'
-  ]
-}
+use Fetching::Mercurial
+
+source Location[
+	repository: 'https://gpsee.googlecode.com/hg/'
+]
