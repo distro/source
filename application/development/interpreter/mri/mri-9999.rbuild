@@ -1,12 +1,13 @@
-Package.define('mri', '9999', '1.9') {
-  arch     '~x86', '~x86_64'
-  kernel   'linux'
-  compiler 'gcc'
-  libc     'glibc'
+version '9999'
+slot    '1.9'
 
-  use Fetching::Subversion
+arch     '~x86', '~x86_64'
+kernel   'linux'
+compiler 'gcc'
+libc     'glibc'
 
-  source Location[
-    repository: 'http://svn.ruby-lang.org/repos/ruby/'
-  ]
-}
+use Fetching::Subversion
+
+source Location[
+	repository: 'http://svn.ruby-lang.org/repos/ruby/'
+]
