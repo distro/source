@@ -1,11 +1,9 @@
---- 
-packages: 
-- version: "2.9"
-  features: ""
-  files: 
+---
+- version: '2.9'
+  files:
   - name: llvm-2.9.tgz
     url: http://llvm.org/releases/2.9/llvm-2.9.tgz
-    digest: 500f587f840199ac53c4fc7572839d08fa9d9123
+    digest: 661236cfa17428b48cfa9cbb9909f7569c64b8ecd219fd91dbc00e3b557b3779
   - name: clang-2.9.tgz
     url: http://llvm.org/releases/2.9/clang-2.9.tgz
-    digest: 5fd3b5cec050ec12858c1602b23cf096282ad4a4
+    digest: 70c41f3f782a71cbaa7bc8d6ea29fce4263ad3e8558dfecc6dc11cdef17909df

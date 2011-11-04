@@ -1,48 +1,48 @@
-Package.define('clang') { type 'compilar'
-  tags 'application', 'system', 'development', 'compiler'
+maintainer 'meh. <meh@paranoici.org>'
 
-  description 'C language family frontend for LLVM'
-  homepage    'http://clang.llvm.org/'
-  license     'UoI-NCSA'
+name 'clang'
+tags 'application', 'system', 'development', 'compiler'
 
-  maintainer 'meh. <meh@paranoici.org>'
+type 'compilar'
 
-  dependencies << 'library/system/development/llvm'
+description 'C language family frontend for LLVM'
+homepage    'http://clang.llvm.org/'
+license     'UoI-NCSA'
 
-  source 'http://llvm.org/releases/#{version}/llvm-#{version}.tgz', 'http://llvm.org/releases/#{version}/clang-#{version}.tgz'
+dependencies << 'library/system/development/llvm'
 
-  before :configure do |conf|
-    conf.with 'llvmgccdir', '/dev/null'
-    conf.with 'llvmgcc',    'nope'
-    conf.with 'llvmgxx',    'nope'
+source 'http://llvm.org/releases/#{version}/llvm-#{version}.tgz', 'http://llvm.org/releases/#{version}/clang-#{version}.tgz'
 
-    conf.enable 'shared'
-    conf.enable 'pic'
+before :configure do |conf|
+	conf.with 'llvmgccdir', '/dev/null'
+	conf.with 'llvmgcc',    'nope'
+	conf.with 'llvmgxx',    'nope'
 
-    conf.disable ['assertions', 'expensive-checks']
+	conf.enable 'shared'
+	conf.enable 'pic'
 
-    conf.with 'c-include-dirs',   (env[:INSTALL_PATH] + 'usr/include').cleanpath
-    conf.with 'cxx-include-root', (env[:INSTALL_PATH] + 'usr/include/g++v4').cleanpath
-    conf.with 'cxx-include-arch', System.host.to_s
-  end
+	conf.disable ['assertions', 'expensive-checks']
 
-  after :unpack do
-    package.unpack distfiles.last, workdir
-    Do.mv "#{workdir}/clang-#{package.version}", "#{workdir}/llvm-#{package.version}/tools/clang"
+	conf.with 'c-include-dirs',   (env[:INSTALL_PATH] + 'usr/include').cleanpath
+	conf.with 'cxx-include-root', (env[:INSTALL_PATH] + 'usr/include/g++v4').cleanpath
+	conf.with 'cxx-include-arch', System.host.to_s
+end
 
-    Do.cd "#{workdir}/llvm-#{package.version}"
-  end
+after :unpack do
+	package.unpack distfiles.last, workdir
+	Do.mv "#{workdir}/clang-#{package.version}", "#{workdir}/llvm-#{package.version}/tools/clang"
 
-  before :compile do |conf|
-    autotools.make 'VERBOSE=1', 'KEEP_SYMBOLS=1', 'REQUIRES_RTTI=1', 'clang-only'
+	Do.cd "#{workdir}/llvm-#{package.version}"
+end
 
-    skip
-  end
+before :compile do |conf|
+	autotools.make 'VERBOSE=1', 'KEEP_SYMBOLS=1', 'REQUIRES_RTTI=1', 'clang-only'
 
-  before :install do |conf|
-    autotools.make 'KEEP_SYMBOLS=1', "DESTDIR=#{distdir}", 'install-clang'
+	skip
+end
 
-    skip
-  end
+before :install do |conf|
+	autotools.make 'KEEP_SYMBOLS=1', "DESTDIR=#{distdir}", 'install-clang'
 
-}
+	skip
+end
