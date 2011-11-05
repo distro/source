@@ -1,8 +1,5 @@
---- 
-packages: 
-- version: "9999"
+---
+- version: '9999'
   files: []
-
-- version: 0.1.2
+- version: '1.2'
   files: []
-

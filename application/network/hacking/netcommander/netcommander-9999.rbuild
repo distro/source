@@ -1,1 +1,1 @@
-Package.define('netcommander', '9999')
+version '9999'
