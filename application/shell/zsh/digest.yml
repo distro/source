@@ -1,8 +1,6 @@
---- 
-packages: 
-- version: 4.3.11
-  features: mail cap
-  files: 
-  - name: zsh-4.3.11.tar.bz2
-    url: ftp://ftp.zsh.org/pub/zsh-4.3.11.tar.bz2
-    digest: 25cf0daadc4543d147f6241573d6730b60f16016
+---
+- version: 4.3.12
+  files:
+  - name: zsh-4.3.12.tar.bz2
+    url: ftp://ftp.zsh.org/pub/zsh-4.3.12.tar.bz2
+    digest: 4a9fd2dac76fc08fd1dc400deba854fcefa12ad76226d93fb6c01a801324f106
