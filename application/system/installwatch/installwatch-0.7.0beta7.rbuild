@@ -1,5 +1,3 @@
-version '0.7.0beta7'
-
 arch     'x86', 'x86_64'
 kernel   'linux'
 compiler 'gcc'
