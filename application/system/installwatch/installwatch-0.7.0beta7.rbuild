@@ -1,15 +1,15 @@
-Package.define('installwatch', '0.7.0beta7') {
-  arch     'x86', 'x86_64'
-  kernel   'linux'
-  compiler 'gcc'
-  libc     'glibc'
+version '0.7.0beta7'
 
-  source 'http://asic-linux.com.mx/~izto/checkinstall/files/source/checkinstall-1.6.2.tar.gz'
+arch     'x86', 'x86_64'
+kernel   'linux'
+compiler 'gcc'
+libc     'glibc'
 
-  after :unpack do
-    Do.cd 'checkinstall-1.6.2/installwatch'
-  end
-}
+source 'http://asic-linux.com.mx/~izto/checkinstall/files/source/checkinstall-1.6.2.tar.gz'
+
+after :unpack do
+	Do.cd 'checkinstall-1.6.2/installwatch'
+end
 
 __END__
 $$$

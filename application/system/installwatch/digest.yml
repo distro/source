@@ -1,8 +1,6 @@
---- 
-packages: 
+---
 - version: 0.7.0beta7
-  features: ""
-  files: 
+  files:
   - name: checkinstall-1.6.2.tar.gz
     url: http://asic-linux.com.mx/~izto/checkinstall/files/source/checkinstall-1.6.2.tar.gz
-    digest: 22ade12667b7931fa9ab5148c8ef41c91a3f0dda
+    digest: dc61192cf7b8286d42c44abae6cf594ee52eafc08bfad0bea9d434b73dd593f4
