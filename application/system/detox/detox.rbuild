@@ -1,23 +1,24 @@
-Package.define('detox') {
-  tags 'application', 'system'
+maintainer 'meh. <meh@paranoici.org>'
 
-  description 'Safely remove spaces and strange characters from filenames'
-  homepage    'http://detox.sourceforge.net/'
-  license     'BSD'
+name 'detox'
+tags 'application', 'system'
 
-  dependencies << 'development/library/popt' << 'system/development/flex!' << 'system/development/bison!'
+description 'Safely remove spaces and strange characters from filenames'
+homepage    'http://detox.sourceforge.net/'
+license     'BSD'
 
-  source 'sourceforge://detox/detox/#{version}/detox-#{version}'
+dependencies << 'development/library/popt' << 'system/development/flex!' << 'system/development/bison!'
 
-  before :configure do |conf|
-    conf.with ['popt']
-  end
+source 'sourceforge://detox/detox/#{version}/detox-#{version}'
 
-  after :install do |conf|
-    package.do.rm '/etc/detoxrc.sample'
-    package.do.doc 'README', 'CHANGES'
-  end
-}
+before :configure do |conf|
+	conf.with ['popt']
+end
+
+after :install do |conf|
+	package.do.rm '/etc/detoxrc.sample'
+	package.do.doc 'README', 'CHANGES'
+end
 
 __END__
 $$$
