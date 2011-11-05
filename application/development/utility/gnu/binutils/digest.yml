@@ -1,8 +1,0 @@
---- 
-packages: 
-- version: 2.20.1
-  features: nls
-  files: 
-  - name: binutils-2.20.1.tar.bz2
-    url: gnu://binutils/2.20.1
-    digest: fd2ba806e6f3a55cee453cb25c86991b26a75dee

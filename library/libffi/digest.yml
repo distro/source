@@ -1,7 +1,0 @@
---- 
-packages: 
-- version: 3.0.10_rc8
-  files: 
-  - name: libffi-3.0.10rc8.tar.gz
-    url: ftp://sourceware.org/pub/libffi/libffi-3.0.10rc8.tar.gz
-    digest: 1dc449254c4c8bde1f422955e378016ba748d3f2

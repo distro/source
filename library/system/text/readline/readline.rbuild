@@ -25,9 +25,9 @@ Package.define('readline') { type 'library'
     }
 
     vanilla {
-      after :initialized do
-        package.flavor.static!
-        package.flavor.shared!
+      before :configure do |conf|
+        conf.enable 'static', enabled?
+        conf.enable 'shared', enabled?
       end
     }
   }
