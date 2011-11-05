@@ -1,0 +1,6 @@
+---
+- version: 2.20.1
+  files:
+  - name: binutils-2.20.1.tar.bz2
+    url: gnu://binutils/2.20.1
+    digest: 71d37c96451333c5c0b84b170169fdcb138bbb27397dc06281905d9717c8ed64
