@@ -1,4 +1,4 @@
-slot '4.5'
+slot '4.6'
 
 arch     'x86', 'x86_64'
 kernel   'linux', 'windows'
