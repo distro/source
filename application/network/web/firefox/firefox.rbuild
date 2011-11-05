@@ -1,11 +1,10 @@
-Package.define('firefox') {
-  tags 'application', 'network', 'web', 'browser'
+maintainer 'meh. <meh@paranoici.org>'
 
-  description 'Firefox Web Browser'
-  homepage    'http://www.mozilla.com/firefox'
-  license     'MPL-1.1', 'GPL-2', 'LGPL-2.1'
+name 'firefox'
+tags 'application', 'network', 'web', 'browser'
 
-  maintainer 'meh. <meh@paranoici.org>'
+description 'Firefox Web Browser'
+homepage    'http://www.mozilla.com/firefox'
+license     'MPL-1.1', 'GPL-2', 'LGPL-2.1'
 
-  source 'ftp://ftp.mozilla.org/pub/mozilla.org/firefox/releases/#{package.version}/source/firefox-#{package.version}.tar.bz2'
-}
+source 'ftp://ftp.mozilla.org/pub/mozilla.org/firefox/releases/#{package.version}/source/firefox-#{package.version}.tar.bz2'
