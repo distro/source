@@ -1,8 +1,6 @@
---- 
-packages: 
-- version: "5.8"
-  features: ""
-  files: 
+---
+- version: '5.8'
+  files:
   - name: ctags-5.8.tar.gz
     url: sourceforge://ctags/ctags/5.8/ctags-5.8
-    digest: 482da1ecd182ab39bbdc09f2f02c9fba8cd20030
+    digest: 0e44b45dcabe969e0bbbb11e30c246f81abe5d32012db37395eb57d66e9e99c7
