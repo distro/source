@@ -1,55 +1,56 @@
-Package.define('glibc') { type 'libc'
-  tags 'library', 'system', 'libc', 'gnu'
+maintainer 'meh. <meh@paranoici.org>'
 
-  description 'GNU libc6 (also called glibc2) C library'
-  homepage    'http://www.gnu.org/software/libc/libc.html'
-  license     'GPL', 'LGPL'
+type 'libc'
 
-  maintainer 'meh. <meh@paranoici.org>'
+name 'glibc'
+tags 'library', 'system', 'libc', 'gnu'
 
-  source 'gnu://glibc/#{version}'
+description 'GNU libc6 (also called glibc2) C library'
+homepage    'http://www.gnu.org/software/libc/libc.html'
+license     'GPL', 'LGPL'
 
-  flavor {
-    multilib {
-      before :configure do |conf|
-        conf.enable 'multilib', enabled?
-      end
-    }
+source 'gnu://glibc/#{version}'
 
-    hardened {
-      before :configure do |conf|
-        conf.enable 'stackguard-randomization', enabled?
-      end
-    }
-  }
+flavor {
+	multilib {
+		before :configure do |conf|
+			conf.enable 'multilib', enabled?
+		end
+	}
 
-  features {
-    nls {
-      before :configure do |conf|
-        conf.disable 'nls' if disabled?
-      end
-    }
-  }
-
-  before :configure do |conf|
-    env[:CXXFLAGS] = env[:CFLAGS] = '-O2 -fno-strict-aliasing -pipe'
-
-    Do.dir "#{workdir}/build"
-    Do.cd  "#{workdir}/build"
-
-    conf.path = "#{workdir}/glibc-#{package.version}/configure"
-
-    conf.with 'headers', "/usr/include"
-
-    conf.enable  ['bind-now']
-    conf.disable ['profile', 'multi-arch']
-    conf.with    ['__thred', 'tls']
-    conf.without ['cvs', 'gd']
-  end
-
-  before :compile do
-    autotools.make
-
-    skip
-  end
+	hardened {
+		before :configure do |conf|
+			conf.enable 'stackguard-randomization', enabled?
+		end
+	}
 }
+
+features {
+	nls {
+		before :configure do |conf|
+			conf.disable 'nls' if disabled?
+		end
+	}
+}
+
+before :configure do |conf|
+	env[:CXXFLAGS] = env[:CFLAGS] = '-O2 -fno-strict-aliasing -pipe'
+
+	Do.dir "#{workdir}/build"
+	Do.cd  "#{workdir}/build"
+
+	conf.path = "#{workdir}/glibc-#{package.version}/configure"
+
+	conf.with 'headers', "/usr/include"
+
+	conf.enable  ['bind-now']
+	conf.disable ['profile', 'multi-arch']
+	conf.with    ['__thred', 'tls']
+	conf.without ['cvs', 'gd']
+end
+
+before :compile do
+	autotools.make
+
+	skip
+end
