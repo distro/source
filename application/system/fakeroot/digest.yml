@@ -1,14 +1,11 @@
---- 
-packages: 
+---
 - version: 1.15.1
-  features: ""
-  files: 
+  files:
   - name: fakeroot_1.15.1.orig.tar.bz2
     url: http://ftp.de.debian.org/debian/pool/main/f/fakeroot/fakeroot_1.15.1.orig.tar.bz2
-    digest: 5d24ba7f6c56df81f8e116f9712495594a9ddbce
+    digest: 45fbb9ad611f33224cc09954963dde563cc80fe58c76feb25b6e98550b81729a
 - version: 1.14.4
-  features: ""
-  files: 
+  files:
   - name: fakeroot_1.14.4.orig.tar.bz2
     url: http://ftp.de.debian.org/debian/pool/main/f/fakeroot/fakeroot_1.14.4.orig.tar.bz2
-    digest: 80fd293a3969e6ee8dbae0a979a5e817a9a6c7f3
+    digest: 3236394b2f280637bc977515e46e66cf999e1db74ea7402048e64113b70b9660
