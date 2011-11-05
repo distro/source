@@ -1,32 +1,31 @@
-Package.define('spidermonkey') {
-  tags 'application', 'interpreter', 'development', 'javascript', 'embeddable', 'mozilla'
+maintainer 'meh. <meh@paranoici.org>'
 
-  description 'Mozilla JavaScript engine.'
-  homepage    'http://www.mozilla.org/js/spidermonkey/'
-  license     'MPL'
+name 'spidermonkey'
+tags 'application', 'interpreter', 'development', 'javascript', 'embeddable', 'mozilla'
 
-  maintainer 'meh. <meh@paranoici.org>'
+description 'Mozilla JavaScript engine.'
+homepage    'http://www.mozilla.org/js/spidermonkey/'
+license     'MPL'
 
-  features {
-    ctypes {
-      before :configure do |conf|
-        conf.enable 'ctypes', enabled?
-      end
-    }
-  }
-
-  after :unpack do
-    Do.cd "js-#{package.version}/js/src"
-  end
-
-  before :configure do |conf|
-    conf.enable 'threadsafe'
-    conf.with   'system-nspr'
-  end
-
-  before :pack do
-    package.do.into '/usr' do
-      package.do.bin 'shell/js', 'mozilla-js'
-    end
-  end
+features {
+	ctypes {
+		before :configure do |conf|
+			conf.enable 'ctypes', enabled?
+		end
+	}
 }
+
+after :unpack do
+	Do.cd "js-#{package.version}/js/src"
+end
+
+before :configure do |conf|
+	conf.enable 'threadsafe'
+	conf.with   'system-nspr'
+end
+
+before :pack do
+	package.do.into '/usr' do
+		package.do.bin 'shell/js', 'mozilla-js'
+	end
+end

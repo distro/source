@@ -1,8 +1,6 @@
---- 
-packages: 
+---
 - version: 1.8.5
-  features: ctypes
-  files: 
+  files:
   - name: js185-1.0.0.tar.gz
     url: http://ftp.mozilla.org/pub/mozilla.org/js/js185-1.0.0.tar.gz
-    digest: 52a01449c48d7a117b35f213d3e4263578d846d6
+    digest: 5d12f7e1f5b4a99436685d97b9b7b75f094d33580227aa998c406bbae6f2a687
