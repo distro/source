@@ -1,6 +1,0 @@
----
-- version: 2.11.9
-  files:
-  - name: emesene-v2.11.9.tar.gz
-    url: github://emesene/emesene/v2.11.9
-    digest: 2d51b62a5c2e660c11a298114c2092d4e86d6bb80a12d4fc3da68429ed308d8d
