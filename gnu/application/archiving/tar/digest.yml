@@ -1,8 +1,6 @@
---- 
-packages: 
-- version: "1.25"
-  features: nls
-  files: 
+---
+- version: '1.25'
+  files:
   - name: tar-1.25.tar.xz
     url: gnu://tar/1.25
-    digest: 291f7ace4ccebe9ac736e23b33c9e89ef92e00d8
+    digest: 81230b829e2acea2fcd4c686b15f6a77d961871d0d72b961bbebcbd65e04d04c
