@@ -1,11 +1,10 @@
-Package.define('gzip') {
-  tags 'application', 'archiving', 'gnu'
+maintainer 'meh. <meh@paranoici.org>'
 
-  description 'Standard GNU compressor'
-  homepage    'http://www.gnu.org/software/gzip/'
-  license     'GPL-2'
+name 'gzip'
+tags 'application', 'archiving', 'gnu'
 
-  maintainer 'meh. <meh@paranoici.org>'
+description 'Standard GNU compressor'
+homepage    'http://www.gnu.org/software/gzip/'
+license     'GPL-2'
 
-  source 'gnu://gzip/#{version}'
-}
+source 'gnu://gzip/#{version}'
