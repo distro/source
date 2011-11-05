@@ -1,8 +1,8 @@
---- 
-packages: 
-- version: 3.0.2
-  features: ipv6 ssl gnutls nss msn jabber oscar purple yahoo twitter plugins otr libevent
-  files: 
-  - name: bitlbee-3.0.2.tar.gz
-    url: http://get.bitlbee.org/src/bitlbee-3.0.2.tar.gz
-    digest: 59113b1dc440ebd775e6cf324d1cfb698fb20cfc
+---
+- version: '9999'
+  files: []
+- version: 3.0.3
+  files:
+  - name: bitlbee-3.0.3.tar.gz
+    url: http://get.bitlbee.org/src/bitlbee-3.0.3.tar.gz
+    digest: 82ca758937ce7bedaab49edec75f4ad45a3102ac3beaa932b64c34fbb1e3af25

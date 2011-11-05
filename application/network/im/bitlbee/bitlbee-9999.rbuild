@@ -1,23 +1,23 @@
-Package.define('bitlbee', '9999') {
-  arch     '~x86', '~amd64'
-  kernel   'linux'
-  compiler 'gcc'
-  libc     'glibc'
+version '9999'
 
-  use Fetching::Bazaar
+arch     '~x86', '~amd64'
+kernel   'linux'
+compiler 'gcc'
+libc     'glibc'
 
-  source Location[
-    repository: 'http://code.bitlbee.org/',
-    branch:     'bitlbee'
-  ]
+use Fetching::Bazaar
 
-  flavor {
-    killer {
-      description 'Experimental bitlbee branch'
+source Location[
+	repository: 'http://code.bitlbee.org/',
+	branch:     'bitlbee'
+]
 
-      before :fetch do
-        bazaar[:branch] = 'killerbee'
-      end
-    }
-  }
+flavor {
+	killer {
+		description 'Experimental bitlbee branch'
+
+		before :fetch do
+			source[:branch] = 'killerbee'
+		end
+	}
 }
