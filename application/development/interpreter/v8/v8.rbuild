@@ -57,8 +57,10 @@ after :install do
 		package.do.ins 'include/*.h'
 	end
 
-	package.do.lib "libv8-#{package.version}.so"
-	package.do.sym "libv8-#{package.version}.so", '/usr/lib/libv8.so'
+	lib = Dir['libv8-*.so'].first
+
+	package.do.lib lib
+	package.do.sym lib, '/usr/lib/libv8.so'
 
 	package.do.into '/usr' do
 		package.do.bin ['shell', 'v8-shell']
