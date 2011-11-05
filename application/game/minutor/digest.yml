@@ -1,12 +1,8 @@
---- 
-packages: 
-- version: "9999"
-  features: ""
+---
+- version: '9999'
   files: []
-
-- version: "1.1"
-  features: ""
-  files: 
+- version: '1.1'
+  files:
   - name: minutor_1.1.tar.gz
     url: http://seancode.com/minutor/1.1/minutor_1.1.tar.gz
-    digest: b065652b94e234f9afaa6696babb6a8dda02897f
+    digest: abd88934027c026bec3be306409a5e92e268c5840369ae104b2a882cbf9fc471
