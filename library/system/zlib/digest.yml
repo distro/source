@@ -1,8 +1,6 @@
---- 
-packages: 
+---
 - version: 1.2.5
-  features: ""
-  files: 
+  files:
   - name: zlib-1.2.5.tar.gz
     url: http://zlib.net/zlib-1.2.5.tar.gz
-    digest: 8e8b93fa5eb80df1afe5422309dca42964562d7e
+    digest: 6064e52e513facb0fbb7998c6413406cf253cfb986063d68f4771c2bf7a3f958
