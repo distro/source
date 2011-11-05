@@ -1,0 +1,6 @@
+---
+- version: '8.12'
+  files:
+  - name: coreutils-8.12.tar.xz
+    url: gnu://coreutils/8.12
+    digest: 1e3c0182cdd0042871741d694ae1166dd90eb9f03a16c0aac0a9072a7aa92faf
