@@ -1,20 +1,16 @@
---- 
-packages: 
-- version: "2.3"
-  features: ""
-  files: 
+---
+- version: '2.3'
+  files:
   - name: sandbox-2.3.tar.xz
     url: http://dev.gentoo.org/~vapier/dist/sandbox-2.3.tar.xz
-    digest: c1eff87f4f608aa613a6905d2111790ac57fe091
-- version: "2.5"
-  features: ""
-  files: 
+    digest: 8670f7508453c2fd300ca29ad2eb457691c3df01c4c22fa27d4a7c880fd291d5
+- version: '2.5'
+  files:
   - name: sandbox-2.5.tar.xz
     url: http://dev.gentoo.org/~vapier/dist/sandbox-2.5.tar.xz
-    digest: bfa2456d3a8b9f35b460f733b97a1fe7f00c5ca5
-- version: "2.4"
-  features: ""
-  files: 
+    digest: c0e98767fb70750d79591a6d08f81d5c2f13ce783bf94bd90677022e9103878a
+- version: '2.4'
+  files:
   - name: sandbox-2.4.tar.xz
     url: http://dev.gentoo.org/~vapier/dist/sandbox-2.4.tar.xz
-    digest: 8d8b7ccc61baa881a90071c4cdc533f6918d21f4
+    digest: 450599cb3052296d42f81a04dbbda82d220415fc2d16f5dc6e26b042d580fd3e

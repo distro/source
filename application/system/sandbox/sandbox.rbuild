@@ -1,19 +1,18 @@
-Package.define('sandbox') {
-  tags 'application', 'system'
-  
-  description "Gentoo's sandbox utility for more secure package building"
-  homepage    'http://www.gentoo.org/'
-  license     'GPL-2'
+maintainer 'meh. <meh@paranoici.org>'
 
-  maintainer 'meh. <meh@paranoici.org>'
+name 'sandbox'
+tags 'application', 'system'
 
-  source 'http://dev.gentoo.org/~vapier/dist/sandbox-#{version}.tar.xz'
+description "Gentoo's sandbox utility for more secure package building"
+homepage    'http://www.gentoo.org/'
+license     'GPL-2'
 
-  after :install do
-    package.filesystem['/files/sandbox'].save("#{package.distdir}/etc/sandbox.d/09sandbox")
-    package.filesystem['/files/packo'].save("#{package.distdir}/etc/sandbox.d/10packo")
-  end
-}
+source 'http://dev.gentoo.org/~vapier/dist/sandbox-#{version}.tar.xz'
+
+after :install do
+	package.filesystem['/files/sandbox'].save("#{package.distdir}/etc/sandbox.d/09sandbox")
+	package.filesystem['/files/packo'].save("#{package.distdir}/etc/sandbox.d/10packo")
+end
 
 __END__
 $$$
