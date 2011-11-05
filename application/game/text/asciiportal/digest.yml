@@ -1,0 +1,6 @@
+---
+- version: 1.2c
+  files:
+  - name: asciiportal1.2c-src.zip
+    url: http://cymonsgames.com/games/asciiportal/asciiportal1.2c-src.zip
+    digest: 63aa7af3029f584f6bd2d990b900063dc9b0778cafd92dd78f85f07211b7df48
