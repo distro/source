@@ -1,49 +1,50 @@
-Package.define('newlib') { type 'libc'
-  tags 'library', 'system', 'libc'
+maintainer 'meh. <meh@paranoici.org>'
 
-  description 'Newlib is a C library intended for use on embedded systems'
-  homepage    'http://sourceware.org/newlib/'
-  license     'NEWLIB', 'LIBGLOSS', 'GPL-2'
+type 'libc'
 
-  maintainer 'meh. <meh@paranoici.org>'
+name 'newlib'
+tags 'library', 'system', 'libc'
 
-  source 'ftp://sources.redhat.com/pub/newlib/newlib-#{version}.tar.gz'
+description 'Newlib is a C library intended for use on embedded systems'
+homepage    'http://sourceware.org/newlib/'
+license     'NEWLIB', 'LIBGLOSS', 'GPL-2'
 
-  features {
-    unicode { enabled!
-      before :configure do |conf|
-        conf.enable 'newlib-mb', enabled?
-      end
-    }
+source 'ftp://sources.redhat.com/pub/newlib/newlib-#{version}.tar.gz'
 
-    nls {
-      before :configure do |conf|
-        conf.enable 'nls', enabled?
-      end
-    }
+features {
+	unicode { enabled!
+		before :configure do |conf|
+			conf.enable 'newlib-mb', enabled?
+		end
+	}
 
-    threads { enabled!
-      before :configure do |conf|
-        conf.enable 'newlib-multithreaded', enabled?
-      end
-    }
-  }
+	nls {
+		before :configure do |conf|
+			conf.enable 'nls', enabled?
+		end
+	}
 
-  before :configure do |conf|
-    environment[:CXXFLAGS] = environment[:CFLAGS] = '-O2 -pipe'
-    environment[:LDFLAGS]  = ''
-
-    Do.dir "#{workdir}/build"
-    Do.cd  "#{workdir}/build"
-
-    conf.path = "#{workdir}/newlib-#{version}/configure"
-    
-    conf.enable ['newlib-hw-fp', 'shared', 'static']
-  end
-
-  before :compile do
-    package.autotools.make '-j1'
-
-    skip
-  end
+	threads { enabled!
+		before :configure do |conf|
+			conf.enable 'newlib-multithreaded', enabled?
+		end
+	}
 }
+
+before :configure do |conf|
+	environment[:CXXFLAGS] = environment[:CFLAGS] = '-O2 -pipe'
+	environment[:LDFLAGS]  = ''
+
+	Do.dir "#{workdir}/build"
+	Do.cd  "#{workdir}/build"
+
+	conf.path = "#{workdir}/newlib-#{version}/configure"
+
+	conf.enable ['newlib-hw-fp', 'shared', 'static']
+end
+
+before :compile do
+	package.autotools.make '-j1'
+
+	skip
+end
