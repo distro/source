@@ -1,498 +1,1022 @@
---- 
-packages: 
-- version: "9999"
-  features: ruby perl mzscheme lua tcl python python3 X gtk gnome netbeans cscope gpm
+---
+- version: '9999'
   files: []
-
-- version: 7.3.162
-  features: ruby perl mzscheme lua tcl python python3 X gtk gnome netbeans cscope gpm
-  files: 
+- version: 7.3.338
+  files:
   - name: vim-7.3.tar.bz2
     url: ftp://ftp.vim.org/pub/vim/unix/vim-7.3.tar.bz2
-    digest: 46faa96c5fab639899b1c655c23d8755b62f036f
+    digest: 5c5d5d6e07f1bbc49b6fe3906ff8a7e39b049928b68195b38e3e3d347100221d
   - name: 7.3.001
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.001
-    digest: c2f6dc2df273d2653f17e5ad63ae20ec9119a245
+    digest: 01d460464b09d4bd66fdf1d7221887eb1734335d1d38eb43232499e1f5bcbe29
   - name: 7.3.002
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.002
-    digest: a79c65d2fc7db1c417941d597aaa41d834d05001
+    digest: 0719da2a4cd79ddc7751b56b67490c0a56629db3b0c7ab7804d8fa66ab4e52a6
   - name: 7.3.003
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.003
-    digest: 16e2fd42523761743adba4b358f0c230914b3f15
+    digest: ee990cd9b7b0b31b1f64c084d1b6a83593fde122b33a76617cf3e2790fba1c2b
   - name: 7.3.004
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.004
-    digest: deb0911126bfb6006983bf28313d273679bef165
+    digest: 19e7a0b99eb43981caa519c52343e48f26e572866ff27fff8f9da55d9404958d
   - name: 7.3.005
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.005
-    digest: e8a5cc3250b9cd72672570ebf27757a3cb4e84b6
+    digest: 48fa23d7ae570ac31aa17705f3a73f2c8289c4b5acebecd04282fc5790cf2b29
   - name: 7.3.006
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.006
-    digest: 811bc5a5595900ee36887e3de5f782bc0ad9586a
+    digest: 3e414050c2ce8c6182194ace16381e1165db8e2303c077911ca263c190a41431
   - name: 7.3.007
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.007
-    digest: 0714aa081273b25487ce69141eee690b783399c8
+    digest: 943392143e81db0fc5468b1e51a0947b9e40afff58c57f39c0de45da12336809
   - name: 7.3.008
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.008
-    digest: 197010fbd04a8ac93cccc5fc757d7589911378ca
+    digest: 75186a41c33f0eb9ea7142d1347eff2f7e6edc1c6c9770f27f838f295bd41453
   - name: 7.3.009
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.009
-    digest: d1a4da0a5c8b3678ca1e14436d2bbf507e3950ec
+    digest: 573fbf0481d94810645170f1f00d96610b76f3f87b3bad8ba64f2430ce3b02f1
   - name: 7.3.010
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.010
-    digest: c0fcdbec5318bef24aed081e5c159c7f2a07e6cc
+    digest: 664594fcfa6fa1f06c6d56e5d263d1c6751455c509d55f09a32bcab9a0958431
   - name: 7.3.011
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.011
-    digest: b8ea81629b22bfe0feb225be7982ba56c2674069
+    digest: 8c008677ed973bbd5bcb772a819141efc298b1ce6bd1dbb080cad4ef620b539d
   - name: 7.3.012
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.012
-    digest: c0ca52de327d8cd2efdab1369fb034e77b88251c
+    digest: faae9126687087a5533d15612aeb50458b2ac9eb1593a8115902fd488f90c7ad
   - name: 7.3.013
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.013
-    digest: ae3b3974918dae3ac9e1cae6d177b7e5296964cf
+    digest: 9b427a7fa280662d6545a27f4b2da489595b5a9b4414f7f501d97a06ad10bf7f
   - name: 7.3.014
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.014
-    digest: d2264e2161e29f2fa76b7264bbc0123d8b2b0bf8
+    digest: e7009db4f7f5cf073af5d603b38310fd22b9cc575da01074977fd89a66014926
   - name: 7.3.015
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.015
-    digest: 66393a5c66afe08917a2f72967e15dd2cc2d3001
+    digest: fb02d7ede153070be37f05828f48c9dd4a21c028171811323876e0b77f49de1b
   - name: 7.3.016
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.016
-    digest: 2e0c69b31533f8f077a0d64631e108dfd52ed18a
+    digest: 278c6c73e1b9b2b5621462198e51883166426cacbf19e1a954b10345b5875dea
   - name: 7.3.017
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.017
-    digest: 0ffad9d69cc43f18100ffb6db0d08dbc994d8b3e
+    digest: 8ec6972233333ea63e462bdbd24cb09ba03c8c87238bf133cef8ffb16ae825ec
   - name: 7.3.018
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.018
-    digest: 8b2988814c769a0ff184095c2b36e16e4267de9a
+    digest: 66f7a885428b15f1f556e8ae1cc88e95e7b06d107b3eacccc3e3b645bed81b71
   - name: 7.3.019
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.019
-    digest: cccb0de039ffffe1b52de2e0c7b2c896652af2fc
+    digest: 504a1fda0eb7cf4c08e7eb0d09f833b77519f364758d2f719a82f670d69f28f6
   - name: 7.3.020
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.020
-    digest: f638accd87076200060defddc04e40bb663c91e4
+    digest: 048414435fa509e91bb06133fb3ec32b513d21c522bae52317c5fd13e18f0e18
   - name: 7.3.021
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.021
-    digest: 5c420d7038161f8431a1233935043dffc5301655
+    digest: a3fc8531c8d10580c8bcceb6828b7bdd6cf126a26b553d48010c5b120060505a
   - name: 7.3.022
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.022
-    digest: 3ed12b4b44e88a700aab0dcd18e1d3fcf2acfb7e
+    digest: ca90eb821e56e65330e06465d455a1a88861cdd18cdefc892d9471316dcbce97
   - name: 7.3.023
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.023
-    digest: c93b9f2beed0c249f85dd9ccbee632ee956b47db
+    digest: f57a8e9b280b18b23ea1c369115f6f512e079613f33e3cf3960d2a4a32a0e224
   - name: 7.3.024
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.024
-    digest: d46909e748926039c469fd703d84c6f9bceae1bc
+    digest: dd255dadfe0df86f02949d38750ec73ddc8b45be491f9f6c8adfaa940d119c10
   - name: 7.3.025
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.025
-    digest: 53ec1781394d78cb77985205b4b73e4ba4b2eb2d
+    digest: 6ac0af5d6c1d928c90d639cedfd85b44ae2f2777577b9a56199c3261f72bb29b
   - name: 7.3.026
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.026
-    digest: a46303334f97640f60ca08c2a2cbd22e79b9af7c
+    digest: 52dd0f4fcfda8eb7d57d7034607a7929e73b83c5bf3b26526b0662fec7e78772
   - name: 7.3.027
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.027
-    digest: f5a62200122dbc7cb0bc3baedb74021751010320
+    digest: 89576f6254faa6d98471b6076e4b1d26cb291d437f8cf4a4f1c9880d541d57ba
   - name: 7.3.028
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.028
-    digest: 5c2d2b71b4ed182d73de94c38b88e52f085d6f47
+    digest: d09ed852bc1f3899f54367e761cf515bd93cfa6b3b271caa016bbe84b055e077
   - name: 7.3.029
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.029
-    digest: c9b118237b0c8cbb9faf0284cfc1352fa7f4c329
+    digest: eabc2589b1ef9be030351912b0f03cdbbf009bcd93421a44b97c2cd6717d7e0e
   - name: 7.3.030
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.030
-    digest: 19dc0d1c80b126be8333daf2b6ada0dd0a59fae6
+    digest: 58198fd9f8a129c568adc222bb839eac9c724422cb609dbb1555ffc4b63682c7
   - name: 7.3.031
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.031
-    digest: ffb9f0cb1e31402674d58ad4f46fcdeeee281e2b
+    digest: f6133c6b5bb88c2b97f839819bd852febeaa17989885bd0abc02c19cebc9bbff
   - name: 7.3.032
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.032
-    digest: 793579d933c6129fb54851a7019567ac232162be
+    digest: b1f5912894c4a9d571f4e06c14793ff82556b03d5c04d94691cf1614755d55b0
   - name: 7.3.033
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.033
-    digest: 97361a42a16ebb90d1e1b23efc4445a5a5c78276
+    digest: 8d241991c449b2cf981efd956eab140b4a6917ef5292a0bab8b3c6d2fa4804c2
   - name: 7.3.034
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.034
-    digest: ea1328b278b911fcaad0314134f027730898e4d4
+    digest: 3c86659a07a5bec79f2d201ed83422a66e520a95101b5fe8ed53151c5e3ae45c
   - name: 7.3.035
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.035
-    digest: 5450503e0495661ce85dc111d08656744fc41429
+    digest: c2e66b0e41c1938b5510267cd867976b73fa7ab3c762dd7c5e17099a7195db19
   - name: 7.3.036
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.036
-    digest: 0dee37698980765e9d3ecea97a1d3a3873014e40
+    digest: ddeef52c0d83f8171b3e37d29011424f0645bb7b6b0c776ffae58902e7a4223c
   - name: 7.3.037
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.037
-    digest: ae363fe1fbdd39163590a771fd2895f771731630
+    digest: 16b6ca7940d397ed782cb01f9ee222b9c897b124182db439a838e21780ca3928
   - name: 7.3.038
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.038
-    digest: e4f2106b3c66929cc0d4ef8d1812261910e175fa
+    digest: 1f98a052fc21724403fa9a1033bbbf935f0ba711b72d7a9f1a03fb2974b18ea3
   - name: 7.3.039
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.039
-    digest: a3f52788bf2945c0a10f85216cbbde4a69e1bf87
+    digest: 5dfe08eb3e759fe23e874f48adcdd5915b9396516d2e309d53a51a25ee0660b8
   - name: 7.3.040
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.040
-    digest: df7e6278952d9886b6e166cbaa41b6e9259f217d
+    digest: 7401072d3a7c88cbcffab14a9ca49e124ba5c392b83ba229d42b19335fc904cc
   - name: 7.3.041
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.041
-    digest: c498d5e455b1ae9d619e3b3f2e5b30e231f15486
+    digest: 1c2ecec3327a5ee1e36456b3f5d31ee1b2210b50606bc26fa2f98fdb1c89c95e
   - name: 7.3.042
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.042
-    digest: d865c4c0dea4508b149fc3e0ddf51155206fe13a
+    digest: 63d1969b6878254d6b6c150eddebd12d4109d2e0fefd8f9594e7faef77ee37a4
   - name: 7.3.043
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.043
-    digest: 9699e531ab867a432090af3652426f5ed874d3a2
+    digest: e40881200ce225519786da00ddbbb72b1a1a064e1953f01dabfb61e09f29aa54
   - name: 7.3.044
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.044
-    digest: 9070d06cee357d7b05e07d179966bbeb407fb9d0
+    digest: 0f4dc8798810a931510c90b35dbe00102718bed51fd461fee8a0cbcd458cdef8
   - name: 7.3.045
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.045
-    digest: b3bd524c152405473b52f22dda58afeaa475a7ed
+    digest: b65adc10cd3d906d3086570eca791c44e1b575cbf84666f4961f874c2096539f
   - name: 7.3.046
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.046
-    digest: a9d901845f33c1ff6dce453d928195ca4d9af422
+    digest: 07cb714d7b9eac1c923a5c83e4103c562fc98d177a281990740ea48e221e76c0
   - name: 7.3.047
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.047
-    digest: b4914c0925ddafe509421baff37f9c06dbb232fa
+    digest: 2a6bf55663547ce8a961d0677932f60613e16366c8ca3ac0e7f6f4b915e5263f
   - name: 7.3.048
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.048
-    digest: 01e009119b063d3da5683e2e41a43ad798caf117
+    digest: 65f053cbf8a2af498a3ec20a82c8072967dc3aa78bf2281d1c524f8cd2829a46
   - name: 7.3.049
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.049
-    digest: 0b6faa556c629a47d11b3205f5a3b4904d7463cd
+    digest: c9a4cb78b5be4ff4c4ad8f603503be0ea66859c037356fefbb4b2ebc165e77a7
   - name: 7.3.050
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.050
-    digest: e1c160f0351278960a2499bc773a9d5e5675cae0
+    digest: 61062948404d460c6ec414dc58111cd69fdb08a1191a81ec4b6a1f9d1d85dbc2
   - name: 7.3.051
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.051
-    digest: 3cf09ca8bafed49af968d7b1af7e0c6b3ffb5a08
+    digest: 4072cf2160bbbb3167c78eecdf2c531d0c3f9e9ea054f3156b61076b43dacc0c
   - name: 7.3.052
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.052
-    digest: 974cc56865a41c58a2672f2a0ad1b8415ca9022f
+    digest: a9dfe75063a35144e243dba23cec8be8ee41f444ebb4ce249ce7477d59268d34
   - name: 7.3.053
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.053
-    digest: 7f548860ea383b23170d07c9fef11b280f7e2cdb
+    digest: d82bd5cfe92b01e3d5a403f5a67afd0903b6616f4961604f33cff64a49db1cb9
   - name: 7.3.054
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.054
-    digest: 989e6f5bdbaa72af69196ae33b4e9854fc1bfb76
+    digest: de872a14c2f9eaa2ed34494f96dfa6c8378388001c5f32004cc9f46b421e25c6
   - name: 7.3.055
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.055
-    digest: a38cd5c0e41e66eb9490fede81b6929cf551dab6
+    digest: 4f63a4b8da519f553417beca59183427a77fe50cd0385693141dae9202a1669b
   - name: 7.3.056
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.056
-    digest: 7b1119e4d0e4a1d23713b0d3a8cd064af4fff4ea
+    digest: d7c452df89907cc4fcc0dd45548c990ea9e43f5a04555e92058cd11c9f48eb6e
   - name: 7.3.057
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.057
-    digest: 482af78bc76988e31b73d71ad12e6408e8eb195d
+    digest: 7fa11e0ef57e0b95ce0ce13d229313e524b085f1850ddb2bf522ca88f35011eb
   - name: 7.3.058
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.058
-    digest: b295142486b0ae54f07e595f1769a3671bb962fb
+    digest: 1aa673af4e224f45be6e0c835000ad6519c89cb2d0ae04d6106d01282783c687
   - name: 7.3.059
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.059
-    digest: 65fff95a990c737155f387df7d71d902754d252e
+    digest: 44de5bf4393a550785c5e642747bd8b7cacd29420c7e072ade3b3f67f8671064
   - name: 7.3.060
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.060
-    digest: 8ee25af12879b580c94db7c19991307cd2774cb2
+    digest: e84dbc2fef7f6130053906d703836b7b193941d5c26d873f8963cb25cd7f7a80
   - name: 7.3.061
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.061
-    digest: 789a51935b073b8d7d3e4b6441c20e9d15eaa1fc
+    digest: 5995fd9d185473a2edcfd9de31a4ad7d806455a67ce29d556f9f489f41c984a8
   - name: 7.3.062
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.062
-    digest: 810ba3de7d97bf8548b322b61e08b8812bbb7268
+    digest: a1ee57cf222453f302c0be84740ac61db02b0f930b0111e1ce46d190230facf7
   - name: 7.3.063
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.063
-    digest: 8b96beee564774a499ce02820c50a677d1a38338
+    digest: a51a1491a1895ebe2b45c63861a96c90bd9899e94dac2ca26fc09788365029bd
   - name: 7.3.064
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.064
-    digest: a2ce16e24621df3ffcf68afe6278cd18c0c847ae
+    digest: d547ba7014e8a1983b1eb77be889528b76d219a7c5ce44baf1ae82fc939f8543
   - name: 7.3.065
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.065
-    digest: 3bd976873596acb8901d90c3feee11eab5bf8d4d
+    digest: ea08fe49510af4561f6ea65328a1b06c202db9bf1b59fa428a7e2f178492ea7b
   - name: 7.3.066
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.066
-    digest: 1fd5e05c0ebaf620bfe407dd3c47795ed0aeb453
+    digest: 209b5767db5d2004f24149774aba7dc8571541e8b482ac7b8377d30cf53a810d
   - name: 7.3.067
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.067
-    digest: d728e45980d03068cb77364bfd3dee50ac12fc27
+    digest: 859e7c5780777b18d53865cecb147833d9e3a6735222f59ec5884b5274450be0
   - name: 7.3.068
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.068
-    digest: b78725e071f9beac90e0d25254c073baa53d51e1
+    digest: 0581e52463815f8c4aa6f4dde909d86f816bfebeaae1e748bd9f351d4bf52689
   - name: 7.3.069
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.069
-    digest: d7060f6659830166f92c1826ed98bcc0c0755a1e
+    digest: a8b721bd35b1e757101e4ea8b96b44b5aa70bc354b802a230f9bded023021b73
   - name: 7.3.070
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.070
-    digest: 59e4d91a3cadcdba2ba8101c5f349522e5e92818
+    digest: fac2b80e83e98f53f9099cfaaa692bd20a14cec4c7a7fcc6fa3219f5ada9c2c5
   - name: 7.3.071
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.071
-    digest: d550a360a99b1c5ad506766b34341b00655a3ccf
+    digest: bb8a35336823f90ea297043c1b39dc58cf350b9d5e9d04cf9bd511273c7bac24
   - name: 7.3.072
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.072
-    digest: e1ee9af3a2fe690ceae9672a71782f01199abca5
+    digest: 86080a5b89c8f1ba0562c5fd408d73034726ff5232f267af3dd51c6cd4044747
   - name: 7.3.073
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.073
-    digest: c3012e72a0a1cdbf15fca3fbc5fe291fe6101aaf
+    digest: 5114f4afcbb18c2d7e93161de1b751c24ff0f09053ed1a16664e0f0096725099
   - name: 7.3.074
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.074
-    digest: 2a8ac3adf0a3fe30c7b6683c7eb279244c259e72
+    digest: 06639ca4a423d6c84089ac006e19f02e993d8e67cd1e4ea696d2edbe4615fdd7
   - name: 7.3.075
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.075
-    digest: ddb0a0f2ecc48456947021b991de989046c9bb8e
+    digest: d373b3a0d4c1dfe77746573a69d807be6d1370045b9e0b57488bb527e8635a20
   - name: 7.3.076
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.076
-    digest: 5284853c9d8afc85a5f4761853b746ab5af05cfb
+    digest: d41eb9de094dd14c094e53ec373635871f92c5a1a2ea5150b5a395a56a3371a7
   - name: 7.3.077
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.077
-    digest: 6a1fc20917aabee7bcc7f7e7c3841dee2607ae5d
+    digest: 5e1d555fa461bdda83079d984c4b733c0442953c980cefc604e0eaecd9f504af
   - name: 7.3.078
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.078
-    digest: fd3bbe8991a23fc76838e3f4443dc0ff26428574
+    digest: 57ba780240a5b818132ffe7a8ef3433c883fa38efaa6fea5aa428a9e5ff7fcea
   - name: 7.3.079
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.079
-    digest: ab47018ce22e3073f742627cbcad9f3171b7ba2c
+    digest: 462f81abdd0945f50d4de6c5f7e08b09e44a857057b7e4133b799801fc0f020a
   - name: 7.3.080
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.080
-    digest: 82d25091b87839ab9924917ba0fd491528cbb9fd
+    digest: 7ad5dd5a0cf80596027f2e27739e68175338a1dfa4a1161b33515795e9df0d4d
   - name: 7.3.081
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.081
-    digest: b94ee87abb253760663a7ee16b7ee1b2e60ac87d
+    digest: 292837324ce6c6f453324804116845d698feb8bf46d903cb22a73d6ac8887a33
   - name: 7.3.082
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.082
-    digest: ef5dc2c7bfbe78386fdff25ff12d9cc690c800e2
+    digest: 6e1709c2581305857823afcf17041e6c2041023bfe825300eabf2fd011d66aac
   - name: 7.3.083
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.083
-    digest: 6a4b4f5d73d1515141b517400519978c6ceeefb8
+    digest: 1bd7edfc491d5bfc9e2ec1c47cb94545fe3995b294ad1b04c2f266994437e135
   - name: 7.3.084
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.084
-    digest: bc2cf1411b417ae9a791831b027b2f699f2ba485
+    digest: 7a9d347b4b73b895819c98271426b1cffa2b1a500708a30dc8e385bc94de7938
   - name: 7.3.085
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.085
-    digest: 65e339087dbceafd0600aa39b939f10a86a2f7e9
+    digest: e00189a265fe4597c9807509919638067e062d6b3dba3038e4d77d2b66d83767
   - name: 7.3.086
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.086
-    digest: 65d34bf5a541255184b80858aef4295c4e60baff
+    digest: cc1817360a0bbf7ec1cc562c4da4af62b145eb309db0b4e9a0e85382e6f5f797
   - name: 7.3.087
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.087
-    digest: c1155c2e3eb1028bef3683ce30d58284dc784bb5
+    digest: 9c47d56339d7db60e46a71bc9fd2f3d1286cc4f9fb5581733eae20989bbb453d
   - name: 7.3.088
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.088
-    digest: 6783db62158cfd4745eb094a13c5182cfc130809
+    digest: f83b3f5145fa54e97a7a1567c61aded7f08a21b8de7d4e1562677cba77270478
   - name: 7.3.089
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.089
-    digest: 113e0bc772ff04557cf4750b2a3ac5fcba28ea88
+    digest: 82e564f337eb8c11e3c4665a70043c05bd34fc059d74f9141c7d1786a7067375
   - name: 7.3.090
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.090
-    digest: fe2a503b9432384d2aedf4c1a7e88572db5d7a8e
+    digest: 9363bccf1780eec5130a6c5769d12781ad77deddd576926ef1a8e116dead0082
   - name: 7.3.091
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.091
-    digest: 0855bd978ad415082bfa895b159c8af5597b9b2b
+    digest: 7f5d576cfe88fab50dbef2f532acd0eab6b73ebdf3433e0b97f071ab1d423f91
   - name: 7.3.092
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.092
-    digest: c1b602141efbd60b57df6a56ca2dba8926ec1fce
+    digest: c4ecb96bf99f9c4f8072f65cfb7c912343a69ba9e99ce5c4c23f0e9b8f2407dc
   - name: 7.3.093
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.093
-    digest: ed03463e13d21c1d9d7f3725d9d547dbbd10ba1f
+    digest: b09515ad31e1d57b17937a737e4646259f1008243f1fcba9605406449db9ca82
   - name: 7.3.094
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.094
-    digest: 4399e0af839d38af1b236bd3412215d31025f8ac
+    digest: 842029ccc9a948dd4cfb667400cd7d414fc534c4a97d31c99a4b924dfe10f2cf
   - name: 7.3.095
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.095
-    digest: 3c9fba06863d5fda6fff5d4275336ec89e54e58a
+    digest: c83e73c91afdc68d1c49eb5148bec94c54295d43f0fbf6a7d082910e6c418d5a
   - name: 7.3.096
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.096
-    digest: 8852725b198cca55b196cc2da779231b1a215d6c
+    digest: f399b2bdb25e536d3d0c3ee646e7a90c579a27ced5bf123e7d7142b0a8f4e800
   - name: 7.3.097
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.097
-    digest: 4d8c19c19afe3c44b8359266a95a06a9eaf10c46
+    digest: 516ce55191dd1bccb06f4e32e984cb6a159ff521c2cdbe8b37af5c4e4f0a9876
   - name: 7.3.098
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.098
-    digest: ef7504b0de9fe58204f045e0bb1e699f20fe25e7
+    digest: 745d9d392aa8c44b247f171b184ab96aba14218846d6d64b62ff213f2f59e7c8
   - name: 7.3.099
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.099
-    digest: a46b4de13bd76acc261f2fcc3b7c8d9e6fa29f99
+    digest: 3fc507ba74038d297fac3cbe176a5b658bca50ef08abb7bb725a6ccdc6dbcaeb
   - name: 7.3.100
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.100
-    digest: bc93e6f15e81057ed65144a19d4e7e0665775a6b
+    digest: c7af1700f356a86689ece7d9f10184fc229195a95c96226573020f782f0a783c
   - name: 7.3.101
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.101
-    digest: 56b6e58693490a371e1b53aeb0613cd3bdb80f3f
+    digest: bc40b4c836b1681ea639dc8f897203134ca245617a4bfe9b2ea173f451ac0d98
   - name: 7.3.102
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.102
-    digest: 9f9df2bb48e37e639c6a83cb93a67d9b86295a39
+    digest: cc220216f168791f0981be17d80820352f20328585b1a63844e78054626df14b
   - name: 7.3.103
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.103
-    digest: 604fa273ab08c2e26f21ba79965c709deb15ca44
+    digest: 26eca83e19bc04ed3cc92ef81ef505f381d7e92e81365bdd065245bbf6d0c21e
   - name: 7.3.104
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.104
-    digest: 7dae856866bfeb7ee99062007d294259c1743d4e
+    digest: de8cd12ced03af9235881b3a6bf6afb736f8f5ac1d01ea02dcdfece02f80e21b
   - name: 7.3.105
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.105
-    digest: 13ea4afb95745f12defbdee883116fed78d5e662
+    digest: 1e3dae9b169b612ff296b32f6c52abc3f322f12125a9b5d674125038e45860cb
   - name: 7.3.106
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.106
-    digest: 8d4cb6ef55fa9b2b201cbefcc272de0e0aaae43a
+    digest: 2159b71255fc9ef9f559b22be789f19e9d02e1580de20d321d7717fff4c8d297
   - name: 7.3.107
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.107
-    digest: ae19b63b54a21d63507d331c0916e797809e5b76
+    digest: efb2548fa6c3c7165b96e8f1ff8030c9ae15741e3650488b6bb6957210b26acf
   - name: 7.3.108
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.108
-    digest: b2c5dc9e06921a0b4da489eddb113842792aec7a
+    digest: 609fef81a620e4becafaa36e99c4b2787aaf8b95657274defaa7cb2cd3c8adb5
   - name: 7.3.109
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.109
-    digest: 2a064220a1f93cc15b8e97c67d38300e1d3245d1
+    digest: 2bf7a0679f6ccd08a5e28048755db2c96d778fa98cf8aca427b61ed5ccec6896
   - name: 7.3.110
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.110
-    digest: 15ada1a8370d7e3b1a571065879ebe439d135ff6
+    digest: 851841e905d6d9d788bd6e655668c90b2a3c56eb17eb9e1bea0a5e840c4cb7c7
   - name: 7.3.111
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.111
-    digest: 5ae7bad60a0332aa77fec19f1715e7eb019e6ba3
+    digest: 61c6b10d9051072f90f0deac64ebfff6f723620690c4d710c8e6cdb573f2da63
   - name: 7.3.112
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.112
-    digest: 41613eb44591b15c766147a0e8c8aa0f0e4940ef
+    digest: 229f842e932a42fcde7dbb19c3daafc6ccecabdd172bffa01691688c85c7ae68
   - name: 7.3.113
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.113
-    digest: 6e9ee6590779e592fc4d20dc25eb3a670a1b567e
+    digest: b994e413b0bb1268d8152111ec01a2227bf324295a25dbaf50e8df375c2378f1
   - name: 7.3.114
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.114
-    digest: 7b6f7440caaeedbed0f0e547b8c88f937172ac6b
+    digest: 7927945269c3fd51bb5d41acf4c3b7f8cc9f2edd06446e450759b0e57ecd30ac
   - name: 7.3.115
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.115
-    digest: bbeb046c4a68351eeb9cc8ab2a42c720253d98c8
+    digest: 625a78cc009cd0c8cd55d07df96d3164bef166b6b11dbc64dcc9f0a7e0e29af1
   - name: 7.3.116
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.116
-    digest: 74856daeeb8202d50b7e34691003d299f54ac265
+    digest: e1140ae22fbdf708896e9a5e7a7646e8ccd8d3c01fc35ff80af8008bbde34ac9
   - name: 7.3.117
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.117
-    digest: 273a1ae5a2eed73dced4e0d9640ac02739bc4bd7
+    digest: 3d34f5d593a7016dfdda66acffe2e308ab85e7debbe9ddd1e0d5b603484681c8
   - name: 7.3.118
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.118
-    digest: 116da5144a2d77f981140f42634b442a7830dc2f
+    digest: 230c26885e0d5232939961a5c28b9e92a15cc4926210b68f9ffa13e11f90a6b3
   - name: 7.3.119
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.119
-    digest: bb3b5e40fc4dc52f88ba05a663f983d77df05928
+    digest: c94d09ba5d4bc57662dfee7589d41577242c63e551f0ecd6866ce3377054dd58
   - name: 7.3.120
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.120
-    digest: d5a24c1edaa2ac5914c20628601c47027f0b4200
+    digest: a228183dde81726d113ada1ed4e3a9c559acc96c8e4d51f58b4d0fd52679c87b
   - name: 7.3.121
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.121
-    digest: eb34d64a4f94a1defcbda55acaf68e0ca0608bcb
+    digest: 0e0ba10a442ea46cd3936c1bc64384700209efd48a7486b341f44ca275fe87fc
   - name: 7.3.122
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.122
-    digest: d936d72501f855442de36042027951f1ec38f3da
+    digest: 2338aee9de9b373d8f93d98823c3375e932b101ae661d23d6cdb14c7863ea214
   - name: 7.3.123
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.123
-    digest: 949a38e63348e00fe7d2bdbf89ef0662151a88bb
+    digest: 54a8809e78a480a4bcc8883eb987428fd08f7774a70cb4cc0c9502f0fb1eb2c7
   - name: 7.3.124
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.124
-    digest: 31e27c002a1241635a23a9a6ef02e0b72380b21f
+    digest: dc163315ff0d9dd1ce3e7b2a5fdb914baab2f21d54185d339f4acbc69f1ee0f2
   - name: 7.3.125
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.125
-    digest: 4b987b3dd70ae16cd04ab0963af09d371fb57603
+    digest: 70e67845ab8c55d9f99aa74bd89604653f9897a03226ccd917fbc0d9664c9f4c
   - name: 7.3.126
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.126
-    digest: 1699b90a58770dd6238d64d2d2f90d07bd585c92
+    digest: 8f3973b7c64e7ca44cc54396898d18ec31a2dee174392f604539e1843e0a3f46
   - name: 7.3.127
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.127
-    digest: 1c418ebc23385d6020da3c9a4baf0f65f38a3f46
+    digest: d6f73c4eb9ff26375238865c77d6d43f1b8f2f88baf75edef442d9bb0c452966
   - name: 7.3.128
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.128
-    digest: 37e1b82b486643352f244994940ceededb2095ce
+    digest: 13717d2d148dcb900c3834b66311d98faf97f86535ddb43da109a2303e69c479
   - name: 7.3.129
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.129
-    digest: e40d7aa34617c48eee405a55ed3b55f6e79be1ff
+    digest: 3c5d2b49ec17115076a90b3f43a868ffa544310225eda480f4a87a13b36d43cd
   - name: 7.3.130
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.130
-    digest: 88048b5914fae1a7fcff649d3bfe453d7a4121fd
+    digest: 069c4fede340f82fe342e98318707b80d7a217f45dde61ae3a40631ca9a1ce8b
   - name: 7.3.131
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.131
-    digest: fb438e1809d2344230084cc3748e56b581adcf2b
+    digest: a3763f455202584e106add9f8d9b0ba1531d075b0e443838ec22398b88cd6050
   - name: 7.3.132
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.132
-    digest: 43fb8a00264eb5bd304ca8e6dfcb4f2da85323e2
+    digest: d48656a9080d8ec7ff08f8930f39939cbf29022a1fd8801af3ad91ee3b904c03
   - name: 7.3.133
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.133
-    digest: 5b57ad09c6e77278ab2936393e2b0327df7ba2d6
+    digest: 125a64e25f416b554dee1f29098231f778b895c4d4efcdc4e56523e384e9c435
   - name: 7.3.134
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.134
-    digest: c76dc84a6c7669ea581f50876615a9326261e5e5
+    digest: e0931c215ffb9145dd1989bff434eb6865a3a7b3f41dc40e241fce0e4d230465
   - name: 7.3.135
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.135
-    digest: de9720c48a29fc6303ccc70cd230d61b0e8995b3
+    digest: f644d602add70e4deacb8b674d9cc12a8712a7fd20f39364ecb8000b088de74e
   - name: 7.3.136
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.136
-    digest: 3cfbd5a61e85fbefd191036c299276628ae30755
+    digest: 6281471aecdcd57d4ba60ce237a6113322cebc283a62732792fc14fbaf5749b8
   - name: 7.3.137
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.137
-    digest: f9ffecdbe750ad0cc5ce0ee597f4e863ee8f9aad
+    digest: cd3540eb1a891cd895f0c7a868ee28cf0217d565c42d4c3b5da309586e40504c
   - name: 7.3.138
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.138
-    digest: 07e8f10b5f0938e9bdb3ae7d2ec462cbfaf824b4
+    digest: 393381f1988e00abb143f70eb5c16e8116d79dd2f21680bd9bcbfa2d42286d4f
   - name: 7.3.139
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.139
-    digest: 646ac3bfdc0dc0d9424ab199f837731647804b9e
+    digest: fe8a57a88c092a5e782ed6b75df57add681162aa7ba838de4bc2348b8da46c59
   - name: 7.3.140
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.140
-    digest: 7cc04584a1d75620e71a89608caa3297f330f65a
+    digest: 38d58fac2908eaf669f71921bbd79343e2572e44ee6a8ef3f6303a82ca2539e4
   - name: 7.3.141
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.141
-    digest: 23bc00ef7a7c4b873119849e62eb20dc77b7e97e
+    digest: b54e9cb45d8f0f77002519b25f77ba54a0048ff2b6188d464ed532300a7a30c5
   - name: 7.3.142
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.142
-    digest: b4d17caf1f38abde1dab4cec1334c66e0c8d6c9b
+    digest: de79f6583405ff0a72bd71473212f66322b6120bdb082332797f6f5510c3c096
   - name: 7.3.143
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.143
-    digest: 92410e33b6277527c312f3833b4fa4245f5ccb63
+    digest: 9ef149662dd4566b06b0c34607c115e7904d628ec4c3ca4540f44bb2b990d7fc
   - name: 7.3.144
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.144
-    digest: 50b4dc1647429acc1cd1dd4e3331402a82c28096
+    digest: 11d3def93598894175e0017bde6ebd65a29faad4925b5d444f7fd8325b828252
   - name: 7.3.145
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.145
-    digest: 5c4fae5527f75fe1e67e08fdfde52ae0dc3d325a
+    digest: b7d0a71754e537e0e1d158b349b8b4afa5afec321c9a06a5b1e37d1512705163
   - name: 7.3.146
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.146
-    digest: a8cd693993114e060633fd713a369b95ea269766
+    digest: 29daa5207ee93844fa2f03d752719e39dbb09c91c98ec8eb1d878b9e0a033133
   - name: 7.3.147
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.147
-    digest: 443c5b95d8a9580268c4649e54ed237a6ba6198d
+    digest: 442860ac6763131f3e6df74d1fab9ae729d32794f781946f12b0cc0045f254ae
   - name: 7.3.148
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.148
-    digest: 3a5568360c6ff919d0709f158419c21f92367118
+    digest: 69e7ab765b7e7db2281ba340d92fc0ba3c43acf28e10dffa5c69658f03af59c6
   - name: 7.3.149
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.149
-    digest: e422c738c736b390842e4ab5c85accfa4a92551e
+    digest: 34e758ac5ab59195d6400803d94a608b4e837e9c6ddb728e65b946247129388f
   - name: 7.3.150
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.150
-    digest: 0824efa6eec88f312bef486a2e4269056314e843
+    digest: 0caa6750fa159a94d2d392cf025ef3609efa597c85a4ad35572eb3df25a7f9ce
   - name: 7.3.151
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.151
-    digest: c0ff345da3b0e3548b1edce94010eec66daf078b
+    digest: fb173abd15ac96edeab3a594d4754162294c36c6291505e9e379f34b12689a4d
   - name: 7.3.152
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.152
-    digest: cb9e13c761687a5347655871af274b3f5cc4a762
+    digest: 5e43ea52fff62eea760e06711755df1ad56f2c0cf30df0c7fcd2697e989d7cf3
   - name: 7.3.153
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.153
-    digest: 9da413c60f559c361111c6182d15b768743f2d5a
+    digest: f434ee720462c3b1fc585d1a101a48d84a28331428ff3c4f5442ce9aab4cff62
   - name: 7.3.154
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.154
-    digest: 169f6243f602fc8ac0349cb2b63a72b591d334ec
+    digest: 36c7a0c198c690ac6d5cd4cf61b85ddac870723775c541dd77257a9888c34c9c
   - name: 7.3.155
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.155
-    digest: 3bda3c42bdd917cebd47f5ad39e08307c4004077
+    digest: abfe8faf078b832d3db53fd8a63f18f36f75c69feaa9ccd2650ed515af4dff39
   - name: 7.3.156
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.156
-    digest: de11e9b195fc4e4fef6761a6cea920e73bb87d91
+    digest: 7c961a9a466301e23d3b7bb41b8b0524357b557900d3b52cbac05c67c9d56a81
   - name: 7.3.157
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.157
-    digest: 7c7a54833ecea3a966d846917a562941ec929c17
+    digest: 9e2fe02565a907ca1712631e6c2bced975fc538058efaff3ba0c418537e5266a
   - name: 7.3.158
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.158
-    digest: b48d23ab34e85148675017607b71701ce84d4cc4
+    digest: bf24a44020edf5c387af62d7ae8f2be80b9d2c700bb77387e5d5e28ce352dc01
   - name: 7.3.159
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.159
-    digest: cee449c40f6f2c74b26857df06482ed9389dc22f
+    digest: 5084abab7ce3adcc7f9aedbec6fe47ce14598df3e55ca589ce036f02aa3f009a
   - name: 7.3.160
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.160
-    digest: 4c3f2ef2211a6aef4d5a4eafde4c7c5c36d358f8
+    digest: 8a9e76a613e20c061c8609b4b5cdaac76b048b1cff50bdd2028c77d1e41df88f
   - name: 7.3.161
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.161
-    digest: f5aacd050daec2d8c8015bee185a43bcc14121ee
+    digest: eb6a58bc14e07df3b4035731aeed668763a393da22b02c4837c631be690139db
   - name: 7.3.162
     url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.162
-    digest: b42af5d8ac52880521c017c02e26f95b21ef8761
+    digest: 4defe2fb5a6b065497dc9726d05d505b81a9696b6aa0b8eec70463d74d808f16
+  - name: 7.3.163
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.163
+    digest: 7c7968aba2f9eae26e4b5fc3ab80d110493df822a83db05b9cb95be78b91b70b
+  - name: 7.3.164
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.164
+    digest: 92a687f98ba774589e5fb21872b1e222387db957b28c997a671769645c9c0c20
+  - name: 7.3.165
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.165
+    digest: 17a193fe6b30b63bb662e2b47e04d303e92b069682d1fb7139b5e7b874bd1928
+  - name: 7.3.166
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.166
+    digest: 5649657689b7b232afa01721faf485bc2d87ed87310d276418aae6d6aa9f8680
+  - name: 7.3.167
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.167
+    digest: 5ed5de8ebce596ff7b7454d4bab57b6d5ae42147fdd9b8487bb069e7956d7537
+  - name: 7.3.168
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.168
+    digest: 1fd58b09382b864c1a39809d70e9189e8a6f4cf04875bb50922a5c6a7bb8c53b
+  - name: 7.3.169
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.169
+    digest: 0c26979ac146e1c64c315aa570c49e2529c0e64849548bb595ee6fdc85f8fbed
+  - name: 7.3.170
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.170
+    digest: b89a580d050ad41cc892273c4f40abe4e6b243d9a9f4f671bbd0d18bdb8b5d1d
+  - name: 7.3.171
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.171
+    digest: 974db77dc93279885164fcab23d23e610344fe4aa5fcd3e030535cf30efa82bf
+  - name: 7.3.172
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.172
+    digest: 93f1bda232fdedee868cf2b17cffdba5fef27bbd5be169819093e332abf0f3ca
+  - name: 7.3.173
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.173
+    digest: 91c6c6d676196b8bf0c02d91ec7bb93927adefb1eab070682d81c70c7ffe42d9
+  - name: 7.3.174
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.174
+    digest: e79d154c1ce368187b859fd9f445bae129f63ddceea418646f905eae4469908d
+  - name: 7.3.175
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.175
+    digest: ceb9b37215e0e4cbfe9e112dccc1c5d3ab198863c4101e69e79230cc45c89374
+  - name: 7.3.176
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.176
+    digest: 7fb84c4cbf50f47b30aa35788d12484b596c4f02ff981d2837a2796e38259580
+  - name: 7.3.177
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.177
+    digest: cf7e7ce0efb9772ade4caff11be158b3b43cba818b6bef2cb09904741f6695d2
+  - name: 7.3.178
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.178
+    digest: 13ad52a2181116613b9ac3b62924cf11b80214a9280bd4b494a14abc0f6fc597
+  - name: 7.3.179
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.179
+    digest: 7a54ab4d9c5321416bc06d857cfac27d6ebb1f13d07cbb77f54330f2a53bf2fb
+  - name: 7.3.180
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.180
+    digest: 52185ec284d9312dbb4a42288fbe51fd4d7cfe573b1d06a67817a65965e77520
+  - name: 7.3.181
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.181
+    digest: 238e8cf0f0b97594bf99be2e2efe4c53dbd71c420ef31b6ef8be88f1d0b7c21c
+  - name: 7.3.182
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.182
+    digest: 2860408c8c36e721d009272f5cf93fb3685d2dfb258bd9dee4c92e1911ff621c
+  - name: 7.3.183
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.183
+    digest: 5c3e8b67802aa28a5e9c42e8dac1360a60459cf8efd37b748911e450b364a01b
+  - name: 7.3.184
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.184
+    digest: fd809797e74dba9089d9e4f87ec4cce9a0fa1c6c21b08c3e904e3c710011b564
+  - name: 7.3.185
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.185
+    digest: a6c28f22000777ea7021dda3f032b7f67d09ab2925c2ba6ed7b167cfd1aad8ee
+  - name: 7.3.186
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.186
+    digest: 2eb1c4026011c776cd849fea58063d24e1f912e411091dca28e4323f62e0feca
+  - name: 7.3.187
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.187
+    digest: 486c49f92ab8e9e71857f048fa5d59fc6e4870fd5b57d52a4cf172aeb9ce3e06
+  - name: 7.3.188
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.188
+    digest: da0c13b603ee6a4714faedba7accbc0bc4f7945c3fcae2ba283b44a7d3775a0c
+  - name: 7.3.189
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.189
+    digest: e02986db0c97f0b4281389886b4357863777d439b83b34aff9ffa5c1add34ce6
+  - name: 7.3.190
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.190
+    digest: ee1d3725b9cb89165ea3f1f5dc030e30aad1bdd1310a0d1d3827aaca7fed8ee0
+  - name: 7.3.191
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.191
+    digest: baf7cfbfbe20ad9a837aa420c67625e49f9ecb614e1b7a1160ff938d9b8bf19e
+  - name: 7.3.192
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.192
+    digest: 2aca8bea9e78e7ea9444fa4154bad7292d371acd92fc4e3d14e3d23a311940fa
+  - name: 7.3.193
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.193
+    digest: 3c66d616ee672e3fbe0a5fdad4678ab5c7888f8ba38075d14593f52a5c3a4eab
+  - name: 7.3.194
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.194
+    digest: 06a7b049e560f8199d0b49ec90fdfe8a5527673823aceae4fc65e3a492cad0d7
+  - name: 7.3.195
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.195
+    digest: 138b299ba24caef9e84488811a5879fef66d8bd4f8aedb36652f74466e4b2378
+  - name: 7.3.196
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.196
+    digest: 0f9cad047b33f7b185643d02de37434478f59db162a898cc7a72bd3c66f5d4c8
+  - name: 7.3.197
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.197
+    digest: 72764d421bf4260aede583dceec8beb7f3b701d8b96d7eb40e8491bf6686d36b
+  - name: 7.3.198
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.198
+    digest: 8a5da5489b30fda6adb16986f2c5d6aa7fb7a3c9e0ad30985e0d6e3a610219cf
+  - name: 7.3.199
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.199
+    digest: c3ec76232769b8b6aa6ee44451c84a5dcda9aa6cfea5692ca2cd05e11512633f
+  - name: 7.3.200
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.200
+    digest: aec033449236670d1697b308ab5f063dc32625e48d17743099d55069b999bd4b
+  - name: 7.3.201
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.201
+    digest: a59692b1fa2221b9b85b4d60a9d20669e80570ca4b24df8896598c6bb9bc0fe0
+  - name: 7.3.202
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.202
+    digest: c96e1b3cb699c01cf263086f970b485d49c293e2ce2250ab050e9c32384c1553
+  - name: 7.3.203
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.203
+    digest: fc693494b07d63c92dc8042101bd74cb329fc56d109a210a3abae6a1fbeee9d8
+  - name: 7.3.204
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.204
+    digest: a69de09a5be2d306a14ef01649e41790eaabf8fdfd4ef977e8f80f13e6d63e17
+  - name: 7.3.205
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.205
+    digest: 01b384c4b4885bd91976bc201fc6f2692a25715b3780a00267dcff2644e1bfa2
+  - name: 7.3.206
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.206
+    digest: 953340946cf743b0f711313e3baa21a0303abace479cd581ec9f1e2c54958e5c
+  - name: 7.3.207
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.207
+    digest: b773d45e7be11984ce62ff36c668111bc7938758474cdcea9fcf45a52600cdc4
+  - name: 7.3.208
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.208
+    digest: 8e297a16439ce6f88a15de44cea9ef59ca1b5f3a2848714f15a6332d1ea5822c
+  - name: 7.3.209
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.209
+    digest: 9c5d993a151c2b82e40c718b80a7699f68dd87b34b401f93ae59057d32c5c999
+  - name: 7.3.210
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.210
+    digest: b9d4729e474c6dce245a66898f33b0a5e2f390254c59b92117129e4ca7dffedc
+  - name: 7.3.211
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.211
+    digest: ab9d8533a8fb468d741d65e8684d41e50e47387ba509509b18bfd20ce77cf08e
+  - name: 7.3.212
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.212
+    digest: fa46c052e0724df23f858247bc570865c7ed439063677583805fbb56f7435d4f
+  - name: 7.3.213
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.213
+    digest: 8c4d26cb9c5f5daf22371eaab265948cd09e932745c834859824dc6572b25c46
+  - name: 7.3.214
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.214
+    digest: 8e8294c46b8a6b83a76e1fb6f80816d4c48eec9ab752978dd9ae07b5f81ce1c1
+  - name: 7.3.215
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.215
+    digest: 66d192168974cab2ace6ce922f2ad8170346c4823c6816380aab6781784dcca1
+  - name: 7.3.216
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.216
+    digest: 7b8e0c997a571b3037f2f89968d8fe11e2b1eeb1337b69a7417aa95ea22d7739
+  - name: 7.3.217
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.217
+    digest: d25820602491a930360d0b3d72ef515644b256352a1a11775fba115991342404
+  - name: 7.3.218
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.218
+    digest: fcc7f2f74c11ccd0c13985fd9377c66607c09a647e83fffe31c4d132d5b0efc0
+  - name: 7.3.219
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.219
+    digest: 5ea2d113291891ccf3f07f884ce077ab645814a5c8dd09e6d1b33996d6996439
+  - name: 7.3.220
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.220
+    digest: e113fbe2cd7d471e90426f8348930f4a85a2a34595c66ffff737e62c93cf7596
+  - name: 7.3.221
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.221
+    digest: 6cf48cb28c316eb213ebcbebba529094eef3507e19916eec352f46662649f5b7
+  - name: 7.3.222
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.222
+    digest: ebc54b4ee572cc6cdc1ae20a8cc646f612c7e231c10677ac17c0f640b5db723a
+  - name: 7.3.223
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.223
+    digest: 0cef9cea8344c481dd97b843503bff3fd2cea4df3a55c6e5840848c5e4ad6592
+  - name: 7.3.224
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.224
+    digest: 9f686663c36533b44196bf49303e512c4784e191e50c87e61ba04ba8e7bb3e1e
+  - name: 7.3.225
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.225
+    digest: 21c6394712923213fb6b766fe4e1cda6a500f97bc4016337e11c711ce4660e35
+  - name: 7.3.226
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.226
+    digest: ad9b8c9f71b9117415f87ead4a6de69b40015c36acc07674c598478b11409f73
+  - name: 7.3.227
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.227
+    digest: 60e75f7047a3e342f591f1ba79251a24264a93eb354d864a50b284061b11d160
+  - name: 7.3.228
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.228
+    digest: 9c809a4da3effd5ac222b6ce057d0f38d21e959389930f878d434ab7bc2cc432
+  - name: 7.3.229
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.229
+    digest: d0e502a8abdd67a2f7623b345ff9c17d7ba00720d822cff7d9f816f66a758ca8
+  - name: 7.3.230
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.230
+    digest: 7e98c5b113289809ff8362681463c9fb00c38a361ee095e0dd14a7cc03e05af5
+  - name: 7.3.231
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.231
+    digest: d76d7cf64ff2e6e7c3f0d7f34356f33042bd0643e4ea4ab1dc50ea821112de0e
+  - name: 7.3.232
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.232
+    digest: ee5bb4606a897cf4d6bf14f3de2303b9d32b8c1dac757547dfcc1eed2aeb59a5
+  - name: 7.3.233
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.233
+    digest: 8bb8dd18bb42e8031d0112d2259c62b3d31430e1d0b1d0cbafd0c5ca9f612eac
+  - name: 7.3.234
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.234
+    digest: d8275133ba8a47e3958473fdfdca81908ae58817492ee03fb8a7530b43a6eee1
+  - name: 7.3.235
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.235
+    digest: 19b1cf09e2e6e6b3f0dc4564a97291f79d59a4baca03c8734f9371aedd7fb34a
+  - name: 7.3.236
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.236
+    digest: 702b890ec1d7fc86e5ea5a9b7ba302e70cbd7d04475b87e66e8cf5107170c362
+  - name: 7.3.237
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.237
+    digest: d57208d439e0ed693137c16315f20111ed7c6044f6a11073a6e491291156173f
+  - name: 7.3.238
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.238
+    digest: 9cc77384d19de7acdad6bb718ac237def8fe5cf163b6a3ea789cc91b390fa9aa
+  - name: 7.3.239
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.239
+    digest: 738ec324e837462370d23d722517925c33aa54b5c1548eb8e90158371c5deb50
+  - name: 7.3.240
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.240
+    digest: aefc3a6bf789cbd5a5f83c17db812cd656169b898a639b8bc29256f99edf2be4
+  - name: 7.3.241
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.241
+    digest: 4d2314fde3e8e5fd8e5d7763c6317757920e4153f08939cf64cc3ad777f8052d
+  - name: 7.3.242
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.242
+    digest: 3a9416d9cee9dae297c921e23a84d0c5f210171189c4191754d2946a072d3e20
+  - name: 7.3.243
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.243
+    digest: 8b3b679c756f485be27556ff57917f0518c023613ba25640534c61f67ec9008c
+  - name: 7.3.244
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.244
+    digest: 8fd561f47be0d2e439356f53cd7cbd66b4c1acd6bb7d42971d66ffb9e0b6a729
+  - name: 7.3.245
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.245
+    digest: 97a6936dbf7b31099123990dfc16ff49dce5b2a42782cc324fec9462b8f66794
+  - name: 7.3.246
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.246
+    digest: c4ebd4d80110908698905b635ce1a293f351a0cb3f7247b93d59656664c9bc91
+  - name: 7.3.247
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.247
+    digest: 37d44a5b693f0c3132153bd7f1b1dfd01d42a5a2474956eb0d16c91f59e194eb
+  - name: 7.3.248
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.248
+    digest: 3e377c78997d0bbf3b6c1e45bbd4960dedd0589d789c6caca8133ba0f3688269
+  - name: 7.3.249
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.249
+    digest: b7598044c5af4623bf2c64482f683fec912669d0fc6f013b237e86c5797e0244
+  - name: 7.3.250
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.250
+    digest: 7d2fa200af43b689fb0ec2d8783b3858139a87ae8699db599d2f288c765c1b6d
+  - name: 7.3.251
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.251
+    digest: 289fe0c643d6322e245f0ccbe3969e1d3af8a89e7bae9dbe5e79030c0f9f3664
+  - name: 7.3.252
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.252
+    digest: dca0027bb1a4898971d166ba65d7d089f06fbd7f2d8eb1eda5712095786e7a09
+  - name: 7.3.253
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.253
+    digest: 14673a9ed85c215433019bf8617803d1a1de1325314fe0380839f8ec3656ea0a
+  - name: 7.3.254
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.254
+    digest: 0faee9d80de7501fa4787039892f9229c1531f9c1a6738038e64e7d27c59dd90
+  - name: 7.3.255
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.255
+    digest: 39e30744cf297f13f267366015ec1c97ce5b8f3d15e35a05a7b5bc9fdbd46042
+  - name: 7.3.256
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.256
+    digest: 6f99a5d46dd1f73263fd9ea200f3a326f30f59ec56011576445872fc3e7086b1
+  - name: 7.3.257
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.257
+    digest: 904c348c05f368c72f9f044aee766d249a1034ae51df31ad50dfde1864e1c2f1
+  - name: 7.3.258
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.258
+    digest: e9c8edf0f52d7a5bc04dd2eb04a07ab72a10ffb432076b82e4ab9d3e828f0dbd
+  - name: 7.3.259
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.259
+    digest: 90bb4d1f240e6cd7b73f2ce513548b102e222b634044d9d4e3bf956c542cf884
+  - name: 7.3.260
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.260
+    digest: 2e9fb2cbc7a6b22bb4c5884894fa593b19aceee1d6c5ed6b6d0111d16710d8be
+  - name: 7.3.261
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.261
+    digest: 670ae5308b4d6b23f9d881bd1698cf903613091909d69d2bd78785ad9f4e666a
+  - name: 7.3.262
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.262
+    digest: 74324b1dece80d33ef3450a780c2fc64b2a02a8abcd1ca64b5688549b1e81776
+  - name: 7.3.263
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.263
+    digest: 633fa8c93d51b042c4e32fed1cae0a41455075b9b77656d25416ca83a5a327d7
+  - name: 7.3.264
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.264
+    digest: d8d5ba7d606fb7f429818920005c12d57f5ef199e77036cf43303efbbd300051
+  - name: 7.3.265
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.265
+    digest: f02927b3b8de91c6cf0e5501b691351956d33b9c2f2c53cf947f91eb437432bc
+  - name: 7.3.266
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.266
+    digest: b3a828f5099c58174d557f851c73943468c2f57cfa674f8c7ff0a88df13d2615
+  - name: 7.3.267
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.267
+    digest: 343de06144c28dacecc8d4f911c9caee14bdd8af978b7eedfdfa622d4a4816cf
+  - name: 7.3.268
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.268
+    digest: 2660186f7c58eeb00ab0c1f91b0be4f64a8c85f3a486da10838151587aa9ea72
+  - name: 7.3.269
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.269
+    digest: 810b036eb1701cabafdb251d9c385342c4cf00849051042d38854a1b8cdf1f8a
+  - name: 7.3.270
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.270
+    digest: 74e5c6d2ea411aa2ce2adafe88c88254765a30b04c442fe6988a211deab2800e
+  - name: 7.3.271
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.271
+    digest: 93d7e928b64c7e44b91ee583eec8e45e1b050f8d053fa03d55a93bbc004ffe40
+  - name: 7.3.272
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.272
+    digest: 08ea6aab5df9d1e1ca780bbace1d2a3be86cfe70f5d24864e0357cdc23339b3f
+  - name: 7.3.273
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.273
+    digest: c134c2d07ad51ebe3687949590c3a07fbd78d60b3435b4b7c6641afd5ac6974d
+  - name: 7.3.274
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.274
+    digest: 900049abb0e01cd7a4b4e042a538bafa0eddcc576e5a11e183ff646e7cae07d7
+  - name: 7.3.275
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.275
+    digest: d13cd78a0fc065575ac81a09f67699e37d04fa394b7966ec4601af2d4a45ee43
+  - name: 7.3.276
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.276
+    digest: 343c4a81bb55a8bbe18c21f63631d2e4553d95a8375b7341cdcd5d1eb6c2a19b
+  - name: 7.3.277
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.277
+    digest: df6d62ce6dbc95e184f411fc83b7502f249ae6777540b6902e400014b3b142fe
+  - name: 7.3.278
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.278
+    digest: c53c0d38565fd0571c261689208890a73547a2f91d4066b72584d617f767b45e
+  - name: 7.3.279
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.279
+    digest: 587f2cce6d1801f4a547d2712702972cab3495b2edb574982d70e833baa2bcb2
+  - name: 7.3.280
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.280
+    digest: fc2ca42055bf8b7c0925331e37a57d2fa5b1882a9486e787b5b8d5af4ce309c5
+  - name: 7.3.281
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.281
+    digest: 30e7dbb45fd387ed5a34e9e4fa6119aeeeb0d035032740b2516b39bf62aa2009
+  - name: 7.3.282
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.282
+    digest: 5bf6570d6699512b2546aebce3697876ff42140b28181e69de4dca442ea2cbb8
+  - name: 7.3.283
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.283
+    digest: 57f3cf39dcbbd0c9dbc5759acbab2d408013d3c38ad0c981dbf90eb45e701851
+  - name: 7.3.284
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.284
+    digest: 1e390c6dd6b1ba5d50cc5f0ed3c0fd7651beb843a974085c843e5880d5fcc03d
+  - name: 7.3.285
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.285
+    digest: 268a99977553de349654570fcb2c8de157ed42868273a345f92139bd5e35d6a5
+  - name: 7.3.286
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.286
+    digest: 5fdd77387321699fbbecea29cfe73bb7b3689a20f5f6f65b937bd0ffdc0638cf
+  - name: 7.3.287
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.287
+    digest: 0810a5b44ced7ae31b17bbf38d5198406060fa1164b5f21e35ab3028ad4501ac
+  - name: 7.3.288
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.288
+    digest: 3ef9eddf02d0ba5aec43bc46fd970951b8cfcad01275ebf9acca463d75b717f5
+  - name: 7.3.289
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.289
+    digest: 5581bcf1e4b01365c6517970cd23092fead6884a47a68a4990dbb9e9a9d012a4
+  - name: 7.3.290
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.290
+    digest: ccc4c801ff5ce452670fe1198c2ef7e0ecb710abb05478cb428a4750e18c4244
+  - name: 7.3.291
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.291
+    digest: d9da89fbe579a9fa6f3d18a1ea0598621845f8771d6aaae31a28ebfe886e7773
+  - name: 7.3.292
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.292
+    digest: 2688c5426e489046cc6128c85b4f5a40814b97e66ba2e2d8c39daecee3ebd5ec
+  - name: 7.3.293
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.293
+    digest: 99a483f4bc52d0fc89479968518d6f503385a10e8c715a21f2839f69e4680b42
+  - name: 7.3.294
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.294
+    digest: 5a5a4da3e8b7bafd2821d2b1f73b6b83add144781936190a88dbb7b2186d799a
+  - name: 7.3.295
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.295
+    digest: 8e19982a6696a002624ad7f094c09ed2f036894567b823f5239a61ecf6dd7937
+  - name: 7.3.296
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.296
+    digest: 3db1b7d8f4a6de1bed91736ee612111af757cbd938055342631dbd1dc792e8f1
+  - name: 7.3.297
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.297
+    digest: e46b7f7aeaf80b246867d9e8477f0614f2f0ee5e302bf32c17492fb7bda4f722
+  - name: 7.3.298
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.298
+    digest: ff7ac5b5d406db7b67e18c6438ba1930637ba3011675216ce58f6ce1cb20281b
+  - name: 7.3.299
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.299
+    digest: d14c31e7a66d10dc59d2a9869077dee367c2bb12702919814a2df5c2a51a78f7
+  - name: 7.3.300
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.300
+    digest: d049b8c2dfd6a40732a96b8d869dff9e2550e1263bde9ac2a08e87b075eae1cb
+  - name: 7.3.301
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.301
+    digest: 504a3cc296553a743bda5ad59d6aa80c7c303486d32354b808502eebbf03b652
+  - name: 7.3.302
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.302
+    digest: afe550d1acca6be0d47e05876b8584a555060208eec326f0306a5f9aa88d3b2c
+  - name: 7.3.303
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.303
+    digest: 3511e4f82d3eaf83eb806ac33cef249c65f9bbb51fff278480c71ce291684bc2
+  - name: 7.3.304
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.304
+    digest: 321e7653b4cd940e3e54b0ce0177f6980c249949ff670a29d14a67bb9f787b07
+  - name: 7.3.305
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.305
+    digest: 8d74e38d16b65e11d53e96e0b63bcb55ac8ed22800829beb25ad4058ed0752e9
+  - name: 7.3.306
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.306
+    digest: 97e8c2f93f88d507f488fad8f6b19c6a303ff81881cbebfbaca571bc7f97fa51
+  - name: 7.3.307
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.307
+    digest: 3d74fcfcf658a08937e600af59b7d0dc08fb42b47b10a598491cf0c505a95657
+  - name: 7.3.308
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.308
+    digest: 3d6c49cf46884ff47366071dd146ce65ee98b2642100f96bae8905d084c0f3c6
+  - name: 7.3.309
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.309
+    digest: 2f851d337a16582633997ae5895a0dbf0fa34f7569989594ea0cec65d8c0b552
+  - name: 7.3.310
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.310
+    digest: 382832df41f6a00f44f43fbd0a08aa77d07519b3c620c405cdaed70dd64e0d52
+  - name: 7.3.311
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.311
+    digest: 022e92c676ef25bf2853f76cb583d83778f5620fc3a2f8e02c4d48df1805ded8
+  - name: 7.3.312
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.312
+    digest: 99fbd5e5fd3f2cbce247dbf4c9a6116cd986f2c0dd912d2802bd432c7668b590
+  - name: 7.3.313
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.313
+    digest: 4624497e5d93875eefe298dad200b00051067b2aba3336891481bc49dc721516
+  - name: 7.3.314
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.314
+    digest: 28f2b0e748c7993dc5b5b06c01e2b351e77d736027e98a0914d6bb09c9bf0f32
+  - name: 7.3.315
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.315
+    digest: ae74cb017a5663c77c46b317a1b5f79a90a783b4b05ec44e6d4354f2cf7753c8
+  - name: 7.3.316
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.316
+    digest: 676e17580e93da6572d877372c2e755ed27c44b1fdd89aaf63016cedfdd2cc2e
+  - name: 7.3.317
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.317
+    digest: ddf9e8b1a53bed2b52c89030df94b7dfe2d84be654ef2eaf175e33ae15431fad
+  - name: 7.3.318
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.318
+    digest: 5db46331dbb09a0eab7b78e12831f6ffba1f40b4adaabbaa0c2cc4f5429bb39b
+  - name: 7.3.319
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.319
+    digest: 58f612fc957f7145fb4d335730597e2e6fc6b5da99242ee8d282e474cc42e24b
+  - name: 7.3.320
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.320
+    digest: 39b582c6c112fe2689e68a828c2528296d211b5dfea2b444ff6f84b10a46145e
+  - name: 7.3.321
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.321
+    digest: 1781ff01fae110cf638d6268266a37b915d360f6cab3f0a5631d3cc547a066b3
+  - name: 7.3.322
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.322
+    digest: c84f48b275464021941e20353d9fa4f4df339741458762f3928f55633adcbe5c
+  - name: 7.3.323
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.323
+    digest: 6689cdfe4b04439a28ac8c1fe193853c9cae7f287fed41fd7138f81d041560ee
+  - name: 7.3.324
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.324
+    digest: 331fb8e1fe5ef2abbee500db4d2f134d1a6688f32b169eb11b78f1742d2e9ef1
+  - name: 7.3.325
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.325
+    digest: 2123c9b2c6628ceb4820708495b5d357c6f8300183a9fa3962f541aa2b0d509c
+  - name: 7.3.326
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.326
+    digest: 25265e2803fe0206774b3a2ea6f7d9436d8e957c3881617b8195664783f39eaa
+  - name: 7.3.327
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.327
+    digest: adcd8c5fffe3851ea0eb27e92522f414be9d8ae7e85d1ad60ba532674ccaa6e7
+  - name: 7.3.328
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.328
+    digest: 1491216783941a82bdf391b0bb6b14e873b56f4dfaa27ce78962941e433d1a7f
+  - name: 7.3.329
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.329
+    digest: 26b3e92a9108b2ffe276afe715ef69c6bd2bc80be8f5aaffb435bcbfe7a77d76
+  - name: 7.3.330
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.330
+    digest: 0d3daa4dde3e660e8123ac98acc21c4d76f019078587243baf2a7fcb84b82f0a
+  - name: 7.3.331
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.331
+    digest: 42fb81cfe2a1ec86cf2b8a5d69c03b4783df9f1cd6b8aaed39493b553679d885
+  - name: 7.3.332
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.332
+    digest: 95a6830060c0745b1376bc581282fa29398d8b42f4dce1e24221f140096560ee
+  - name: 7.3.333
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.333
+    digest: 41983d07998c7ba093a7d2167c8c09a5a194417d78fc64ab09f689365eb5e2cd
+  - name: 7.3.334
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.334
+    digest: 1773d5426c718ce5e16b32b76f94e11b7d487a1b9c0b33f829be44ee24de022b
+  - name: 7.3.335
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.335
+    digest: 61b6fd4636f3acaf7ab3c2052bf5dc532fb0534f12cc48c175e91000831a113c
+  - name: 7.3.336
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.336
+    digest: 4020b921dba104fbabe1e2eca090dfd1e7594beeaadf70753fd745b2bf0184b0
+  - name: 7.3.337
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.337
+    digest: 7878ff8ff192f888a8ffbbd4a27961104dd8afff68a17f8853ae41798c8da77b
+  - name: 7.3.338
+    url: ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.338
+    digest: 9a0e900d675459aec9d9e2ef4f85bc0b8b67f5cb06dd247358aefef67fee01dc
