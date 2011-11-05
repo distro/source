@@ -1,9 +1,9 @@
 maintainer 'meh. <meh@paranoici.org>'
 
+type 'compiler'
+
 name 'clang'
 tags 'application', 'system', 'development', 'compiler'
-
-type 'compilar'
 
 description 'C language family frontend for LLVM'
 homepage    'http://clang.llvm.org/'
@@ -23,15 +23,15 @@ before :configure do |conf|
 
 	conf.disable ['assertions', 'expensive-checks']
 
-	conf.with 'c-include-dirs',   (env[:INSTALL_PATH] + 'usr/include').cleanpath
-	conf.with 'cxx-include-root', (env[:INSTALL_PATH] + 'usr/include/g++v4').cleanpath
+	conf.with 'c-include-dirs',   Path.clean(env[:INSTALL_PATH] + 'usr/include')
+	conf.with 'cxx-include-root', Path.clean(env[:INSTALL_PATH] + 'usr/include/g++v4')
 	conf.with 'cxx-include-arch', System.host.to_s
 end
 
 after :unpack do
 	package.unpack distfiles.last, workdir
-	Do.mv "#{workdir}/clang-#{package.version}", "#{workdir}/llvm-#{package.version}/tools/clang"
 
+	Do.mv "#{workdir}/clang-#{package.version}", "#{workdir}/llvm-#{package.version}/tools/clang"
 	Do.cd "#{workdir}/llvm-#{package.version}"
 end
 
