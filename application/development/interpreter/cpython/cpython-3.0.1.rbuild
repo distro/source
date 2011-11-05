@@ -1,5 +1,4 @@
-version '3.0.1'
-slot    '3.0'
+slot '3.0'
 
 arch     '~x86', '~x86_64'
 kernel   'linux'

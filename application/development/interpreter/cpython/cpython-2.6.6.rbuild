@@ -1,5 +1,4 @@
-version '2.6.6'
-slot    '2.6'
+slot '2.6'
 
 arch     '~x86', '~x86_64'
 kernel   'linux'
