@@ -1,9 +1,9 @@
-Package.define('v8', '9999') {
-  arch     'x86', 'x86_64', 'arm'
-  kernel   'linux'
-  compiler 'gcc'
-  libc     'glibc'
+version '9999'
 
-  source.delete(:tag)
-  source.branch = :bleeding_edge
-}
+arch     'x86', 'x86_64', 'arm'
+kernel   'linux'
+compiler 'gcc'
+libc     'glibc'
+
+source.delete(:tag)
+source.branch = :bleeding_edge
