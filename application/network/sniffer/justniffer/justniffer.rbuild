@@ -1,43 +1,42 @@
-Package.define('justniffer') {
-  use Helpers::Python
+maintainer 'meh. <meh@paranoici.org>'
 
-  tags 'application', 'network', 'sniffer'
+use Helpers::Python
 
-  description 'justniffer is a tcp packet sniffer that can log network traffic in a customizable way'
-  homepage    'http://justniffer.sourceforge.net/'
-  license     'GPL-3'
+name 'justniffer'
+tags 'application', 'network', 'sniffer'
 
-  maintainer 'meh. <meh@paranoici.org>'
+description 'justniffer is a tcp packet sniffer that can log network traffic in a customizable way'
+homepage    'http://justniffer.sourceforge.net/'
+license     'GPL-3'
 
-  source 'sourceforge://justniffer/justniffer/justniffer%20#{version}/justniffer_#{version}'
+source 'sourceforge://justniffer/justniffer/justniffer%20#{version}/justniffer_#{version}'
 
-  dependencies.set {
-    needs 'python%2'
-  }
-
-  after :unpack do
-    py.fix_shebangs 'python/', 2
-  end
-
-  before :configure do |conf|
-    autotools.configure conf rescue nil
-
-    Do.cd 'lib/libnids-1.21_patched' do
-      conf = conf.dup
-      conf.disable ['libnet', 'libglib']
-      autotools.configure conf rescue nil
-    end
-
-    skip
-  end
-
-  before :compile do |conf|
-    Do.cd 'lib/libnids-1.21_patched' do
-      autotools.make :clean
-      autotools.make "-j#{env[:MAKE_JOBS] || 1}"
-    end
-  end
+dependencies.set {
+	needs 'python%2'
 }
+
+after :unpack do
+	py.fix_shebangs 'python/', 2
+end
+
+before :configure do |conf|
+	autotools.configure conf rescue nil
+
+	Do.cd 'lib/libnids-1.21_patched' do
+		conf = conf.dup
+		conf.disable ['libnet', 'libglib']
+		autotools.configure conf rescue nil
+	end
+
+	skip
+end
+
+before :compile do |conf|
+	Do.cd 'lib/libnids-1.21_patched' do
+		autotools.make :clean
+		autotools.make "-j#{env[:MAKE_JOBS] || 1}"
+	end
+end
 
 __END__
 $$$
