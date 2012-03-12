@@ -7,21 +7,31 @@ description 'The stupid content tracker, the revision control system heavily use
 homepage    'http://www.git-scm.com/'
 license     'GPL-2'
 
-source 'http://www.kernel.org/pub/software/scm/git/git-#{package.version}.tar.bz2'
+source 'https://git-core.googlecode.com/files/git-#{package.version}.tar.gz'
 
 features {
+	threads { enabled!
+		before :configure do |conf|
+			package.arguments[:THREADED_DELTA_SEARCH] = 'YesPlease' if enabled?
+		end
+	}
+
+	sha1 { enabled!; default_value 'blk'
+		before :configure do |conf|
+			if value == 'blk'
+				package.arguments[:BLK_SHA1] = 'YesPlease'
+			elsif value == 'ppc'
+				package.arguments[:PPC_SHA1] = 'YesPlease'
+			end
+		end
+	}
+
 	http { enabled!
 		description 'Enable git push/pull for HTTP and HTTPS'
 
 		before :configure do |conf|
 			package.arguments[:NO_CURL]  = 'YesPlease' if disabled?
 			package.arguments[:NO_EXPAT] = 'YesPlease' if disabled?
-		end
-	}
-
-	threads { enabled!
-		before :configure do |conf|
-			package.arguments[:THREADED_DELTA_SEARCH] = 'YesPlease' if enabled?
 		end
 	}
 
@@ -43,17 +53,18 @@ features {
 		end
 	}
 
-	perl {
+	perl { enabled!
 		before :configure do |conf|
 			if enabled?
 				package.arguments[:INSTALLDIRS] = 'vendor'
+				package.arguments[:USE_LIBPCRE] = 'YesPlease'
 			else
 				package.arguments[:NO_PERL] = 'YesPlease'
 			end
 		end
 	}
 
-	python {
+	python { enabled!
 		before :configure do |conf|
 			package.arguments[:NO_PYTHON] = 'YesPlease' if disabled?
 		end
@@ -68,48 +79,47 @@ features {
 
 before :build do
 	package.arguments = {
-		:INSTALL    => 'install',
-		:TAR        => 'tar',
-		:SHELL_PATH => '/bin/sh',
+		INSTALL:    'install',
+		TAR:        'tar',
+		SHELL_PATH: '/bin/sh',
 
 		# Mac stuff
-		:NO_FINK         => 'YesPlease',
-		:NO_DARWIN_PORTS => 'YesPlease',
+		NO_FINK:         'YesPlease',
+		NO_DARWIN_PORTS: 'YesPlease',
 
 		# Misc stuff
-		:SANE_TOOL_PATH               => '',
-		:OLD_ICONV                    => '',
-		:GIT_TEST_OPTS                => '--no-color',
-		:NO_EXTERNAL_GREP             => '',
-		:NO_CROSS_DIRECTORY_HARDLINKS => 'YesPlease',
-		:DEFAULT_PAGER                => env[:PAGER],
-		:DEFAULT_EDITOR               => env[:EDITOR],
+		SANE_TOOL_PATH:               '',
+		OLD_ICONV:                    '',
+		GIT_TEST_OPTS:                '--no-color',
+		NO_EXTERNAL_GREP:             '',
+		NO_CROSS_DIRECTORY_HARDLINKS: 'YesPlease',
 
 		# Installation stuff
-		:DESTDIR    => distdir,
-		:prefix     => (env[:INSTALL_PATH] + 'usr').cleanpath,
-		:htmldir    => (env[:INSTALL_PATH] + "usr/share/doc/git-#{package.version}").cleanpath,
-		:sysconfdir => (env[:INSTALL_PATH] + 'etc').cleanpath,
+		DESTDIR:    distdir,
+		prefix:     Path.clean(env[:INSTALL_PATH] + '/usr'),
+		htmldir:    Path.clean(env[:INSTALL_PATH] + "/usr/share/doc/git-#{package.version}"),
+		sysconfdir: Path.clean(env[:INSTALL_PATH] + '/etc'),
+		gitexecdir: Path.clean(env[:INSTALL_PATH] + '/usr/lib/git-core'),
 
 		# Compilation stuff
-		:OPTCFLAGS  => env[:CFLAGS],
-		:OPTLDFLAGS => env[:LDFLAGS],
-		:OPTCC      => env[:CC],
-		:OPTAR      => env[:AR],
+		OPTCFLAGS:  env[:CFLAGS],
+		OPTLDFLAGS: env[:LDFLAGS],
+		OPTCC:      env[:CC],
+		OPTAR:      env[:AR],
 
 		# Language binding stuff
-		:PYTHON_PATH => "#{(env[:INSTALL_PATH] + 'usr/bin/env').cleanpath} python",
-		:PERL_PATH   => "#{(env[:INSTALL_PATH] + 'usr/bin/env').cleanpath} perl",
-		:PERL_MM_OPT => ''
+		PYTHON_PATH: "#{Path.clean(env[:INSTALL_PATH] + '/usr/bin/env')} python",
+		PERL_PATH:   "#{Path.clean(env[:INSTALL_PATH] + '/usr/bin/env')} perl",
+		PERL_MM_OPT: ''
 	}
+end
+
+def make (*args)
+	autotools.make *package.arguments.map { |k, v| "#{k}=#{v}" }, *args, "-j#{env[:MAKE_JOBS]}"
 end
 
 before :configure do
 	skip
-end
-
-def make (*args)
-	autotools.make *package.arguments.map {|(name, value)| "#{name}=#{value}"}, *args
 end
 
 before :compile do
